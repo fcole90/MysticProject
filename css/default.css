@@ -1,0 +1,53 @@
+
+/** Load special fonts **/
+@font-face 
+{
+    font-family: BebasNeue;
+    src: url(../fonts/BebasNeue.otf);
+}
+
+@font-face 
+{
+    font-family: Walkway;
+    src: url(../fonts/WalkwayBold.ttf);
+}
+
+@font-face 
+{
+    font-family: Walkway;
+    src: url(../fonts/WalkwayBlack.ttf);
+    font-weight: bold;
+}
+
+@font-face 
+{
+    font-family: Walkway;
+    src: url(../fonts/WalkwayObliqueBold.ttf);
+    font-style: italic;
+}
+
+@font-face 
+{
+    font-family: Walkway;
+    src: url(../fonts/WalkwayObliqueBlack.ttf);
+    font-style: italic;
+    font-weight: bold;
+}
+
+/** Use the special font for titles **/
+h1, h2, h3, h4, h5, h6
+{
+	font-family: BebasNeue;
+}
+
+/** Use a special font for paragraphs **/
+p
+{
+	font-family: Walkway;
+	font-size: 20px;
+}
+
+#title
+{
+	color: red;
+}
