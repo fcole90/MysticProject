@@ -29,7 +29,7 @@ class Nav
     private $linkClass = "fastlinks";
     private $moreLinkClass = "morelinks";
     
-    public function __construct($otherLinks)
+    public function __construct($otherLinks = null)
     {
         if (isset($otherLinks))
         {
