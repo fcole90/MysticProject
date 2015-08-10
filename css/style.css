@@ -158,7 +158,10 @@ p
         display: block;
     }
     
-    .fastlinks p{font-size: 2.2em;}
+    .fastlinks p
+    {
+        font-size: 2.2em;
+    }
     
     .fastlinks
     {
