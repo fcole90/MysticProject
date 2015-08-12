@@ -82,7 +82,6 @@ p
     font-size: 6vw;
     text-align: center;
     color: #ff3300;
-    width: 100%;
     overflow: hidden;
 }
 
@@ -114,7 +113,7 @@ p
     padding-left: 5%;
     padding-right: 5%;
     font-family: BebasNeue;
-    font-size: 4vw;
+    font-size: 5vw;
     text-align: center;
     color: #ed2000;
 }
@@ -161,23 +160,28 @@ p
     .fastlinks p
     {
         font-size: 2.2em;
+        text-align: left;
     }
     
     .fastlinks
     {
-        margin-left: 1.5em;
-        margin-right: 1.5em;
-        width: 4.4em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        width: 7em;
     }
     
     .fastlinks img
     {
-        width: 50%;
+        width: 40%;
         float: left;
     }
     
-    .morelinks{float: left;}
+    .morelinks
+    {
+        float: left;
+        margin: 1%;
+    }
    
-    .morelinks p{font-size: 2em;}
+    .morelinks p{font-size: 1.8em;}
    
 }
