@@ -57,7 +57,7 @@ class Presenter {
         $nav->render();
         unset($nav);
         
-        echo "    <br class=\"breakline\">\n";
+        echo "    <hr class=\"breakline\">\n";
         
         //Here goes the main content
         

@@ -35,10 +35,28 @@ p
 	  font-size: 2.5vmax;
 }
 
+a
+{
+    color: #ed2000;
+    text-decoration: none;
+}
+
 #logo
 {
     width: 50%;
     display: inline;
+}
+
+hr
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 2vh;
+    color: #ed2000;
+    background-color: #ed2000;
+    clear: both;
+    box-shadow: 1px 5px 10px darkgray;
 }
 
 /*Nav rules*/
@@ -102,7 +120,13 @@ p
 {
     background-color: white;
     box-shadow: 1px 5px 10px darkgray;
-    margin: 2%;
+    margin-bottom: 4%;
+    margin-top: 0
+}
+
+.morelinks:first-of-type
+{
+    margin-top: 2vh;    
 }
 
 .morelinks a
@@ -118,7 +142,7 @@ p
     padding-left: 5%;
     padding-right: 5%;
     font-family: BebasNeue;
-    font-size: 4vw;
+    font-size: 5.5vw;
     text-align: center;
     color: #ed2000;
 }
@@ -135,15 +159,31 @@ p
     border: 0;
 }
 
+
+
+footer
+{
+    background-color: black;
+    margin: 0;
+}
+
+footer p
+{
+    margin: 0;
+    padding: 1%;
+    color: whitesmoke;
+}
+
 /*the clear div*/
 .clear
 {
     clear: both;
+    min-height: 480px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
     /* For desktop: */
-    #logo {width: 24em;}
+    #logo {width: 45%;}
     
     body
     {
@@ -157,12 +197,12 @@ p
             
     #mainnav
     {
-        width: 49%;
+        width: 52%;
     }
     
     #mainlist
     {
-        float: right;
+        float: left;
         margin-right: 5em;
         clear: both;
     }
@@ -170,7 +210,7 @@ p
     #droplist
     {
         position: static;
-        float: right;
+        float: left;
         display: block;
         clear: right;
         width: 100%;
