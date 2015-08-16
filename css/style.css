@@ -138,7 +138,18 @@ p
 
 @media only screen and (min-width: 768px) {
     /* For desktop: */
-    #logo {width: 24em;}
+    p{ font-size: 1.5em;}
+    
+    body
+    {
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    #logo 
+    {
+        width: 24em;
+    }
             
     #mainnav
     {
@@ -147,13 +158,12 @@ p
     
     #mainlist
     {
-        float: right;
         margin-right: 5em;
     }
     
     #droplist
     {
-        position: static;
+        position:static;
         display: block;
     }
     
@@ -174,6 +184,11 @@ p
     {
         width: 40%;
         float: left;
+    }
+    
+    #showlinks
+    {
+        display: none;
     }
     
     .morelinks

@@ -45,7 +45,7 @@ class Presenter {
     
     public function render()
     {
-        echo "<!DOCTYPE html>\n";
+        echo "<!DOCTYPE html>";
         echo "<html>\n"; ///////// Start render
         
         new Head($this->title);
