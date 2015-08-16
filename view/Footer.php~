@@ -37,7 +37,7 @@ class Footer
          Fisherman's Friend&#174; is a trademark of Lofthouse of Fleetwood Ltd.
          Website created by <em>Fabio Colella</em>. Released under 
         <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">
-          GPL2</a>. Copyright 2015.
+          GPL2.</a> Copyright 2015.
       </p>
     </footer>    
 HTML;

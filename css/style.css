@@ -20,6 +20,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     Author     : fabio
 */
 
+body{margin: 0}
+
 /** Use the special font for titles **/
 h1, h2, h3, h4, h5, h6
 {
@@ -82,6 +84,7 @@ p
     font-size: 6vw;
     text-align: center;
     color: #ff3300;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -92,6 +95,8 @@ p
     padding: 0;
     width: 27%;
 }
+
+
 
 .morelinks
 {
@@ -113,7 +118,7 @@ p
     padding-left: 5%;
     padding-right: 5%;
     font-family: BebasNeue;
-    font-size: 5vw;
+    font-size: 4vw;
     text-align: center;
     color: #ed2000;
 }
@@ -138,17 +143,16 @@ p
 
 @media only screen and (min-width: 768px) {
     /* For desktop: */
-    p{ font-size: 1.5em;}
+    #logo {width: 24em;}
     
     body
     {
-        margin-right: 5%;
-        margin-left: 5%;
+      margin: 0 5em 0 5em;    
     }
     
-    #logo 
+    p
     {
-        width: 24em;
+        font-size: 1.5em;
     }
             
     #mainnav
@@ -158,13 +162,18 @@ p
     
     #mainlist
     {
+        float: right;
         margin-right: 5em;
+        clear: both;
     }
     
     #droplist
     {
-        position:static;
+        position: static;
+        float: right;
         display: block;
+        clear: right;
+        width: 100%;
     }
     
     .fastlinks p
@@ -177,26 +186,17 @@ p
     {
         margin-left: 0.5em;
         margin-right: 0.5em;
-        width: 7em;
+        width: 8em;
     }
     
     .fastlinks img
     {
-        width: 40%;
+        width: 33%;
         float: left;
     }
     
-    #showlinks
-    {
-        display: none;
-    }
-    
-    .morelinks
-    {
-        float: left;
-        margin: 1%;
-    }
+    .morelinks{float: left;}
    
-    .morelinks p{font-size: 1.8em;}
+    .morelinks p{font-size: 2em;}
    
 }
