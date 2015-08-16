@@ -120,6 +120,7 @@ hr
 {
     background-color: white;
     box-shadow: 1px 5px 10px darkgray;
+    margin: 2%;
     margin-bottom: 4%;
     margin-top: 0
 }
@@ -235,7 +236,16 @@ footer p
         float: left;
     }
     
-    .morelinks{float: left;}
+    .morelinks:first-of-type
+    {
+        margin-top: 2%;
+    }
+    
+    .morelinks
+    {
+        float: left;
+        margin: 2%;
+    }
    
     .morelinks p{font-size: 2em;}
    

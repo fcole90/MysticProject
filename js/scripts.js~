@@ -22,7 +22,7 @@
  */
 function showlinks()
 {
-    if ($("#droplist").css("position") !== "static")
+    if ($("#droplist").css("display") !== "block")
     {
       $("#droplist").slideToggle("fast");
     }
