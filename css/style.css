@@ -33,6 +33,9 @@ p
 {
 	  font-family: Walkway;
 	  font-size: 2.5vmax;
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
 a
@@ -178,7 +181,7 @@ footer p
 .clear
 {
     clear: both;
-    min-height: 480px;
+    min-height: 70vh;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -246,6 +249,11 @@ footer p
         margin: 2%;
     }
    
-    .morelinks p{font-size: 2em;}
+    .morelinks p
+    {
+        font-size: 2em;
+        padding-left: 0.15em;
+        padding-right: 0.15em;
+    }
    
 }
