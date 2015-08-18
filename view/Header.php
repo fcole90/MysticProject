@@ -29,7 +29,7 @@ class Header {
         echo <<<HTML
         
   <!-- Logo -->
-    <a href="">
+    <a href="index.php">
       <img id="logo" src="assets/logo-text-stretched.png" alt="Fisherman's friend Locator"/>
     </a>
              
