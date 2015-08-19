@@ -162,6 +162,11 @@ hr
     border: 0;
 }
 
+main
+{
+    margin: 2vh 2vw 2vh 2vw;
+}
+
 
 
 footer
@@ -181,7 +186,7 @@ footer p
 .clear
 {
     clear: both;
-    min-height: 70vh;
+    min-height: 90vh;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -205,24 +210,25 @@ footer p
     
     #mainlist
     {
-        float: left;
+        float: right;
         margin-right: 5em;
-        clear: both;
+        /*clear: both;*/
     }
     
     #droplist
     {
         position: static;
-        float: left;
+        /*float: left;*/
         display: block;
-        clear: right;
+        /*clear: right;*/
         width: 100%;
     }
     
     .fastlinks p
     {
         font-size: 2.2em;
-        text-align: left;
+        text-align: center;
+        clear: both;
     }
     
     .fastlinks
@@ -234,8 +240,10 @@ footer p
     
     .fastlinks img
     {
-        width: 33%;
+        width: 100%;
         float: left;
+        border: 5px;
+        border-color: black;
     }
     
     .morelinks:first-of-type
@@ -254,6 +262,11 @@ footer p
         font-size: 2em;
         padding-left: 0.15em;
         padding-right: 0.15em;
+    }
+    
+    #showlinks
+    {
+        display: none;
     }
    
 }

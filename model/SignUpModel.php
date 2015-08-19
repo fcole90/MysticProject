@@ -1,6 +1,5 @@
 <?php
-relRequire('controller/Controller.php');
-relRequire('model/HomeModel.php');
+relRequire("model/DBModel.php");
 /*
  * Copyright (C) 2015 fabio
  *
@@ -20,19 +19,22 @@ relRequire('model/HomeModel.php');
  */
 
 /**
- * Handles the home page
+ * Description of SignUpModel
  *
  * @author fabio
  */
-class HomeController extends Controller
+class SignUpModel extends DBModel
 {
-    private $page = "Home";    
-    
-    public function run(&$request) 
-    {
-        $model = new HomeModel();
-        $model->setTitle($this->pageTitle($this->page));
-        $model->show();
+    public function __construct($request) {
+        parent::__construct($request);
     }
-
+    
+    public function show()
+    {
+        $page = new Presenter($this->getTitle());
+        
+        
+        
+        $page->render();
+    }
 }

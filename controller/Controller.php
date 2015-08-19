@@ -25,35 +25,7 @@
  */
 abstract class Controller {
     
-    /**
-     *
-     * @var string
-     */
-    protected $baseTitle = "Fisherman's Friend Locator";
     
-    /**
-     * 
-     * @return string
-     */
-    public function baseTitle()
-    {
-        return $this->baseTitle;
-    }
     
-    /**
-     * 
-     * @param array $request
-     * @return string
-     */
-    public function pageTitle($page) 
-    {
-        return ucfirst($page) . " - " . $this->baseTitle();
-    }
     
-    /**
-     * Handles the page.
-     * 
-     * @param $request array the _REQUEST array 
-     */
-    abstract function run(&$request);
 }

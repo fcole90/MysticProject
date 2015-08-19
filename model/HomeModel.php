@@ -30,10 +30,14 @@ class HomeModel extends Model
 {
     //invoke the db
     
+    public function __construct($request) {
+        parent::__construct($request);
+    }
+    
     //show the view
     function show()
     {
-        $page = new Presenter($this->title);
+        $page = new Presenter($this->getTitle());
         $page->render();
     }
 }

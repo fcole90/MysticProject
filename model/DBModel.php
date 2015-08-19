@@ -30,8 +30,12 @@ $dbpass = "nutria8058";
  *
  * @author fabio
  */
-abstract class DBModel implements Model
+abstract class DBModel extends Model
 {
+    
+    public function __construct($request) {
+        parent::__construct($request);
+    }
     /**
      * 
      * @return string hostname

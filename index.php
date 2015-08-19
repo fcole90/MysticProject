@@ -1,7 +1,12 @@
 <?php
 define('__ROOT__', dirname(__FILE__)); 
 require_once __ROOT__ . '/controller/Controller.php';
-require_once __ROOT__ . '/controller/HomeController.php';
+require_once __ROOT__ . '/controller/BasePageController.php';
+                
+/** Enable error reporting **/
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
 
 /**
  * Require once from the root dir.
@@ -23,28 +28,42 @@ class FrontController
     /*
      * Select the correct controller according to the page.
      */
-    function page(&$request)
+    public static function page(&$request)
     {
         if (isset($request["page"]))
         {
             //Chose the page
             switch ($request["page"])
             {
+                case "signup":
+                    self::callController(new BasePageController(), $request);
+                    break;
+                    
                 default: //page not found
-                    //call 404
+                    $controller = new BasePageController();
+                    $controller->err404($request);
             }
         }
         else //home
         {
-            self::callController(new HomeController(), $request);
+            self::callController(new BasePageController(), $request);
         }
     }
     
     /*
      * Call the controller to handle the process.
      */
-    function callController(Controller $controller, &$request)
+    public static function callController(Controller $controller, &$request)
     {
-        $controller->run($request);
+        if (isset($request["page"]))
+        {
+            $method = $request["page"];
+        }
+        else
+        {
+            $method = "home";
+        }
+        
+        $controller->$method($request);
     }
 }

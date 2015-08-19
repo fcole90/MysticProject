@@ -35,16 +35,59 @@ class Presenter {
      */
     private $title;
     
-    public function __construct($title) {
+    /**
+     * HTML for the content.
+     * 
+     * @var string
+     */
+    private $content;
+    
+    private $header;
+
+
+    public function __construct($title, $content = "") {
         $this->title = $title;
+        $this->content = $content;
     }
     
+    public function setCustomHeader($header)
+    {
+        $this->header = $header;
+    }
+    
+    /**
+     * Prints the HTML indented correctly.
+     * 
+     * @param string $content multiline
+     * @param string $indentation spaces indentation
+     */
+    public function printContent($content, $indentation = '      ')
+    {
+        echo "\n";
+        foreach(explode(PHP_EOL, $content) as $line)
+        {
+            echo $indentation . $line;
+            echo "\n";
+        }
+    }
+    
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+
     /**
      * Render the page
      */
     
     public function render()
     {
+        if (isset($this->header))
+        {
+            header($this->header);
+        }
+        
         echo "<!DOCTYPE html>\n";
         echo "<html>\n"; ///////// Start render
         
@@ -59,13 +102,17 @@ class Presenter {
         
         echo "    <hr class=\"breakline\">\n";
         
+        echo "\n\n    <!-- Main Content -->";
+        echo "\n    <main>";
         //Here goes the main content
+        $this->printContent($this->getContent());
+        echo "    </main>\n\n";
         
         new Footer();
         
         echo "\n  </body>\n";//////// End body        
         
-        echo "\n</html>"; /////// End render
+        echo "</html>"; /////// End render
     }
     
     

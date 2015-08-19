@@ -1,5 +1,5 @@
 <?php
-
+relRequire("view/Presenter.php");
 /*
  * Copyright (C) 2015 fabio
  *
@@ -28,13 +28,63 @@ abstract class Model
      * 
      * @var string $title
      */
-    protected $title;
+    private $title;
+    
+    /**
+     *
+     * @var string
+     */
+    private $baseTitle = "Fisherman's Friend Locator";
+    
+    /**
+     * 
+     * @param array $request
+     */
+    public function __construct($request) 
+    {
+        if (isset($request["page"]))
+        {
+            $this->setTitle($request["page"]);
+        }
+        else
+        {
+            $this->setTitle("home");
+        }
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function baseTitle()
+    {
+        return $this->baseTitle;
+    }
+    
+    /**
+     * 
+     * @param array $request
+     * @return string
+     */
+    public function pageTitle($page) 
+    {
+        return ucfirst($page) . " - " . $this->baseTitle();
+    }
     
     /**
      * @param string $title
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->title = $this->pageTitle($title);
     }
+    
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+
+    abstract function show();
+    
 }
