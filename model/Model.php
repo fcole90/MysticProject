@@ -37,6 +37,12 @@ abstract class Model
     private $baseTitle = "Fisherman's Friend Locator";
     
     /**
+     *
+     * @var array
+     */
+    public $request;
+    
+    /**
      * 
      * @param array $request
      */
@@ -50,6 +56,7 @@ abstract class Model
         {
             $this->setTitle("home");
         }
+        $this->request = $request;
     }
     
     /**

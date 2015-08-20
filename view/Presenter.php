@@ -75,9 +75,13 @@ class Presenter {
     {
         return $this->content;
     }
+    
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
 
-
-    /**
+        /**
      * Render the page
      */
     

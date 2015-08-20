@@ -38,6 +38,12 @@ p
     border: 0;
 }
 
+input
+{
+    font-family: Walkway;
+    font-size: 1vmax;
+}
+
 a
 {
     color: #ed2000;
@@ -83,6 +89,12 @@ hr
 #mainlist
 {
     overflow: hidden; /*avid elements overlapping*/
+}
+
+/* forms */
+.warning
+{
+    color: #ed2000;
 }
 
 .fastlinks img
@@ -200,7 +212,12 @@ footer p
     
     p
     {
-        font-size: 1.5em;
+        font-size: 1.4em;
+    }
+    
+    input
+    {
+        font-size: 1.2em;
     }
             
     #mainnav
