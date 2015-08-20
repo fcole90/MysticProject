@@ -92,10 +92,18 @@ hr
 }
 
 /* forms */
-.warning
+h3.warning
 {
-    color: #ed2000;
+   color: #ed2000;
 }
+
+input.warning
+{
+    background-color: #ed2000;
+    color: whitesmoke;
+}
+
+
 
 .fastlinks img
 {

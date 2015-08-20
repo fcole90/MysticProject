@@ -66,7 +66,11 @@ class SignUpModel extends DBModel
             if (isset($this->request[$field]))
             {
                 $this->user->set($field, $this->safeInput($this->request[$field]));
-            }            
+            }
+            else
+            {
+                $this->user->set($field, null);
+            }
         }
     }
     
@@ -95,14 +99,28 @@ class SignUpModel extends DBModel
     
     public function checkFields()
     {
-        $isValid = true;
+        /**First check is the fields exist**/
+        $isValid = false;
         
+        foreach ($this->user->fieldList() as $field)
+        {
+            if (null !== $this->user->get($field))
+            {
+                $isValid = true;
+            }
+        }
+        if (!$isValid) return false;
+        /** Skips other checks if none of the fields is set**/
+        /**Then if they're valid**/
         $current = "username";
-        if (!$this->checkCharDigit($current, $this->user->get($current)))
+        if (!$this->checkCharDigit($current, $this->user->get($current)) ||
+          !$this->checkFieldNotExists($current))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
         }
+        
+        
         
         $current = "firstname";
         if (!$this->checkCharDigit($current, $this->user->get($current)))
@@ -126,7 +144,8 @@ class SignUpModel extends DBModel
         }
         
         $current = "email";
-        if (!$this->checkEmail($current, $this->user->get($current)))
+        if (!$this->checkEmail($current, $this->user->get($current)) ||
+          !$this->checkFieldNotExists($current))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
@@ -138,6 +157,9 @@ class SignUpModel extends DBModel
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
         }
+        
+        
+        
         
         
         
@@ -189,6 +211,43 @@ class SignUpModel extends DBModel
             return false;
         }
         return true;
+    }
+    
+    /**
+     * return true if the user does not exist
+     * return false if the user exists or there has been a connection error
+     */
+    public function checkFieldNotExists($field)
+    {
+        try
+        {
+            $mysqli = $this->connect();
+        } 
+        catch (Exception $e) 
+        {
+            $this->error[] = $e->getMessage();
+        }
+        
+        $current = $field;
+        $value = $this->user->get($current);
+        $stmt = $mysqli->prepare("SELECT $field FROM user WHERE $field = ?;");
+        $stmt->bind_param("s", $value);
+        $stmt->execute();
+        $stmt->bind_result($resField);
+        $stmt->fetch();
+        
+        if (isset($resField))
+        {
+            $stmt->close();
+            $mysqli->close();
+            $this->error[] = "This $current already exists, please "
+              . "use a different one.";
+            $this->user->set($current, $this->setWarning($this->user->get($current)));
+            return false;
+        }
+        return true;
+        
+        
     }
     
       
