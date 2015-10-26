@@ -21,12 +21,12 @@ relRequire('model/Model.php');
  */
 
 /**
- * Description of DBModel
+ * Description of DBModel.
  * 
  * $dbhost = "localhost";
-$dbname = "socialnetwork";
-$dbuser = "colellaFabio";
-$dbpass = "nutria8058";
+ * $dbname = "amm15_colellaFabio";
+ * $dbuser = "colellaFabio";
+ * $dbpass = "nutria8058";
  *
  * @author fabio
  */

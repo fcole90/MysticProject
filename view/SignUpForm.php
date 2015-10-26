@@ -16,6 +16,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+/**
+ * Form to sign up to the website.
+ */
 class SignUpForm
 {   
     
@@ -79,6 +82,13 @@ HTML;
             }
         }
         return $confirm;
+    }
+    
+    public function getErrorDatabase()
+    {
+        $error = "<h2>Sorry, an error occurred in the signup process.</h2>\n";
+        $error .= "<p>If this error happens again, please"
+          . " contact the administrator.</p>";
     }
 }
 

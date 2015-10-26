@@ -22,7 +22,7 @@ relRequire("model/ErrorModel.php");
  */
 
 /**
- * Handles the home page
+ * Handles the home page.
  *
  * @author fabio
  */
