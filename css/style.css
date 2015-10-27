@@ -56,12 +56,17 @@ a
     display: inline;
 }
 
+#logo-big-screen
+{
+    display: none;
+}
+
 hr
 {
     margin: 0;
     padding: 0;
     border: 0;
-    height: 2vh;
+    height: 0.35em;
     color: #ed2000;
     background-color: #ed2000;
     clear: both;
@@ -160,8 +165,8 @@ input.warning
 .morelinks p
 {
     margin: 0;
-    padding-top: 2%;
-    padding-bottom: 2%;
+    padding-top: 0.15em;
+    padding-bottom: 0.1em;
     padding-left: 5%;
     padding-right: 5%;
     font-family: BebasNeue;
@@ -209,9 +214,18 @@ footer p
     min-height: 90vh;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 800px) {
     /* For desktop: */
-    #logo {width: 45%;}
+    
+    #logo {display: none;}
+    
+    #logo-big-screen
+    {
+        display: inline-block;
+        width: 15em;
+        margin-top: 0;
+        padding-top: 0.2em;
+    }
     
     body
     {
@@ -230,7 +244,7 @@ footer p
             
     #mainnav
     {
-        width: 52%;
+        width: 60%;
     }
     
     #mainlist
@@ -251,44 +265,48 @@ footer p
     
     .fastlinks p
     {
-        font-size: 2.2em;
+        font-size: 2.15em;
         text-align: center;
         clear: both;
     }
     
     .fastlinks
     {
+        margin-top: 0;
         margin-left: 0.5em;
         margin-right: 0.5em;
-        width: 8em;
+        padding-top: 0.5em;
+        width: auto;
     }
     
     .fastlinks img
     {
-        width: 100%;
-        float: left;
-        border: 5px;
-        border-color: black;
+        display: none;
     }
     
     .morelinks:first-of-type
     {
-        margin-top: 2%;
+        margin: 0;
     }
     
     .morelinks
     {
-        float: left;
-        margin: 2%;
+        float: right;
+        margin: 0;
+        padding-top: 0.5em;
+        box-shadow: none;
+        width: auto;
     }
    
     .morelinks p
     {
-        font-size: 2em;
+        font-size: 2.15em;
+        padding: 0;
         padding-left: 0.15em;
         padding-right: 0.15em;
     }
     
+    /*Hide the dropdown menu*/
     #showlinks
     {
         display: none;

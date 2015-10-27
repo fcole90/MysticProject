@@ -21,7 +21,9 @@ relRequire("view/SignUpForm.php");
  */
 
 /**
- * Description of SignUpModel
+ * Model class to sign up.
+ * 
+ * Field checks and other things like those happen here.
  *
  * @author fabio
  */
@@ -37,7 +39,7 @@ class SignUpModel extends DBModel
     }
     
     /**
-     * This method is called by the controller and contains most
+     * This method is called by the controller and invokes most
      * of the logic.
      * 
      * Creates a new renderer for the page, then checks the fields.
@@ -72,6 +74,7 @@ class SignUpModel extends DBModel
     {
         $this->user = $user;
     }
+    
     /**
      * Setup the user variable feeding it with the form fields.
      */
@@ -92,7 +95,7 @@ class SignUpModel extends DBModel
     }
     
     /**
-     * Makes the input safe!.
+     * Makes the input safe.
      */
     public function safeInput($input)
     {
@@ -107,7 +110,7 @@ class SignUpModel extends DBModel
     }
     
     /**
-     * Add a user to the database (MOCKUP).
+     * Add a user to the database.
      */
     public function addUserToDatabase() 
     {
@@ -184,7 +187,7 @@ class SignUpModel extends DBModel
     }
 
     /**
-     * Useful to mark the fields wich require attention.
+     * Marks the fields wich require attention.
      */
     public function setWarning($field)
     {
@@ -192,7 +195,9 @@ class SignUpModel extends DBModel
     }
     
     /**
-     * Here is where the fields get checked.
+     * Checks the fields one by one.
+     * 
+     * If adding new fields this class needs to be edited.
      */
     public function checkFields()
     {
@@ -259,7 +264,7 @@ class SignUpModel extends DBModel
     }
     
     /**
-     * Helper function to check is strings contain only chars and numbers.
+     * Helper function to check if strings contain only chars and digits.
      */
     public function checkCharDigit($field, $value)
     {
@@ -273,7 +278,7 @@ class SignUpModel extends DBModel
     }
     
     /**
-     * Helper function to check if the string is strong to be used as password.
+     * Helper function to check if the string is strong enough to be used as a password.
      */
     public function checkPassword($field, $value)
     {
@@ -290,6 +295,9 @@ class SignUpModel extends DBModel
         return true;
     }
     
+    /**
+     * Helper function to check if the string is a valid email address.
+     */
     public function checkEmail($field, $value)
     {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL))

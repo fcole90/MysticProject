@@ -31,6 +31,7 @@ class Header {
   <!-- Logo -->
     <a href="index.php">
       <img id="logo" src="assets/logo-text-stretched.png" alt="Fisherman's friend Locator"/>
+      <img id="logo-big-screen" src="assets/logo-only-text.png" alt="Fisherman's friend Locator"/>
     </a>
              
 HTML;
