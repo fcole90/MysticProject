@@ -1,8 +1,6 @@
 <?php
-relRequire("model/DBModel.php");
-relRequire("model/User.php");
-relRequire("view/LoginForm.php");
-/* 
+
+/*
  * Copyright (C) 2015 fabio
  *
  * This program is free software; you can redistribute it and/or
@@ -19,12 +17,14 @@ relRequire("view/LoginForm.php");
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
 /**
- * Form to sign up to the website.
+ * Login View.
+ *
+ * @author fabio
  */
-class SignUpForm
-{   
-    
+class LoginForm 
+{
     public function getForm(User $user, &$error)
     {
         foreach ($user->fieldList() as $field)
@@ -41,26 +41,16 @@ class SignUpForm
             }
         }
         
+        
+        
         $form = <<<HTML
 <h2>Fill in your data</h2>$warning
 <form action="" method="post">
-    <p>First name:</p>
-    <input type="text" name="firstname" value="$firstname" required="true">
-    <br>
-    <p>Second name:</p>
-    <input type="text" name="secondname" value="$secondname" required="true">
-    <br>
-    <p>Email:</p>
-    <input type="email" name="email" value="$email" required="true">
-    <br>
     <p>Username:</p>
     <input type="text" name="username" value="$username" required="true">
     <br>
     <p>Password:</p>
     <input type="password" name="password" value="$password" required="true">
-    <br>
-    <p>Birthday:</p>
-    <input type="date" name="birthdate" value="$birthdate" required="true" placeholder="YYYY-MM-DD">
     <br>
     <input type="submit">
     
@@ -69,31 +59,4 @@ HTML;
         return $form;
     }
     
-    public function getConfirmation(User $user)
-    {
-        foreach ($user->fieldList() as $field)
-        {
-            $$field = $user->get($field);
-        }
-        
-        $confirm = "<h2>Congratulations, you're now registered.</h2>\n";
-        
-        foreach ($user->fieldList() as $field)
-        {
-            if ($$field != false && $field!="password")
-            {
-                $confirm .= "<p>$field: " . $$field . "</p>\n";
-            }
-        }
-        return $confirm;
-    }
-    
-    public function getErrorDatabase()
-    {
-        $error = "<h2>Sorry, an error occurred in the signup process.</h2>\n";
-        $error .= "<p>If this error happens again, please"
-          . " contact the administrator.</p>";
-    }
 }
-
-

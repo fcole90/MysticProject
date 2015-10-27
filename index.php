@@ -2,6 +2,7 @@
 define('__ROOT__', dirname(__FILE__)); 
 require_once __ROOT__ . '/controller/Controller.php';
 require_once __ROOT__ . '/controller/BasePageController.php';
+session_start();
                 
 /** Enable error reporting **/
 ini_set('display_startup_errors',1);
@@ -32,10 +33,15 @@ class FrontController
     {
         if (isset($request["page"]))
         {
+            
             //Chose the page
             switch ($request["page"])
             {
                 case "signup":
+                    self::callController(new BasePageController(), $request);
+                    break;
+                
+                case "login":
                     self::callController(new BasePageController(), $request);
                     break;
                     

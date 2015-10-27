@@ -33,7 +33,8 @@ class SignUpModel extends DBModel
     private $error;
     private $passwordMinLength = 6;
     
-    public function __construct(&$request) {
+    public function __construct(&$request) 
+    {
         parent::__construct($request);
         $this->error = array();
     }

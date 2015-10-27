@@ -2,6 +2,7 @@
 relRequire('controller/Controller.php');
 relRequire('model/HomeModel.php');
 relRequire('model/SignUpModel.php');
+relRequire('model/LoginModel.php');
 relRequire("model/ErrorModel.php");
 /*
  * Copyright (C) 2015 fabio
@@ -28,25 +29,37 @@ relRequire("model/ErrorModel.php");
  */
 class BasePageController extends Controller
 {
-       
     /**
      * Renders the home page.
      * 
      * @param array $request
      */
     public function home(&$request) 
-    {
-        
+    {       
         $model = new HomeModel($request);
         $model->show();
     }
     
+    /**
+     * Handles the signup.
+     * @param request $request
+     */
     public function signup(&$request)
     {
         $model = new SignUpModel($request);
         $model->show();
     }
     
+    public function login(&$request)
+    {
+        $model = new LoginModel($request);
+        $model->show();
+    }
+    
+    /**
+     * Handles the 404 error
+     * @param request $request
+     */
     public function err404(&$request)
     {
         $title = "Error 404 - Page not found";
@@ -57,6 +70,10 @@ class BasePageController extends Controller
         $model->show();
     }
     
+    /**
+     * Handles the 403 error.
+     * @param request $request
+     */
     public function err403(&$request)
     {
         $title = "Error 403 - Forbidden";

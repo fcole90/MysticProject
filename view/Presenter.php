@@ -36,6 +36,10 @@ class Presenter {
     private $title;
     
     /**
+     * @var string
+     */
+    private $session;
+    /**
      * HTML for the content.
      * 
      * @var string
@@ -45,15 +49,17 @@ class Presenter {
     private $header;
 
 
-    public function __construct($title, $content = "") {
+    public function __construct($title, $content = "") 
+    {
         $this->title = $title;
-        $this->content = $content;
+        $this->content = $content;        
     }
     
     public function setCustomHeader($header)
     {
         $this->header = $header;
     }
+
     
     /**
      * Prints the HTML indented correctly.
@@ -91,6 +97,8 @@ class Presenter {
         {
             header($this->header);
         }
+        
+        echo $this->session;
         
         echo "<!DOCTYPE html>\n";
         echo "<html>\n"; ///////// Start render

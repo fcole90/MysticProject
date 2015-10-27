@@ -43,11 +43,27 @@ abstract class Model
     public $request;
     
     /**
+     *
+     * @var type 
+     */
+    protected $username;
+
+
+    /**
      * 
      * @param array $request
      */
     public function __construct($request) 
     {
+        if(isset($request["username"]))
+        {
+            $this->username = $request["username"];
+        }
+        else
+        {
+            $this->username = "";
+        }
+        
         if (isset($request["page"]))
         {
             $this->setTitle($request["page"]);
@@ -93,5 +109,10 @@ abstract class Model
 
 
     abstract function show();
+    
+    protected function isLoggedIn() 
+    {
+        return isset($_SESSION) && array_key_exists("username", $_SESSION);
+    }
     
 }
