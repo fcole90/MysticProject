@@ -1,5 +1,7 @@
 <?php
-
+relRequire("model/DBModel.php");
+relRequire("model/User.php");
+relRequire("view/LoginForm.php");
 /*
  * Copyright (C) 2015 fabio
  *
@@ -36,24 +38,114 @@ class LoginModel extends DBModel
     
     public function show()
     {
-        $page = new Presenter($this->getTitle(), "");
+        $page = new Presenter($this->getTitle());
+        $this->setFields();
         
-        
-        /** Temporary Code **/
-        if ($this->isLoggedIn())
+        if(!$this->checkLoginData())
         {
-            $content = "<h2> You're already logged, " . $_SESSION["username"] . "!</h2>";
-            session_unset();
-            session_destroy();
+            $page->setContent((new LoginForm())->getForm($this->user, $this->error));
         }
         else
         {
-            $this->username = "Pippo";
-            $content = "<h2>Come on, login!</h2>";
-            $_SESSION["username"] = "Pippo";            
+            $page->setContent((new LoginForm())->getForm($this->user, $this->error));
+        }
+
+        $page->render();
+    }
+    
+    /**
+     * Checks username and password.
+     * 
+     * @return boolean
+     */
+    public function checkLoginData()
+    {
+        
+        $username = $this->user->get("username");
+        $password = $this->user->get("password");
+        
+        /**
+         * Avoid calling the database if no data has been submitted.
+         */
+        if (!isset($username) || $username = "")
+        {
+            return false;
+        }
+        else if(!isset($password) || $password = "")
+        {
+           $this->error[] = "Sorry, the password cannot be empty.";
+           return false;
         }
         
-        $page->setContent($content);
-        $page->render();
+        
+        try
+        {
+            $mysqli = $this->connect();
+        } 
+        catch (Exception $e) 
+        {
+            $this->error[] = $e->getMessage();
+        }
+        
+        
+        $text = "SELECT username, password FROM user WHERE username = ?;";
+        
+        if (!$stmt = $mysqli->prepare($text))
+        {
+            $this->error[] = "Error: could not prepare statement: $text";
+            return false;
+        }
+        
+        
+        if (!$stmt->bind_param("s", $username))
+        {
+            $this->error[] = "DB Error: could not bind parameters.";
+            return false;
+        }
+        
+        if (!$stmt->execute())
+        {
+            $this->error[] = "DB Error: could not execute the statement.";
+            return false;
+        }
+        
+        if (!$stmt->bind_result($user, $hash))
+        {
+            $this->error[] = "DB Error: could bind results.";
+            return false;
+        }
+        
+        $stmt->fetch();
+        
+        if (isset($user) && isset($hash) && password_verify($password, $hash))
+        {
+            $stmt->close();
+            $mysqli->close();
+            $this->error[] = "Welcome, $user!";
+            return true;
+        }
+        /* else */
+        $this->error[] = "Sorry, username or password are incorrect.";
+        $stmt->close();
+        $mysqli->close();
+        return false;
+        
+        
+    }
+    
+    public function setFields()
+    {
+        $this->user = new User();
+        foreach ($this->user->fieldList() as $field)
+        {
+            if (isset($this->request[$field]))
+            {
+                $this->user->set($field, $this->safeInput($this->request[$field]));
+            }
+            else
+            {
+                $this->user->set($field, null);
+            }
+        }
     }
 }

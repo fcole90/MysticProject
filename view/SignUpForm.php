@@ -24,13 +24,31 @@ relRequire("view/LoginForm.php");
  */
 class SignUpForm
 {   
-    
     public function getForm(User $user, &$error)
     {
+        
         foreach ($user->fieldList() as $field)
         {
             $$field = $user->get($field); //Get the variable of the variable
         }
+        
+        
+        
+        /** Set the latest choices for the date fields */
+        if (isset($birthdate) && $birthdate !="")
+        {
+            $date = explode("-", $birthdate);
+            $day = $this->generateDaysOptions($date[2]);
+            $month = $this->generateMonthsOptions($date[1]);
+            $year = $this->generateYearsOptions($date[0]);
+        }
+        else
+        {
+            $day = $this->generateDaysOptions();
+            $month = $this->generateMonthsOptions();
+            $year = $this->generateYearsOptions();
+        }
+        
         $warning = "";
         if (isset($error))
         {
@@ -42,7 +60,7 @@ class SignUpForm
         }
         
         $form = <<<HTML
-<h2>Fill in your data</h2>$warning
+<h2>Fill in your data:</h2>$warning
 <form action="" method="post">
     <p>First name:</p>
     <input type="text" name="firstname" value="$firstname" required="true">
@@ -60,9 +78,11 @@ class SignUpForm
     <input type="password" name="password" value="$password" required="true">
     <br>
     <p>Birthday:</p>
-    <input type="date" name="birthdate" value="$birthdate" required="true" placeholder="YYYY-MM-DD">
+    $day
+    $month
+    $year
     <br>
-    <input type="submit">
+    <input type="submit" value="SignUp!">
     
 </form>
 HTML;
@@ -93,6 +113,76 @@ HTML;
         $error = "<h2>Sorry, an error occurred in the signup process.</h2>\n";
         $error .= "<p>If this error happens again, please"
           . " contact the administrator.</p>";
+    }
+    
+    /**
+     * Generates a months dropdown menu.
+     * @param a default option
+     * @return string monthOptions
+     */
+    public function generateMonthsOptions($selected = "") 
+    {
+        $monthOptions = "<select name='month'>\n";
+        $months = ["January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"];
+        foreach($months as $month)
+        {
+            if (!isset($i)){$i = 1;}
+            /* Define the default option */
+            $val = $i < 10 ? "0".$i : $i;
+            $sel = ($val == $selected) ? "selected" : "";
+            $monthOptions .= "<option $sel value='$val'>$month</option>\n";
+            ++$i;
+        }
+        $monthOptions .= "</select>\n";
+        return $monthOptions;
+    }
+    
+   /**
+     * Generates a days dropdown menu.
+     * @param a default option
+     * @return string daysOptions
+     */
+    public function generateDaysOptions($selected = "") 
+    {
+        $options = "<select name='day'>\n";
+        
+        for($i = 1; $i<=31; ++$i )
+        {
+            $val = $i < 10 ? "0".$i : $i;
+            $sel = ($val == $selected) ? "selected" : "";
+            $options .= "<option $sel value='$val'>$val</option>\n";
+        }
+        $options .= "</select>\n";
+        return $options;
+    }
+    
+    /**
+     * Generates a years dropdown menu.
+     * @param a default option
+     * @return string yearsOptions
+     */
+    public function generateYearsOptions($selected = "") 
+    {
+        $options = "<select name='year'>\n";
+        $currentYear = date("Y");
+        for($i = 1900; $i<=$currentYear; ++$i)
+        {
+            $sel = ($i == $selected) ? "selected" : "";
+            $options .= "<option $sel value='$i'>$i</option>\n";
+        }
+        $options .= "</select>\n";
+        return $options;
     }
 }
 

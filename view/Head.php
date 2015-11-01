@@ -28,7 +28,7 @@ class Head
     public function __construct($title) 
     {
         if (!isset($title))
-            echo "error";
+            echo "Error, missing title.";
         echo <<<HTML
   <head>
     <!-- Visible data -->

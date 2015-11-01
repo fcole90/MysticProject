@@ -39,7 +39,7 @@ class Nav
     
     public function render()
     {
-        echo <<<HTML
+        $text = <<<HTML
         
     <nav id="mainnav">
       <ul id="mainlist">

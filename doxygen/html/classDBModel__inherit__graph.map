@@ -1,4 +1,5 @@
 <map id="DBModel" name="DBModel">
-<area shape="rect" id="node3" href="$classSignUpModel.html" title="SignUpModel" alt="" coords="5,155,104,181"/>
-<area shape="rect" id="node2" href="$classModel.html" title="Model" alt="" coords="26,5,83,32"/>
+<area shape="rect" id="node3" href="$classLoginModel.html" title="LoginModel" alt="" coords="5,155,93,181"/>
+<area shape="rect" id="node4" href="$classSignUpModel.html" title="SignUpModel" alt="" coords="118,155,217,181"/>
+<area shape="rect" id="node2" href="$classModel.html" title="Model" alt="" coords="79,5,136,32"/>
 </map>

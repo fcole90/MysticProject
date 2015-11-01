@@ -93,22 +93,21 @@ class SignUpModel extends DBModel
                 $this->user->set($field, null);
             }
         }
+        
+        /** Additonal control to transform obtain the birthdate **/
+        if(isset($this->request["year"]) && isset($this->request["month"]) && isset($this->request["day"]))
+        {
+            $birthdate = $this->getDate($this->safeInput($this->request["year"]), 
+                                        $this->safeInput($this->request["month"]), 
+                                        $this->safeInput($this->request["day"]));
+        }
+        else
+        {
+            $birthdate = null;
+        }
+        $this->user->set("birthdate", $birthdate);
     }
     
-    /**
-     * Makes the input safe.
-     */
-    public function safeInput($input)
-    {
-        if (isset($input))
-        {
-            $input = trim($input);
-            $input = stripslashes($input);
-            $input = htmlentities($input);
-            return $input;
-        }
-        return $input;
-    }
     
     /**
      * Add a user to the database.
@@ -125,6 +124,12 @@ class SignUpModel extends DBModel
             $this->error[] = "Could not connect to database.";
             return false;
         }
+        
+        /**
+         * Make the password safe.
+         */ 
+        $hash = password_hash($this->user->get("password"), PASSWORD_DEFAULT);
+        $this->user->set("password", $hash);
         
         $sFields = ""; // used to bind param in ssss like string
         $fieldList = $this->user->fieldList();
@@ -216,6 +221,8 @@ class SignUpModel extends DBModel
         /** Skips other checks if none of the fields is set**/
         /**Then if they're valid**/
         $current = "username";
+        /** Usernames are lowercase only, but uppercase can be accepted and converted. **/
+        $this->user->set($current, strtolower($this->user->get($current)));
         if (!$this->checkCharDigit($current, $this->user->get($current)) ||
           !$this->checkFieldNotExists($current))
         {
@@ -253,6 +260,8 @@ class SignUpModel extends DBModel
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
         }
+        
+        
         
         $current = "birthdate";
         if (!$this->checkDate($current, $this->user->get($current)))
@@ -341,10 +350,32 @@ class SignUpModel extends DBModel
         
         $current = $field;
         $value = $this->user->get($current);
-        $stmt = $mysqli->prepare("SELECT $field FROM user WHERE $field = ?;");
-        $stmt->bind_param("s", $value);
-        $stmt->execute();
-        $stmt->bind_result($resField);
+        $text = "SELECT $field FROM user WHERE $field = ?;";
+        
+        if (!$stmt = $mysqli->prepare($text))
+        {
+            $this->error[] = "Error: could not prepare statement: $text";
+            return false;
+        }
+        
+        if (!$stmt->bind_param("s", $value))
+        {
+            $this->error[] = "DB Error: could not bind parameters.";
+            return false;
+        }
+        
+        if (!$stmt->execute())
+        {
+            $this->error[] = "DB Error: could not execute the statement.";
+            return false;
+        }
+        
+        if (!$stmt->bind_result($resField))
+        {
+            $this->error[] = "DB Error: could bind results.";
+            return false;
+        }
+        
         $stmt->fetch();
         
         if (isset($resField))
@@ -356,9 +387,24 @@ class SignUpModel extends DBModel
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             return false;
         }
+        $stmt->close();
+        $mysqli->close();
         return true;
         
         
+    }
+    
+    /**
+     * Returns a standard date in the YYYY-MM-DD format.
+     * 
+     * @param type $year
+     * @param type $month
+     * @param type $day
+     * @return string
+     */
+    function getDate($year="", $month="", $day="")
+    {
+        return "$year-$month-$day";
     }
     
       

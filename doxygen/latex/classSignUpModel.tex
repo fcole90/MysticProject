@@ -31,8 +31,6 @@ Collaboration diagram for Sign\+Up\+Model\+:\nopagebreak
 \item 
 \hyperlink{classSignUpModel_adea2bbedb918ea9c7773afdbe364ebed}{set\+Fields} ()
 \item 
-\hyperlink{classSignUpModel_ad95d57f037ec90c73b9a94a51e1ef4c7}{safe\+Input} (\$input)
-\item 
 \hyperlink{classSignUpModel_a93f4575092488361fb4fd5f414ffdb48}{add\+User\+To\+Database} ()
 \item 
 \hyperlink{classSignUpModel_a3c4428291475bd3312836fa81f1a75c7}{set\+Warning} (\$field)
@@ -43,19 +41,22 @@ Collaboration diagram for Sign\+Up\+Model\+:\nopagebreak
 \item 
 \hyperlink{classSignUpModel_afb9cdf85f663e052513dba210c4c42a3}{check\+Password} (\$field, \$value)
 \item 
-\hypertarget{classSignUpModel_ac2454823e6ba92643040f0949ea00d7a}{{\bfseries check\+Email} (\$field, \$value)}\label{classSignUpModel_ac2454823e6ba92643040f0949ea00d7a}
-
+\hyperlink{classSignUpModel_ac2454823e6ba92643040f0949ea00d7a}{check\+Email} (\$field, \$value)
 \item 
 \hypertarget{classSignUpModel_a0db60aa03b0f53ae8d8ba41f90117d7a}{{\bfseries check\+Date} (\$field, \$value)}\label{classSignUpModel_a0db60aa03b0f53ae8d8ba41f90117d7a}
 
 \item 
 \hyperlink{classSignUpModel_a56bbe709052d4774939c95080251a20f}{check\+Field\+Not\+Exists} (\$field)
+\item 
+\hyperlink{classSignUpModel_ac147a7f9bf405c3e98fe15f5ebb219ab}{get\+Date} (\$year=\char`\"{}\char`\"{}, \$month=\char`\"{}\char`\"{}, \$day=\char`\"{}\char`\"{})
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-Description of \hyperlink{classSignUpModel}{Sign\+Up\+Model}
+\hyperlink{classModel}{Model} class to sign up.
+
+Field checks and other things like those happen here.
 
 \begin{DoxyAuthor}{Author}
 fabio 
@@ -70,7 +71,7 @@ fabio
 {}
 \end{DoxyParamCaption}
 )}}\label{classSignUpModel_a93f4575092488361fb4fd5f414ffdb48}
-Add a user to the database (M\+O\+C\+K\+U\+P). \hypertarget{classSignUpModel_a9143bf2de7d986b7a87835a305fead69}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!check\+Char\+Digit@{check\+Char\+Digit}}
+Add a user to the database. Make the password safe.\hypertarget{classSignUpModel_a9143bf2de7d986b7a87835a305fead69}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!check\+Char\+Digit@{check\+Char\+Digit}}
 \index{check\+Char\+Digit@{check\+Char\+Digit}!Sign\+Up\+Model@{Sign\+Up\+Model}}
 \subsubsection[{check\+Char\+Digit}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::check\+Char\+Digit (
 \begin{DoxyParamCaption}
@@ -78,7 +79,15 @@ Add a user to the database (M\+O\+C\+K\+U\+P). \hypertarget{classSignUpModel_a91
 \item[{}]{\$value}
 \end{DoxyParamCaption}
 )}}\label{classSignUpModel_a9143bf2de7d986b7a87835a305fead69}
-Helper function to check is strings contain only chars and numbers. \hypertarget{classSignUpModel_a56bbe709052d4774939c95080251a20f}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!check\+Field\+Not\+Exists@{check\+Field\+Not\+Exists}}
+Helper function to check if strings contain only chars and digits. \hypertarget{classSignUpModel_ac2454823e6ba92643040f0949ea00d7a}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!check\+Email@{check\+Email}}
+\index{check\+Email@{check\+Email}!Sign\+Up\+Model@{Sign\+Up\+Model}}
+\subsubsection[{check\+Email}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::check\+Email (
+\begin{DoxyParamCaption}
+\item[{}]{\$field, }
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}}\label{classSignUpModel_ac2454823e6ba92643040f0949ea00d7a}
+Helper function to check if the string is a valid email address. \hypertarget{classSignUpModel_a56bbe709052d4774939c95080251a20f}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!check\+Field\+Not\+Exists@{check\+Field\+Not\+Exists}}
 \index{check\+Field\+Not\+Exists@{check\+Field\+Not\+Exists}!Sign\+Up\+Model@{Sign\+Up\+Model}}
 \subsubsection[{check\+Field\+Not\+Exists}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::check\+Field\+Not\+Exists (
 \begin{DoxyParamCaption}
@@ -92,11 +101,15 @@ Returns true if the a field does not exist in the D\+B, returns false if the fie
 {}
 \end{DoxyParamCaption}
 )}}\label{classSignUpModel_a1e62f6ed2749da2c1330748adb9afb03}
-Here is where the fields get checked. First check is the fields exist
+Checks the fields one by one.
+
+If adding new fields this class needs to be edited. First check is the fields exist
 
 Skips other checks if none of the fields is set
 
-Then if they're valid \hypertarget{classSignUpModel_afb9cdf85f663e052513dba210c4c42a3}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!check\+Password@{check\+Password}}
+Then if they're valid
+
+Usernames are lowercase only, but uppercase can be accepted and converted. \hypertarget{classSignUpModel_afb9cdf85f663e052513dba210c4c42a3}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!check\+Password@{check\+Password}}
 \index{check\+Password@{check\+Password}!Sign\+Up\+Model@{Sign\+Up\+Model}}
 \subsubsection[{check\+Password}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::check\+Password (
 \begin{DoxyParamCaption}
@@ -104,21 +117,37 @@ Then if they're valid \hypertarget{classSignUpModel_afb9cdf85f663e052513dba210c4
 \item[{}]{\$value}
 \end{DoxyParamCaption}
 )}}\label{classSignUpModel_afb9cdf85f663e052513dba210c4c42a3}
-Helper function to check if the string is strong to be used as password. \hypertarget{classSignUpModel_ad95d57f037ec90c73b9a94a51e1ef4c7}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!safe\+Input@{safe\+Input}}
-\index{safe\+Input@{safe\+Input}!Sign\+Up\+Model@{Sign\+Up\+Model}}
-\subsubsection[{safe\+Input}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::safe\+Input (
+Helper function to check if the string is strong enough to be used as a password. \hypertarget{classSignUpModel_ac147a7f9bf405c3e98fe15f5ebb219ab}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!get\+Date@{get\+Date}}
+\index{get\+Date@{get\+Date}!Sign\+Up\+Model@{Sign\+Up\+Model}}
+\subsubsection[{get\+Date}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::get\+Date (
 \begin{DoxyParamCaption}
-\item[{}]{\$input}
+\item[{}]{\$year = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$month = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$day = {\ttfamily \char`\"{}\char`\"{}}}
 \end{DoxyParamCaption}
-)}}\label{classSignUpModel_ad95d57f037ec90c73b9a94a51e1ef4c7}
-Makes the input safe!. \hypertarget{classSignUpModel_adea2bbedb918ea9c7773afdbe364ebed}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!set\+Fields@{set\+Fields}}
+)}}\label{classSignUpModel_ac147a7f9bf405c3e98fe15f5ebb219ab}
+Returns a standard date in the Y\+Y\+Y\+Y-\/\+M\+M-\/\+D\+D format.
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$year} & \\
+\hline
+type & {\em \$month} & \\
+\hline
+type & {\em \$day} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classSignUpModel_adea2bbedb918ea9c7773afdbe364ebed}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!set\+Fields@{set\+Fields}}
 \index{set\+Fields@{set\+Fields}!Sign\+Up\+Model@{Sign\+Up\+Model}}
 \subsubsection[{set\+Fields}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::set\+Fields (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}\label{classSignUpModel_adea2bbedb918ea9c7773afdbe364ebed}
-Setup the user variable feeding it with the form fields. \hypertarget{classSignUpModel_acd59c8e245153cf560a31aaba4f64773}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!set\+User@{set\+User}}
+Setup the user variable feeding it with the form fields. Additonal control to transform obtain the birthdate \hypertarget{classSignUpModel_acd59c8e245153cf560a31aaba4f64773}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!set\+User@{set\+User}}
 \index{set\+User@{set\+User}!Sign\+Up\+Model@{Sign\+Up\+Model}}
 \subsubsection[{set\+User}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::set\+User (
 \begin{DoxyParamCaption}
@@ -132,14 +161,14 @@ Set a user. \hypertarget{classSignUpModel_a3c4428291475bd3312836fa81f1a75c7}{\in
 \item[{}]{\$field}
 \end{DoxyParamCaption}
 )}}\label{classSignUpModel_a3c4428291475bd3312836fa81f1a75c7}
-Useful to mark the fields wich require attention. \hypertarget{classSignUpModel_a3d80b2fd00a974e0887f595cc7965212}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!show@{show}}
+Marks the fields wich require attention. \hypertarget{classSignUpModel_a3d80b2fd00a974e0887f595cc7965212}{\index{Sign\+Up\+Model@{Sign\+Up\+Model}!show@{show}}
 \index{show@{show}!Sign\+Up\+Model@{Sign\+Up\+Model}}
 \subsubsection[{show}]{\setlength{\rightskip}{0pt plus 5cm}Sign\+Up\+Model\+::show (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}\label{classSignUpModel_a3d80b2fd00a974e0887f595cc7965212}
-This method is called by the controller and contains most of the logic.
+This method is called by the controller and invokes most of the logic.
 
 Creates a new renderer for the page, then checks the fields. If the fields are not validated it calls the same page again, otherwise it tries to add the user to the database and shows a confirmation page. If there's a database error it prints an error message. 
 

@@ -44,7 +44,7 @@ class LoginForm
         
         
         $form = <<<HTML
-<h2>Fill in your data</h2>$warning
+<h2>Please, insert your username and password:</h2>$warning
 <form action="" method="post">
     <p>Username:</p>
     <input type="text" name="username" value="$username" required="true">
@@ -52,7 +52,7 @@ class LoginForm
     <p>Password:</p>
     <input type="password" name="password" value="$password" required="true">
     <br>
-    <input type="submit">
+    <input type="submit" value="Login">
     
 </form>
 HTML;
