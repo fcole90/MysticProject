@@ -27,10 +27,7 @@ class LoginForm
 {
     public function getForm(User $user, &$error)
     {
-        foreach ($user->fieldList() as $field)
-        {
-            $$field = $user->get($field); //Get the variable of the variable
-        }
+        $username = $user->get("username");
         $warning = "";
         if (isset($error))
         {
@@ -46,10 +43,10 @@ class LoginForm
         $form = <<<HTML
 <h2>Please, insert your username and password:</h2>$warning
 <form action="" method="post">
-    <p>Username:</p>
+    <p>Username: </p>
     <input type="text" name="username" value="$username" required="true">
     <br>
-    <p>Password:</p>
+    <p>Password: </p>
     <input type="password" name="password" value="$password" required="true">
     <br>
     <input type="submit" value="Login">
@@ -58,5 +55,16 @@ class LoginForm
 HTML;
         return $form;
     }
+    
+    public function loginConfirm()
+    {
+        $user = isset($_SESSION["username"])? $_SESSION["username"] : "";
+        $form = <<<HTML
+<h2>Welcome, $user</h2>
+
+HTML;
+        return $form;
+    }
+    
     
 }

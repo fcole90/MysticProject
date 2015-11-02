@@ -75,7 +75,7 @@ class Nav
         </li>
           
 HTML;
-        
+        echo $text;
         if (isset($this->otherLinks))
         {
             foreach ($this->otherLinks as $name => $link) {

@@ -47,7 +47,8 @@ class LoginModel extends DBModel
         }
         else
         {
-            $page->setContent((new LoginForm())->getForm($this->user, $this->error));
+            $_SESSION["username"] = $this->user->get("username");
+            $page->setContent((new LoginForm())->loginConfirm());
         }
 
         $page->render();
@@ -67,16 +68,15 @@ class LoginModel extends DBModel
         /**
          * Avoid calling the database if no data has been submitted.
          */
-        if (!isset($username) || $username = "")
+        if (!isset($username) || $username == "")
         {
             return false;
         }
-        else if(!isset($password) || $password = "")
+        else if(!isset($password) || $password == "")
         {
            $this->error[] = "Sorry, the password cannot be empty.";
            return false;
         }
-        
         
         try
         {
@@ -126,6 +126,7 @@ class LoginModel extends DBModel
         }
         /* else */
         $this->error[] = "Sorry, username or password are incorrect.";
+        $this->error[] = "$username - $password -> $hash";
         $stmt->close();
         $mysqli->close();
         return false;
@@ -136,7 +137,8 @@ class LoginModel extends DBModel
     public function setFields()
     {
         $this->user = new User();
-        foreach ($this->user->fieldList() as $field)
+        $list = array("username", "password");
+        foreach ($list as $field)
         {
             if (isset($this->request[$field]))
             {
