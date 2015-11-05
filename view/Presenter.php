@@ -36,6 +36,13 @@ class Presenter {
     private $title;
     
     /**
+     *
+     * @var string[]
+     */
+    private $error;
+
+
+    /**
      * @var string
      */
     private $session;
@@ -116,6 +123,10 @@ class Presenter {
         
         echo "\n\n    <!-- Main Content -->";
         echo "\n    <main>";
+        
+        //Error list
+        echo $this->printErrorList();
+        
         //Here goes the main content
         $this->printContent($this->getContent());
         echo "    </main>\n\n";
@@ -125,6 +136,33 @@ class Presenter {
         echo "\n  </body>\n";//////// End body        
         
         echo "</html>"; /////// End render
+    }
+    
+    /**
+     * Sets the error list.
+     * @param string[] $errorArray
+     */
+    public function setError($errorArray = array()) 
+    {
+        $this->error = $errorArray;
+    }
+    
+    /**
+     * Returns the HTML code of the error list.
+     * @return string
+     */
+    public function printErrorList() 
+    {
+        $warning = "";
+        if (isset($this->error) && !empty($this->error))
+        {
+            $warning = "\n";
+            foreach ($this->error as $message)
+            {
+                $warning .= "<h3 class=\"warning\">$message</h3>\n";
+            }
+        }
+        return $warning;
     }
     
     

@@ -1,7 +1,6 @@
 <?php
 relRequire("model/DBModel.php");
 relRequire("model/User.php");
-relRequire("view/LoginForm.php");
 /* 
  * Copyright (C) 2015 fabio
  *

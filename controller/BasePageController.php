@@ -4,6 +4,7 @@ relRequire('model/HomeModel.php');
 relRequire('model/SignUpModel.php');
 relRequire('model/LoginModel.php');
 relRequire("model/ErrorModel.php");
+relRequire("model/GenericModel.php");
 /*
  * Copyright (C) 2015 fabio
  *
@@ -59,6 +60,11 @@ class BasePageController extends Controller
     public function logout($request) {
        $model = new LoginModel($request);
        $model->logout();
+    }
+    
+    public function help($request) {
+        $model = new GenericModel($request);
+        $model->showHelpPage();
     }
     
     /**

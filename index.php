@@ -49,6 +49,10 @@ class FrontController
                     self::callController(new BasePageController(), $request);
                     break;
                     
+                case "help":
+                    self::callController(new BasePageController(), $request);
+                    break;
+                
                 default: //page not found
                     $controller = new BasePageController();
                     $controller->err404($request);
