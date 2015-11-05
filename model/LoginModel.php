@@ -41,7 +41,14 @@ class LoginModel extends DBModel
         $page = new Presenter($this->getTitle());
         $this->setFields();
         
-        if(!$this->checkLoginData())
+        if(isset($_SESSION["username"]))
+        {
+            $this->error[] = "You're already logged in!";
+            $page->setContent((new LoginForm())->loginConfirm());
+            $page->setError($this->error);
+            $page->setRedir();
+        }
+        else if(!$this->checkLoginData())
         {
             $page->setContent((new LoginForm())->getForm($this->user, $this->error));
         }
@@ -49,6 +56,7 @@ class LoginModel extends DBModel
         {
             $_SESSION["username"] = $this->user->get("username");
             $page->setContent((new LoginForm())->loginConfirm());
+            $page->setRedir();
         }
 
         $page->render();
@@ -62,6 +70,7 @@ class LoginModel extends DBModel
         {
             $page->setContent((new LoginForm())->logout());
             $this->closeSession();
+            $page->setRedir();
         }
         else
         {

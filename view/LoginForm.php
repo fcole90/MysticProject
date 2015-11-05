@@ -61,6 +61,8 @@ HTML;
         $user = isset($_SESSION["username"])? $_SESSION["username"] : "";
         $form = <<<HTML
 <h2>Welcome, $user</h2>
+<p>You're being redirected to <a href="home">the homepage</a>.
+   Please <a href="home">click here</a> if you're not automatically redirected.</p>
 
 HTML;
         return $form;
@@ -71,7 +73,9 @@ HTML;
         $user = isset($_SESSION["username"])? $_SESSION["username"] : "";
         $form = <<<HTML
 <h2>Goodbie, $user</h2>
-
+<p>You're being redirected to <a href="home">the homepage</a>.
+   Please <a href="home">click here</a> if you're not automatically redirected.</p>
+          
 HTML;
         return $form;
     }

@@ -59,6 +59,7 @@ class SignUpModel extends DBModel
         else if($this->addUserToDatabase())
         {
             $page->setContent((new SignUpForm())->getConfirmation($this->user));
+            $page->setRedir();
         }
         else
         {

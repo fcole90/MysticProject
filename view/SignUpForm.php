@@ -96,6 +96,9 @@ HTML;
         }
         
         $confirm = "<h2>Congratulations, you're now registered.</h2>\n";
+        $confirm .= "<p>You will be redirected to <a href='home'>the homepage</a>. "
+          . "Please click <a href='home'>here</a> if you're not automatically "
+          . "redirected.</p>\n\n";
         
         foreach ($user->fieldList() as $field)
         {

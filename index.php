@@ -33,6 +33,8 @@ class FrontController
     {
         if (isset($request["page"]))
         {
+            //Remove the extension
+            $request["page"] = rtrim($request["page"], ".php");
             
             //Chose the page
             switch ($request["page"])

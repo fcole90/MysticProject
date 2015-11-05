@@ -36,6 +36,20 @@ class Presenter {
     private $title;
     
     /**
+     * Redirect link.
+     * 
+     * @var string
+     */
+    private $redir;
+    
+    /**
+     * Time before redirect.
+     * 
+     * @var int
+     */
+    private $redir_time;
+    
+    /**
      *
      * @var string[]
      */
@@ -110,7 +124,7 @@ class Presenter {
         echo "<!DOCTYPE html>\n";
         echo "<html>\n"; ///////// Start render
         
-        new Head($this->title);
+        new Head($this->title, $this->printRedir());
         
         echo "\n  <body>\n"; //////// Start body
         
@@ -163,6 +177,36 @@ class Presenter {
             }
         }
         return $warning;
+    }
+    
+    /**
+     * 
+     * @param type $link
+     */
+    public function setRedir($link = "index", $sec = 3) 
+    {
+        $this->redir = $link;
+        $this->redir_time = $sec;
+    }
+    
+    public function printRedir()
+    {
+        if (isset($this->redir))
+        {
+            $link = $this->redir;
+            $time = $this->redir_time;
+            $text = <<<HTML
+<!-- HTML meta refresh URL redirection -->
+<meta http-equiv="refresh"
+content="$time; url=$link.php">
+HTML;
+        }
+        else
+        {
+            return "";
+        }
+        return $text;
+
     }
     
     
