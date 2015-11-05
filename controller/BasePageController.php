@@ -56,6 +56,11 @@ class BasePageController extends Controller
         $model->show();
     }
     
+    public function logout($request) {
+       $model = new LoginModel($request);
+       $model->logout();
+    }
+    
     /**
      * Handles the 404 error
      * @param request $request

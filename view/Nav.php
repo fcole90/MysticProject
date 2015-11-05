@@ -35,18 +35,33 @@ class Nav
         {
             $this->otherLinks = $otherLinks;
         }
+        else $this->otherLinks = array();
     }
     
     public function render()
     {
+        if (isset($_SESSION["username"]))
+        {
+            //Links when logged 
+            $login_profile_text = $_SESSION["username"];
+            $login_profile_link = "profile";
+            $this->otherLinks[] = "logout";
+        }
+        else
+        {
+            $login_profile_text = "LOGIN";
+            $login_profile_link = "login";
+            $this->otherLinks[] = "signup";
+        }
+        
         $text = <<<HTML
         
     <nav id="mainnav">
       <ul id="mainlist">
         <li class="$this->linkClass">
-          <a href="login">
+          <a href="$login_profile_link">
             <img id="login" src="assets/login.png" alt="login"/>
-            <p>LOGIN</p>
+            <p>$login_profile_text</p>
           </a>
         </li>
         <li class="$this->linkClass">
@@ -63,26 +78,18 @@ class Nav
         </li>
       </ul>
       <ul id="droplist">
-        <li class="$this->moreLinkClass">
-          <a href="signup">
-            <p>SIGN UP</p>
-          </a>
-        </li>
-        <li class="$this->moreLinkClass">
-          <a href="profile">
-            <p>MY PROFILE</p>
-          </a>
-        </li>
+        
+
           
 HTML;
         echo $text;
         if (isset($this->otherLinks))
         {
-            foreach ($this->otherLinks as $name => $link) {
-                $p = ucfirst($link->name);
+            foreach ($this->otherLinks as $link) {
+                $p = ucfirst($link);
                 echo <<<HTML
             <li class="$this->moreLinkClass">
-              <a href="$link->link">
+              <a href="$link">
                 <p>$p</p>
               </a>
             </li>

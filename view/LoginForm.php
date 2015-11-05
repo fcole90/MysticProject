@@ -47,7 +47,7 @@ class LoginForm
     <input type="text" name="username" value="$username" required="true">
     <br>
     <p>Password: </p>
-    <input type="password" name="password" value="$password" required="true">
+    <input type="password" name="password" value="" required="true">
     <br>
     <input type="submit" value="Login">
     
@@ -61,6 +61,16 @@ HTML;
         $user = isset($_SESSION["username"])? $_SESSION["username"] : "";
         $form = <<<HTML
 <h2>Welcome, $user</h2>
+
+HTML;
+        return $form;
+    }
+    
+    public function logout()
+    {
+        $user = isset($_SESSION["username"])? $_SESSION["username"] : "";
+        $form = <<<HTML
+<h2>Goodbie, $user</h2>
 
 HTML;
         return $form;

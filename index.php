@@ -44,6 +44,10 @@ class FrontController
                 case "login":
                     self::callController(new BasePageController(), $request);
                     break;
+                
+                case "logout":
+                    self::callController(new BasePageController(), $request);
+                    break;
                     
                 default: //page not found
                     $controller = new BasePageController();

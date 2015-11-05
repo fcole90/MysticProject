@@ -54,6 +54,26 @@ class LoginModel extends DBModel
         $page->render();
     }
     
+    public function logout()
+    {
+        $page = new Presenter($this->getTitle());
+        
+        if(isset($_SESSION["username"]))
+        {
+            $page->setContent((new LoginForm())->logout());
+            $this->closeSession();
+        }
+        else
+        {
+            $this->error[] = "You're not logged in yet.";
+            $this->show();
+        }
+
+
+        $page->render();
+    }
+
+    
     /**
      * Checks username and password.
      * 
@@ -126,7 +146,6 @@ class LoginModel extends DBModel
         }
         /* else */
         $this->error[] = "Sorry, username or password are incorrect.";
-        $this->error[] = "$username - $password -> $hash";
         $stmt->close();
         $mysqli->close();
         return false;
