@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['user',['User',['../classUser.html',1,'']]]
+  ['signupform',['SignUpForm',['../classSignUpForm.html',1,'']]],
+  ['signupmodel',['SignUpModel',['../classSignUpModel.html',1,'']]]
 ];

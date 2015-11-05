@@ -1,7 +1,8 @@
 <map id="Model" name="Model">
 <area shape="rect" id="node2" href="$classDBModel.html" title="DBModel" alt="" coords="70,80,145,107"/>
 <area shape="rect" id="node5" href="$classErrorModel.html" title="ErrorModel" alt="" coords="171,80,256,107"/>
-<area shape="rect" id="node6" href="$classHomeModel.html" title="HomeModel" alt="" coords="281,80,372,107"/>
+<area shape="rect" id="node6" href="$classGenericModel.html" title="GenericModel" alt="" coords="281,80,383,107"/>
+<area shape="rect" id="node7" href="$classHomeModel.html" title="HomeModel" alt="" coords="407,80,499,107"/>
 <area shape="rect" id="node3" href="$classLoginModel.html" title="LoginModel" alt="" coords="5,155,93,181"/>
 <area shape="rect" id="node4" href="$classSignUpModel.html" title="SignUpModel" alt="" coords="118,155,217,181"/>
 </map>

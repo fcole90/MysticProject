@@ -108,6 +108,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9a7d0d294934548d13620baca0657087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2194a46cf6c23dd4e483f1ee63bc2236"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a2194a46cf6c23dd4e483f1ee63bc2236">render</a> ()</td></tr>
 <tr class="separator:a2194a46cf6c23dd4e483f1ee63bc2236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d66815ed950c7362a9c87bbcc6d9b7b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a1d66815ed950c7362a9c87bbcc6d9b7b">setError</a> ($errorArray=array())</td></tr>
+<tr class="separator:a1d66815ed950c7362a9c87bbcc6d9b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e4fe61038c5535719c6d7bc3b557019"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a5e4fe61038c5535719c6d7bc3b557019">printErrorList</a> ()</td></tr>
+<tr class="separator:a5e4fe61038c5535719c6d7bc3b557019"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a517ff93f6c099065a0d67c0994f0b76b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a517ff93f6c099065a0d67c0994f0b76b">setRedir</a> ($link=&quot;index&quot;, $sec=3)</td></tr>
+<tr class="separator:a517ff93f6c099065a0d67c0994f0b76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace2a8a72ee53e6be953614d00e29f741"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace2a8a72ee53e6be953614d00e29f741"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>printRedir</b> ()</td></tr>
+<tr class="separator:ace2a8a72ee53e6be953614d00e29f741"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes the whole view and renders the page.</p>
@@ -147,6 +156,22 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5e4fe61038c5535719c6d7bc3b557019"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Presenter::printErrorList </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the HTML code of the error list. </p><dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a2194a46cf6c23dd4e483f1ee63bc2236"></a>
 <div class="memitem">
 <div class="memproto">
@@ -163,13 +188,67 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1d66815ed950c7362a9c87bbcc6d9b7b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Presenter::setError </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$errorArray</em> = <code>array()</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the error list. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string[]</td><td>$errorArray </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a517ff93f6c099065a0d67c0994f0b76b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Presenter::setRedir </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$link</em> = <code>&quot;index&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$sec</em> = <code>3</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">type</td><td class="paramname">$link</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>view/Presenter.php</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 1 2015 21:26:00 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 5 2015 17:05:35 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

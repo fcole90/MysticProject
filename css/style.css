@@ -190,6 +190,8 @@ input.warning
     border: 0;
 }
 
+#map { height: 180px; }
+
 /* Forms */
 
 form
