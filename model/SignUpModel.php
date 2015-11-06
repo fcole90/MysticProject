@@ -1,7 +1,5 @@
 <?php
 relRequire("model/DBModel.php");
-relRequire("model/User.php");
-relRequire("view/SignUpForm.php");
 /*
  * Copyright (C) 2015 fabio
  *
@@ -77,37 +75,7 @@ class SignUpModel extends DBModel
         $this->user = $user;
     }
     
-    /**
-     * Setup the user variable feeding it with the form fields.
-     */
-    public function setFields()
-    {
-        $this->user = new User();
-        foreach ($this->user->fieldList() as $field)
-        {
-            if (isset($this->request[$field]))
-            {
-                $this->user->set($field, $this->safeInput($this->request[$field]));
-            }
-            else
-            {
-                $this->user->set($field, null);
-            }
-        }
-        
-        /** Additonal control to transform obtain the birthdate **/
-        if(isset($this->request["year"]) && isset($this->request["month"]) && isset($this->request["day"]))
-        {
-            $birthdate = $this->getDate($this->safeInput($this->request["year"]), 
-                                        $this->safeInput($this->request["month"]), 
-                                        $this->safeInput($this->request["day"]));
-        }
-        else
-        {
-            $birthdate = null;
-        }
-        $this->user->set("birthdate", $birthdate);
-    }
+    
     
     
     /**

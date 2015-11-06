@@ -1,8 +1,12 @@
 <?php
 relRequire('controller/Controller.php');
+
 relRequire('view/Presenter.php');
+relRequire("view/SignUpForm.php");
+
 relRequire('model/HomeModel.php');
 relRequire('model/SignUpModel.php');
+relRequire("model/User.php");
 relRequire('model/LoginModel.php');
 relRequire("model/ErrorModel.php");
 relRequire("model/GenericModel.php");
@@ -69,8 +73,26 @@ HTML;
      */
     public function signup(&$request)
     {
-        $model = new SignUpModel($request);
-        $model->show();
+        $page = new Presenter($this->getTitle());
+        $this->setFields();
+        $model = new SignUpModel();
+        
+        if (!$this->checkFields($model))
+        {
+            $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
+        }
+        else if($this->addUserToDatabase())
+        {
+            $page->setContent((new SignUpForm())->getConfirmation($this->user));
+            $page->setRedir();
+        }
+        else
+        {
+            $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
+        }
+                
+        $page->render();
+        
     }
     
     public function login(&$request)
@@ -122,4 +144,112 @@ HTML;
      * Helper functions.               *
      ***********************************/
 
+    /**
+     * Setup the user variable feeding it with the form fields.
+     */
+    public function setFields()
+    {
+        $this->user = new User();
+        foreach ($this->user->fieldList() as $field)
+        {
+            if (isset($this->request[$field]))
+            {
+                $this->user->set($field, $this->safeInput($this->request[$field]));
+            }
+            else
+            {
+                $this->user->set($field, null);
+            }
+        }
+        
+        /** Additonal control to obtain the birthdate **/
+        if(isset($this->request["year"]) && isset($this->request["month"]) && isset($this->request["day"]))
+        {
+            $birthdate = $this->getDate($this->safeInput($this->request["year"]), 
+                                        $this->safeInput($this->request["month"]), 
+                                        $this->safeInput($this->request["day"]));
+        }
+        else
+        {
+            $birthdate = null;
+        }
+        $this->user->set("birthdate", $birthdate);
+    }
+    
+    /**
+     * Checks the fields one by one.
+     * 
+     * If adding new fields this class needs to be edited.
+     * @param Model $model
+     * @return boolean checkPassed
+     */
+    public function checkFieldsSignUp(SignUpModel $model)
+    {
+        /**First check is the fields exist**/
+        $isValid = false;
+        
+        foreach ($this->user->fieldList() as $field)
+        {
+            if (null !== $this->user->get($field))
+            {
+                $isValid = true;
+            }
+        }
+        if (!$isValid) return false;
+        /** Skips other checks if none of the fields is set**/
+        /**Then if they're valid**/
+        $current = "username";
+        /** Usernames are lowercase only, but uppercase can be accepted and converted. **/
+        $this->user->set($current, strtolower($this->user->get($current)));
+        if (!$this->checkCharDigit($current, $this->user->get($current)) ||
+          !$model->checkFieldNotExists($current))
+        {
+            $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $isValid = false;
+        }
+        
+        
+        
+        $current = "firstname";
+        if (!$this->checkCharDigit($current, $this->user->get($current)))
+        {
+            $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $isValid = false;
+        }
+        
+        $current = "secondname";
+        if (!$this->checkCharDigit($current, $this->user->get($current)))
+        {
+            $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $isValid = false;
+        }
+        
+        $current = "password";
+        if (!$this->checkPassword($current, $this->user->get($current)))
+        {
+            $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $isValid = false;
+        }
+        
+        $current = "email";
+        if (!$this->checkEmail($current, $this->user->get($current)) ||
+          !$model->checkFieldNotExists($current))
+        {
+            $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $isValid = false;
+        }
+        
+        
+        
+        $current = "birthdate";
+        if (!$this->checkDate($current, $this->user->get($current)))
+        {
+            $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $isValid = false;
+        }
+     
+        return $isValid;
+    }
+    
+    
 }

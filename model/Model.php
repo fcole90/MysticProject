@@ -24,33 +24,10 @@ relRequire("view/Presenter.php");
  */
 abstract class Model 
 {
-    //#REMOVE
+    
     /**
+     * Data to be sent back to the controller.
      * 
-     * @var string $title
-     */
-    private $title;
-    
-    /**
-     *
-     * @var string
-     */
-    private $baseTitle = "Fisherman's Friend Locator";
-    
-    /**
-     *
-     * @var array
-     */
-    public $request;
-    
-    /**
-     *
-     * @var type 
-     */
-    protected $username;
-    
-    
-    /**
      * @var mixed[]
      */
     protected $data;
@@ -62,77 +39,45 @@ abstract class Model
      */
     public function __construct() 
     {
-        
+        $this->data = array();
+    }
+    
+    
+    /**
+     * Add data to the associtive array.
+     * 
+     * @param string $name
+     * @param mixed $data
+     * @return boolean taskSucceded
+     */
+    public function addData($name, $data) 
+    {
+        if (isset($this->data[$name]))
+        {
+            return false;
+        }
+        else
+        {
+            $this->data[$name] = $data;
+        }
     }
     
     /**
      * 
-     * @return string
-     */
-    public function baseTitle()
-    {
-        return $this->baseTitle;
-    }
-    
-    /**
+     * Retrieve data from the associative array.
      * 
-     * @param array $request
-     * @return string
+     * @param string $name
+     * @return mixed if data[$name] is not present returns null.
      */
-    public function pageTitle($page) 
+    public function getData($name)
     {
-        return ucfirst($page) . " - " . $this->baseTitle();
-    }
-    
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $this->pageTitle($title);
-    }
-    
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-
-    abstract function show();
-    
-    protected function isLoggedIn() 
-    {
-        return isset($_SESSION) && array_key_exists("username", $_SESSION);
-    }
-    
-    /**
-     * Destroys the session.
-     */
-    protected function closeSession()
-    {
-        $_SESSION = array();
-        
-        if (session_id() != "" || isset($_COOKIE[session_name()]))
+        if (!isset($this->data[$name]))
         {
-            setcookie(session_name(), '', time() - 2592000, '/');
+            return null;
         }
-        session_unset();
-        session_destroy();
-    }
-    
-    /**
-     * Makes the input safe.
-     */
-    public function safeInput($input)
-    {
-        if (isset($input))
+        else
         {
-            $input = trim($input);
-            $input = stripslashes($input);
-            $input = htmlentities($input);
-            return $input;
+            return $this->data[$name];
         }
-        return $input;
     }
-    
 }
