@@ -19,12 +19,10 @@ function relRequire($path)
     require_once __ROOT__ . "/" . $path;
 }
 
-FrontController::page($_REQUEST);
-
 /**
  * Handles the pages.
  */
-class FrontController
+class FrontController extends Controller
 {
     /*
      * Select the correct controller according to the page.
@@ -38,19 +36,19 @@ class FrontController
             switch ($request["page"])
             {
                 case "signup":
-                    self::callController(new BasePageController(), $request);
+                    self::callController(new BasePageController($request));
                     break;
                 
                 case "login":
-                    self::callController(new BasePageController(), $request);
+                    self::callController(new BasePageController($request));
                     break;
                 
                 case "logout":
-                    self::callController(new BasePageController(), $request);
+                    self::callController(new BasePageController($request));
                     break;
                     
                 case "help":
-                    self::callController(new BasePageController(), $request);
+                    self::callController(new BasePageController($request));
                     break;
                 
                 default: //page not found
@@ -60,14 +58,14 @@ class FrontController
         }
         else //home
         {
-            self::callController(new BasePageController(), $request);
+            self::callController(new BasePageController($request));
         }
     }
     
     /*
      * Call the controller to handle the process.
      */
-    public static function callController(Controller $controller, &$request)
+    public static function callController(Controller $controller)
     {
         if (isset($request["page"]))
         {
@@ -78,6 +76,9 @@ class FrontController
             $method = "home";
         }
         
-        $controller->$method($request);
+        $controller->$method();
     }
 }
+
+
+FrontController::page($_REQUEST);

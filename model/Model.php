@@ -24,6 +24,7 @@ relRequire("view/Presenter.php");
  */
 abstract class Model 
 {
+    //#REMOVE
     /**
      * 
      * @var string $title
@@ -47,32 +48,21 @@ abstract class Model
      * @var type 
      */
     protected $username;
+    
+    
+    /**
+     * @var mixed[]
+     */
+    protected $data;
 
 
     /**
      * 
      * @param array $request
      */
-    public function __construct($request) 
+    public function __construct() 
     {
-        if(isset($request["username"]))
-        {
-            $this->username = $request["username"];
-        }
-        else
-        {
-            $this->username = "";
-        }
         
-        if (isset($request["page"]))
-        {
-            $this->setTitle($request["page"]);
-        }
-        else
-        {
-            $this->setTitle("home");
-        }
-        $this->request = $request;
     }
     
     /**

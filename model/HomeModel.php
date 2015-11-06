@@ -30,8 +30,8 @@ class HomeModel extends Model
 {
     //invoke the db
     
-    public function __construct($request) {
-        parent::__construct($request);
+    public function __construct() {
+        parent::__construct();
     }
     
     //show the view

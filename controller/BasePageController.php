@@ -1,5 +1,6 @@
 <?php
 relRequire('controller/Controller.php');
+relRequire('view/Presenter.php');
 relRequire('model/HomeModel.php');
 relRequire('model/SignUpModel.php');
 relRequire('model/LoginModel.php');
@@ -24,21 +25,42 @@ relRequire("model/GenericModel.php");
  */
 
 /**
- * Handles the home page.
+ * Handles the pages.
  *
  * @author fabio
  */
 class BasePageController extends Controller
 {
+    
+    public function __construct(&$request)
+    {
+        parent::__construct($request);
+    }
+    
+    
+    /***********************************************
+     * Page handling functions.                    *
+     ***********************************************/
+    
+    
     /**
      * Renders the home page.
      * 
      * @param array $request
      */
-    public function home(&$request) 
+    public function home() 
     {       
-        $model = new HomeModel($request);
-        $model->show();
+        $model = new HomeModel();
+        
+        $page = new Presenter($this->getTitle());
+        
+        /* Temporary HTML */
+        $content = <<<HTML
+<h2>Find your lozenges in "Fleetwood"</h2>
+<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-3.1280136108398438%2C53.86346094359846%2C-2.8873443603515625%2C53.985568980647656&amp;layer=mapnik&amp;marker=53.924650964860085%2C-3.007637200000005" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?mlat=53.9247&amp;mlon=-3.0076#map=12/53.9247/-3.0076">View Larger Map</a></small>
+HTML;
+        $page->setContent($content);
+        $page->render();
     }
     
     /**
@@ -95,5 +117,9 @@ class BasePageController extends Controller
         $model->setHeader("HTTP/1.0 403 Forbidden");
         $model->show();
     }
+    
+    /***********************************
+     * Helper functions.               *
+     ***********************************/
 
 }

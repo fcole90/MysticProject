@@ -67,9 +67,20 @@ class Presenter {
      */
     private $content;
     
+    /**
+     * Custom header HTML.
+     *
+     * @var string
+     */
     private $header;
 
-
+    
+    /**
+     * View constructor.
+     * 
+     * @param string $title of the page
+     * @param string $content of the page
+     */
     public function __construct($title, $content = "") 
     {
         $this->title = $title;
@@ -98,17 +109,27 @@ class Presenter {
         }
     }
     
+    /**
+     * Return some content to render.
+     * 
+     * @return string HTML content.
+     */
     public function getContent()
     {
         return $this->content;
     }
     
+    /**
+     * Receive some content to render.
+     * 
+     * @param string $content HTML content.
+     */
     public function setContent($content)
     {
         $this->content = $content;
     }
 
-        /**
+    /**
      * Render the page
      */
     

@@ -23,8 +23,123 @@
  * 
  * @author fabio
  */
-abstract class Controller {
+abstract class Controller 
+{
+    /**
+     * 
+     * @var string $title
+     */
+    private $title;
     
+    /**
+     *
+     * @var string
+     */
+    private $baseTitle = "Fisherman's Friend Locator";
+    
+    /**
+     *
+     * @var array
+     */
+    public $request;
+    
+    /**
+     *
+     * @var type 
+     */
+    protected $username;
+    
+    /**
+     * 
+     * @param array $request
+     */
+    public function __construct($request) 
+    {
+        if(isset($request["username"]))
+        {
+            $this->username = $request["username"];
+        }
+        else
+        {
+            $this->username = "";
+        }
+        if (isset($request["page"]))
+        {
+            $this->setTitle($request["page"]);
+        }
+        else
+        {
+            $this->setTitle("home");
+        }
+        $this->request = $request;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function baseTitle()
+    {
+        return $this->baseTitle;
+    }
+    
+    /**
+     * 
+     * @param array $request
+     * @return string
+     */
+    public function pageTitle($page) 
+    {
+        return ucfirst($page) . " - " . $this->baseTitle();
+    }
+    
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $this->pageTitle($title);
+    }
+    
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    
+    protected function isLoggedIn() 
+    {
+        return isset($_SESSION) && array_key_exists("username", $_SESSION);
+    }
+    
+    /**
+     * Destroys the session.
+     */
+    protected function closeSession()
+    {
+        $_SESSION = array();
+        
+        if (session_id() != "" || isset($_COOKIE[session_name()]))
+        {
+            setcookie(session_name(), '', time() - 2592000, '/');
+        }
+        session_unset();
+        session_destroy();
+    }
+    
+    /**
+     * Makes the input safe.
+     */
+    public function safeInput($input)
+    {
+        if (isset($input))
+        {
+            $input = trim($input);
+            $input = stripslashes($input);
+            $input = htmlentities($input);
+            return $input;
+        }
+        return $input;
+    }
     
     
     
