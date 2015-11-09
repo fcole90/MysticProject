@@ -45,9 +45,15 @@ abstract class Controller
     
     /**
      *
-     * @var type 
+     * @var string
      */
     protected $username;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $page;
     
     /**
      * 
@@ -57,7 +63,7 @@ abstract class Controller
     {
         if(isset($request["username"]))
         {
-            $this->username = $request["username"];
+            $this->username = $this->safeInput($request["username"]);
         }
         else
         {
@@ -65,7 +71,9 @@ abstract class Controller
         }
         if (isset($request["page"]))
         {
-            $this->setTitle($request["page"]);
+            $page = $this->safeInput($request["page"]);
+            $this->setTitle($page);
+            $this->page = $page;
         }
         else
         {
@@ -106,6 +114,12 @@ abstract class Controller
         return $this->title;
     }
     
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+
     protected function isLoggedIn() 
     {
         return isset($_SESSION) && array_key_exists("username", $_SESSION);

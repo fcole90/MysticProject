@@ -115,12 +115,12 @@ HTML;
      * Handles the 404 error
      * @param request $request
      */
-    public function err404(&$request)
+    public function err404()
     {
         $title = "Error 404 - Page not found";
         $message = "Sorry, the page you're looking for "
           . "does not exist or has been moved.";
-        $model = new ErrorModel($request, $title, $message);
+        $model = new ErrorModel($title, $message);
         $model->setHeader("HTTP/1.0 404 Not Found");
         $model->show();
     }

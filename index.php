@@ -9,6 +9,8 @@ ini_set('display_startup_errors',1);
 ini_set('display_errors',1);
 error_reporting(-1);
 
+/**/
+
 /**
  * Require once from the root dir.
  * 
@@ -29,56 +31,26 @@ class FrontController extends Controller
      */
     public static function page(&$request)
     {
-        if (isset($request["page"]))
+        $controller = new BasePageController($request);
+        
+        if (isset($controller->page))
         {
-                      
-            //Chose the page
-            switch ($request["page"])
+            if(is_callable(array($controller,$controller->page)))
             {
-                case "signup":
-                    self::callController(new BasePageController($request));
-                    break;
-                
-                case "login":
-                    self::callController(new BasePageController($request));
-                    break;
-                
-                case "logout":
-                    self::callController(new BasePageController($request));
-                    break;
-                    
-                case "help":
-                    self::callController(new BasePageController($request));
-                    break;
-                
-                default: //page not found
-                    $controller = new BasePageController();
-                    $controller->err404($request);
+                $page = $controller->page;
+                $controller->$page();
             }
+            else
+            {
+                $controller->err404();
+            }
+            
         }
         else //home
         {
-            self::callController(new BasePageController($request));
+            $controller->home();
         }
-    }
-    
-    /*
-     * Call the controller to handle the process.
-     */
-    public static function callController(Controller $controller)
-    {
-        if (isset($request["page"]))
-        {
-            $method = $request["page"];
-        }
-        else
-        {
-            $method = "home";
-        }
-        
-        $controller->$method();
     }
 }
-
 
 FrontController::page($_REQUEST);

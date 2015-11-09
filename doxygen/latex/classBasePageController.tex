@@ -22,7 +22,10 @@ Collaboration diagram for Base\+Page\+Controller\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classBasePageController_af9e63d62a5b86ea45c733a80abc58715}{home} (\&\$request)
+\hypertarget{classBasePageController_a483998015a3518d49897d271de2e3c2d}{{\bfseries \+\_\+\+\_\+construct} (\&\$request)}\label{classBasePageController_a483998015a3518d49897d271de2e3c2d}
+
+\item 
+\hyperlink{classBasePageController_addd9e4039a708810ae0e60b94649db57}{home} ()
 \item 
 \hyperlink{classBasePageController_a26864cbbdf6ced03397b1960f160b0eb}{signup} (\&\$request)
 \item 
@@ -35,14 +38,19 @@ Collaboration diagram for Base\+Page\+Controller\+:\nopagebreak
 \hypertarget{classBasePageController_a62656a3ea9f23250caeebd4076fb84da}{{\bfseries help} (\$request)}\label{classBasePageController_a62656a3ea9f23250caeebd4076fb84da}
 
 \item 
-\hyperlink{classBasePageController_a0442c7e815c3940f05f007be6549833c}{err404} (\&\$request)
+\hyperlink{classBasePageController_a34b8830d87502cefa09b06450f2b1fa7}{err404} ()
 \item 
 \hyperlink{classBasePageController_a984b448e25573a6de434b03e9f0c2795}{err403} (\&\$request)
+\item 
+\hyperlink{classBasePageController_a29d705f2a17c099861055f727c22af5e}{set\+Fields} ()
+\item 
+\hyperlink{classBasePageController_a9f88b7bdcd90ba8c4553f61c6eefee41}{check\+Fields\+Sign\+Up} (\hyperlink{classSignUpModel}{Sign\+Up\+Model} \$model)
 \end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-Handles the home page.
+Handles the pages.
 
 \begin{DoxyAuthor}{Author}
 fabio 
@@ -50,7 +58,30 @@ fabio
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classBasePageController_a984b448e25573a6de434b03e9f0c2795}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!err403@{err403}}
+\hypertarget{classBasePageController_a9f88b7bdcd90ba8c4553f61c6eefee41}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Fields\+Sign\+Up@{check\+Fields\+Sign\+Up}}
+\index{check\+Fields\+Sign\+Up@{check\+Fields\+Sign\+Up}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{check\+Fields\+Sign\+Up}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::check\+Fields\+Sign\+Up (
+\begin{DoxyParamCaption}
+\item[{{\bf Sign\+Up\+Model}}]{\$model}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_a9f88b7bdcd90ba8c4553f61c6eefee41}
+Checks the fields one by one.
+
+If adding new fields this class needs to be edited. 
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classModel}{Model} & {\em \$model} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean check\+Passed 
+\end{DoxyReturn}
+First check is the fields exist
+
+Skips other checks if none of the fields is set
+
+Then if they're valid
+
+Usernames are lowercase only, but uppercase can be accepted and converted. \hypertarget{classBasePageController_a984b448e25573a6de434b03e9f0c2795}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!err403@{err403}}
 \index{err403@{err403}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{err403}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::err403 (
 \begin{DoxyParamCaption}
@@ -62,25 +93,25 @@ Handles the 403 error.
 request & {\em \$request} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{classBasePageController_a0442c7e815c3940f05f007be6549833c}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!err404@{err404}}
+\hypertarget{classBasePageController_a34b8830d87502cefa09b06450f2b1fa7}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!err404@{err404}}
 \index{err404@{err404}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{err404}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::err404 (
 \begin{DoxyParamCaption}
-\item[{\&}]{\$request}
+{}
 \end{DoxyParamCaption}
-)}}\label{classBasePageController_a0442c7e815c3940f05f007be6549833c}
+)}}\label{classBasePageController_a34b8830d87502cefa09b06450f2b1fa7}
 Handles the 404 error 
 \begin{DoxyParams}[1]{Parameters}
 request & {\em \$request} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{classBasePageController_af9e63d62a5b86ea45c733a80abc58715}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!home@{home}}
+\hypertarget{classBasePageController_addd9e4039a708810ae0e60b94649db57}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!home@{home}}
 \index{home@{home}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{home}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::home (
 \begin{DoxyParamCaption}
-\item[{\&}]{\$request}
+{}
 \end{DoxyParamCaption}
-)}}\label{classBasePageController_af9e63d62a5b86ea45c733a80abc58715}
+)}}\label{classBasePageController_addd9e4039a708810ae0e60b94649db57}
 Renders the home page.
 
 
@@ -88,7 +119,14 @@ Renders the home page.
 array & {\em \$request} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{classBasePageController_a26864cbbdf6ced03397b1960f160b0eb}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!signup@{signup}}
+\hypertarget{classBasePageController_a29d705f2a17c099861055f727c22af5e}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!set\+Fields@{set\+Fields}}
+\index{set\+Fields@{set\+Fields}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{set\+Fields}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::set\+Fields (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_a29d705f2a17c099861055f727c22af5e}
+Setup the user variable feeding it with the form fields. Additonal control to obtain the birthdate \hypertarget{classBasePageController_a26864cbbdf6ced03397b1960f160b0eb}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!signup@{signup}}
 \index{signup@{signup}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{signup}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::signup (
 \begin{DoxyParamCaption}
