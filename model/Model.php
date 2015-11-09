@@ -31,7 +31,13 @@ abstract class Model
      * @var mixed[]
      */
     protected $data;
-
+    
+    /**
+     * Error messages for the controller.
+     * 
+     * @var string[]
+     */
+    protected $error;
 
     /**
      * 
@@ -79,5 +85,15 @@ abstract class Model
         {
             return $this->data[$name];
         }
+    }
+    
+    /**
+     * Returns the error array.
+     * 
+     * @return string[]
+     */
+    public function getError()
+    {
+        return $this->error;
     }
 }

@@ -69,25 +69,29 @@ HTML;
     
     /**
      * Handles the signup.
-     * @param request $request
      */
-    public function signup(&$request)
+    public function signup()
     {
         $page = new Presenter($this->getTitle());
+        
+        /* Setup the fields to be used and initialize a User object */
         $this->setFields();
         $model = new SignUpModel();
         
+        /* Check if the fields follow the necessary rules */
         if (!$this->checkFields($model))
         {
             $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
         }
-        else if($this->addUserToDatabase())
+        else if($model->addUserToDatabase($this->user))
         {
             $page->setContent((new SignUpForm())->getConfirmation($this->user));
             $page->setRedir();
         }
         else
         {
+            /* Add the errors of the model to the errors of the controller */
+            $this->error = array_merge($this->error, $model->getError());
             $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
         }
                 
