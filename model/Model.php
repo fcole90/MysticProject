@@ -46,6 +46,7 @@ abstract class Model
     public function __construct() 
     {
         $this->data = array();
+        $this->error = array();
     }
     
     

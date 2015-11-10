@@ -44,7 +44,6 @@ class FrontController extends Controller
             {
                 $controller->err404();
             }
-            
         }
         else //home
         {

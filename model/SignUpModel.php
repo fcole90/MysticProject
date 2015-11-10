@@ -1,5 +1,6 @@
 <?php
 relRequire("model/DBModel.php");
+relRequire("model/User.php");
 /*
  * Copyright (C) 2015 fabio
  *
@@ -19,52 +20,18 @@ relRequire("model/DBModel.php");
  */
 
 /**
- * Model class to sign up.
- * 
- * Field checks and other things like those happen here.
+ * Model class to handle the data for the signup process and add a new user.
  *
  * @author fabio
  */
 class SignUpModel extends DBModel
 {
     private $user;
-    private $error;
     private $passwordMinLength = 6;
     
-    public function __construct(&$request) 
+    public function __construct() 
     {
-        parent::__construct($request);
-        $this->error = array();
-    }
-    
-    /**
-     * This method is called by the controller and invokes most
-     * of the logic.
-     * 
-     * Creates a new renderer for the page, then checks the fields.
-     * If the fields are not validated it calls the same page again, otherwise 
-     * it tries to add the user to the database and shows a confirmation page. 
-     * If there's a database error it prints an error message.
-     */
-    public function show()
-    {
-        $page = new Presenter($this->getTitle());
-        $this->setFields();
-        if (!$this->checkFields())
-        {
-            $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
-        }
-        else if($this->addUserToDatabase())
-        {
-            $page->setContent((new SignUpForm())->getConfirmation($this->user));
-            $page->setRedir();
-        }
-        else
-        {
-            $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
-        }
-                
-        $page->render();
+        parent::__construct();
     }
     
     /**
@@ -74,14 +41,14 @@ class SignUpModel extends DBModel
     {
         $this->user = $user;
     }
-    
-    
-    
+       
     
     /**
      * Add a user to the database.
+     * 
+     * @param User $user
      */
-    public function addUserToDatabase() 
+    public function addUserToDatabase(User $user) 
     {
         try
         {
@@ -97,11 +64,11 @@ class SignUpModel extends DBModel
         /**
          * Make the password safe.
          */ 
-        $hash = password_hash($this->user->get("password"), PASSWORD_DEFAULT);
-        $this->user->set("password", $hash);
+        $hash = password_hash($user->get("password"), PASSWORD_DEFAULT);
+        $user->set("password", $hash);
         
         $sFields = ""; // used to bind param in ssss like string
-        $fieldList = $this->user->fieldList();
+        $fieldList = $user->fieldList();
         // dynamically create the statement
         $text = "INSERT INTO user (";
         foreach ($fieldList as $field)
@@ -123,7 +90,7 @@ class SignUpModel extends DBModel
         $paramList[] = $sFields;
         foreach ($fieldList as $field)
         {
-            $paramList[] = $this->user->get($field);
+            $paramList[] = $user->get($field);
         }
         
         if (!$stmt = $mysqli->prepare($text))
@@ -160,153 +127,17 @@ class SignUpModel extends DBModel
         
         return true;
     }
-
-    /**
-     * Marks the fields wich require attention.
-     */
-    public function setWarning($field)
-    {
-        return $field . '" class="warning';
-    }
-    
-    /**
-     * Checks the fields one by one.
-     * 
-     * If adding new fields this class needs to be edited.
-     */
-    public function checkFields()
-    {
-        /**First check is the fields exist**/
-        $isValid = false;
-        
-        foreach ($this->user->fieldList() as $field)
-        {
-            if (null !== $this->user->get($field))
-            {
-                $isValid = true;
-            }
-        }
-        if (!$isValid) return false;
-        /** Skips other checks if none of the fields is set**/
-        /**Then if they're valid**/
-        $current = "username";
-        /** Usernames are lowercase only, but uppercase can be accepted and converted. **/
-        $this->user->set($current, strtolower($this->user->get($current)));
-        if (!$this->checkCharDigit($current, $this->user->get($current)) ||
-          !$this->checkFieldNotExists($current))
-        {
-            $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $isValid = false;
-        }
-        
-        
-        
-        $current = "firstname";
-        if (!$this->checkCharDigit($current, $this->user->get($current)))
-        {
-            $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $isValid = false;
-        }
-        
-        $current = "secondname";
-        if (!$this->checkCharDigit($current, $this->user->get($current)))
-        {
-            $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $isValid = false;
-        }
-        
-        $current = "password";
-        if (!$this->checkPassword($current, $this->user->get($current)))
-        {
-            $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $isValid = false;
-        }
-        
-        $current = "email";
-        if (!$this->checkEmail($current, $this->user->get($current)) ||
-          !$this->checkFieldNotExists($current))
-        {
-            $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $isValid = false;
-        }
-        
-        
-        
-        $current = "birthdate";
-        if (!$this->checkDate($current, $this->user->get($current)))
-        {
-            $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $isValid = false;
-        }
-     
-        return $isValid;
-    }
-    
-    /**
-     * Helper function to check if strings contain only chars and digits.
-     */
-    public function checkCharDigit($field, $value)
-    {
-        if (!preg_match("/^[a-zA-Z][a-zA-Z0-9]*$/",$value)) 
-        {
-            $this->error[] = "Only letters and numbers are allowed in $field."
-              . " (Numbers not at beginning).";
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * Helper function to check if the string is strong enough to be used as a password.
-     */
-    public function checkPassword($field, $value)
-    {
-        if (!preg_match("/[0-9]+/",$value) || !preg_match("/[A-Z]+/",$value) 
-          || !preg_match("/[a-z]+/",$value) || !(strlen($value)>=  $this->passwordMinLength)) 
-        {
-            $this->error[] = ucfirst($field) . " must be at least "
-              . "$this->passwordMinLength chars long and have at least: "
-              . "one digit, "
-              . "one upper case letter "
-              . "and one lower case letter.";
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * Helper function to check if the string is a valid email address.
-     */
-    public function checkEmail($field, $value)
-    {
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL))
-        {
-            $this->error[] = "The $field is not valid.";
-            return false;
-        }
-        return true;
-    }
-    
-    public function checkDate($field, $value)
-    {
-        $date = explode("-", $value);
-        if (!preg_match("/[0-9]{4}-[0-9]{2}-[0-9]{2}/", $value) ||
-          !checkdate($date[1], $date[2], $date[0]))
-        {
-            $this->error[] = "The $field is not valid or does not correspond "
-              . "to the required date format: "
-              . "YYYY-MM-DD.";
-            return false;
-        }
-        return true;
-    }
     
     /**
      * Returns true if the a field does not exist in the DB,
      * returns false if the field already exists or there has 
      * been a connection error with the DB.
+     * 
+     * @param string $fieldname
+     * @param string $fieldvalue
+     * @return boolean
      */
-    public function checkFieldNotExists($field)
+    public function checkFieldNotExists($fieldname, $fieldvalue)
     {
         try
         {
@@ -317,9 +148,7 @@ class SignUpModel extends DBModel
             $this->error[] = $e->getMessage();
         }
         
-        $current = $field;
-        $value = $this->user->get($current);
-        $text = "SELECT $field FROM user WHERE $field = ?;";
+        $text = "SELECT $fieldname FROM user WHERE $fieldname = ?;";
         
         if (!$stmt = $mysqli->prepare($text))
         {
@@ -327,7 +156,7 @@ class SignUpModel extends DBModel
             return false;
         }
         
-        if (!$stmt->bind_param("s", $value))
+        if (!$stmt->bind_param("s", $fieldvalue))
         {
             $this->error[] = "DB Error: could not bind parameters.";
             return false;
@@ -341,7 +170,7 @@ class SignUpModel extends DBModel
         
         if (!$stmt->bind_result($resField))
         {
-            $this->error[] = "DB Error: could bind results.";
+            $this->error[] = "DB Error: could not bind results.";
             return false;
         }
         
@@ -351,9 +180,8 @@ class SignUpModel extends DBModel
         {
             $stmt->close();
             $mysqli->close();
-            $this->error[] = "This $current already exists, please "
+            $this->error[] = "This $fieldname already exists, please "
               . "use a different one.";
-            $this->user->set($current, $this->setWarning($this->user->get($current)));
             return false;
         }
         $stmt->close();
@@ -361,20 +189,6 @@ class SignUpModel extends DBModel
         return true;
         
         
-    }
-    
-    /**
-     * Returns a standard date in the YYYY-MM-DD format.
-     * 
-     * @param type $year
-     * @param type $month
-     * @param type $day
-     * @return string
-     */
-    function getDate($year="", $month="", $day="")
-    {
-        return "$year-$month-$day";
-    }
-    
+    }   
       
 }

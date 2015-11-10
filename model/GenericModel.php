@@ -27,11 +27,8 @@ relRequire("parsedown/Parsedown.php");
 class GenericModel extends Model
 {
     
-    private $error;
-    
-    public function __construct($request) {
-        parent::__construct($request);
-        $this->error = array();
+    public function __construct() {
+        parent::__construct();
     }
     
     /**

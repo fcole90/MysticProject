@@ -35,10 +35,24 @@ relRequire("model/GenericModel.php");
  */
 class BasePageController extends Controller
 {
+    /**
+     * The minimum length for the password
+     * 
+     * @var string
+     */
+    const PASSWORD_MIN_LEN = 6;
+    
+    /**
+     * Array of errors to be reported.
+     * 
+     * @var string[]
+     */
+    private $error;
     
     public function __construct(&$request)
     {
         parent::__construct($request);
+        $this->error = array();
     }
     
     
@@ -68,7 +82,7 @@ HTML;
     }
     
     /**
-     * Handles the signup.
+     * Handles the signup process.
      */
     public function signup()
     {
@@ -76,11 +90,14 @@ HTML;
         
         /* Setup the fields to be used and initialize a User object */
         $this->setFields();
+        
         $model = new SignUpModel();
         
         /* Check if the fields follow the necessary rules */
-        if (!$this->checkFields($model))
+        if (!$this->checkFieldsSignUp($model))
         {
+            /* Add the errors of the model to the errors of the controller */
+            $this->error = array_merge($this->error, $model->getError());
             $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
         }
         else if($model->addUserToDatabase($this->user))
@@ -181,6 +198,14 @@ HTML;
     }
     
     /**
+     * Marks the fields wich require attention.
+     */
+    public function setWarning($field)
+    {
+        return $field . '" class="warning';
+    }
+    
+    /**
      * Checks the fields one by one.
      * 
      * If adding new fields this class needs to be edited.
@@ -199,14 +224,16 @@ HTML;
                 $isValid = true;
             }
         }
+        
+        /** Skip other checks if none of the fields is set**/
         if (!$isValid) return false;
-        /** Skips other checks if none of the fields is set**/
+       
         /**Then if they're valid**/
         $current = "username";
-        /** Usernames are lowercase only, but uppercase can be accepted and converted. **/
+        /** Usernames are lowercase only, but uppercase can be accepted and converted to lowercase. **/
         $this->user->set($current, strtolower($this->user->get($current)));
         if (!$this->checkCharDigit($current, $this->user->get($current)) ||
-          !$model->checkFieldNotExists($current))
+          !$model->checkFieldNotExists($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
@@ -237,7 +264,7 @@ HTML;
         
         $current = "email";
         if (!$this->checkEmail($current, $this->user->get($current)) ||
-          !$model->checkFieldNotExists($current))
+          !$model->checkFieldNotExists($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
@@ -255,5 +282,77 @@ HTML;
         return $isValid;
     }
     
+    
+    /**
+     * Returns a standard date in the YYYY-MM-DD format.
+     * 
+     * @param type $year
+     * @param type $month
+     * @param type $day
+     * @return string
+     */
+    function getDate($year="", $month="", $day="")
+    {
+        return "$year-$month-$day";
+    }
+    
+    /**
+     * Helper function to check if strings contain only chars and digits.
+     */
+    public function checkCharDigit($field, $value)
+    {
+        if (!preg_match("/^[a-zA-Z][a-zA-Z0-9]*$/",$value)) 
+        {
+            $this->error[] = "Only letters and numbers are allowed in $field."
+              . " (Numbers not at beginning).";
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Helper function to check if the string is strong enough to be used as a password.
+     */
+    public function checkPassword($field, $value)
+    {
+        if (!preg_match("/[0-9]+/",$value) || !preg_match("/[A-Z]+/",$value) 
+          || !preg_match("/[a-z]+/",$value) || !(strlen($value)>= BasePageController::PASSWORD_MIN_LEN)) 
+        {
+            $this->error[] = ucfirst($field) . " must be at least "
+              . BasePageController::PASSWORD_MIN_LEN ." chars long and have at least: "
+              . "one digit, "
+              . "one upper case letter "
+              . "and one lower case letter.";
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Helper function to check if the string is a valid email address.
+     */
+    public function checkEmail($field, $value)
+    {
+        if (!filter_var($value, FILTER_VALIDATE_EMAIL))
+        {
+            $this->error[] = "The $field is not valid.";
+            return false;
+        }
+        return true;
+    }
+    
+    public function checkDate($field, $value)
+    {
+        $date = explode("-", $value);
+        if (!preg_match("/[0-9]{4}-[0-9]{2}-[0-9]{2}/", $value) ||
+          !checkdate($date[1], $date[2], $date[0]))
+        {
+            $this->error[] = "The $field is not valid or does not correspond "
+              . "to the required date format: "
+              . "YYYY-MM-DD.";
+            return false;
+        }
+        return true;
+    }
     
 }

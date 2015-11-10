@@ -109,17 +109,29 @@ abstract class Controller
         $this->title = $this->pageTitle($title);
     }
     
+    /**
+     * 
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
     }
     
+    /**
+     * 
+     * @return string
+     */
     public function getPage()
     {
         return $this->page;
     }
 
-
+    /**
+     * Returns true if there's an active login session.
+     * 
+     * @return boolean
+     */
     protected function isLoggedIn() 
     {
         return isset($_SESSION) && array_key_exists("username", $_SESSION);

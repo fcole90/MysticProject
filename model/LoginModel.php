@@ -28,9 +28,8 @@ relRequire("view/LoginForm.php");
 class LoginModel extends DBModel
 {
     private $user;
-    private $error;
     
-    public function __construct(&$request) 
+    public function __construct() 
     {
         parent::__construct($request);
         $this->error = array();
