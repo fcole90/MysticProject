@@ -36,6 +36,7 @@ $(document).ready(function(){
 */
 $(document).ready(function()
   {
-      var map = L.map('map').setView([51.505, -0.09], 13);
+      //var map = L.map('map').setView([51.505, -0.09], 13);
+      $("#err404").animate({left: '+=50000px'}, 85000, "swing");
   }
-)
+);
