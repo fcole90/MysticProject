@@ -10,6 +10,47 @@ Inheritance diagram for Controller\+:\nopagebreak
 \includegraphics[width=184pt]{classController__inherit__graph}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classController_ab91faf91a99b21a429324499f9ec9f70}{\+\_\+\+\_\+construct} (\$request)
+\item 
+\hyperlink{classController_a3057228d46eddceb352a1537ef05e8b7}{base\+Title} ()
+\item 
+\hyperlink{classController_a555247a38f8b4ea98a85bed7c6798e0a}{page\+Title} (\$page)
+\item 
+\hyperlink{classController_ae560b1221cb9f3891c432c3dd0292922}{set\+Title} (\$title)
+\item 
+\hyperlink{classController_ae8b4904843b2d665164620160b3c7157}{get\+Title} ()
+\item 
+\hyperlink{classController_aa844281accdd5aa2ca1ab1d890332b76}{get\+Page} ()
+\item 
+\hyperlink{classController_a90590c2cd8c1a89cc6eada64f0f24361}{safe\+Input} (\$input)
+\item 
+\hyperlink{classController_ac85206dce558e214f72fc3ca56f8cc31}{get\+Session\+Username} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classController_ae09902e0cf33dbffd52349e056794842}{{\bfseries \$request}}\label{classController_ae09902e0cf33dbffd52349e056794842}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}{is\+Logged\+In} ()
+\item 
+\hyperlink{classController_a67beb590eef4f36b07e6c9ef04fc8337}{close\+Session} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classController_add0ea4a4a72b2f7cf707bdd435a67c61}{{\bfseries \$username}}\label{classController_add0ea4a4a72b2f7cf707bdd435a67c61}
+
+\item 
+\hypertarget{classController_a82584774d202d57e2e5159fa2add1079}{{\bfseries \$page}}\label{classController_a82584774d202d57e2e5159fa2add1079}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -18,6 +59,119 @@ All controllers should inherit from here
 \begin{DoxyAuthor}{Author}
 fabio 
 \end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classController_ab91faf91a99b21a429324499f9ec9f70}{\index{Controller@{Controller}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Controller@{Controller}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$request}
+\end{DoxyParamCaption}
+)}}\label{classController_ab91faf91a99b21a429324499f9ec9f70}
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classController_a3057228d46eddceb352a1537ef05e8b7}{\index{Controller@{Controller}!base\+Title@{base\+Title}}
+\index{base\+Title@{base\+Title}!Controller@{Controller}}
+\subsubsection[{base\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::base\+Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classController_a3057228d46eddceb352a1537ef05e8b7}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_a67beb590eef4f36b07e6c9ef04fc8337}{\index{Controller@{Controller}!close\+Session@{close\+Session}}
+\index{close\+Session@{close\+Session}!Controller@{Controller}}
+\subsubsection[{close\+Session}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::close\+Session (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classController_a67beb590eef4f36b07e6c9ef04fc8337}
+Destroys the session. \hypertarget{classController_aa844281accdd5aa2ca1ab1d890332b76}{\index{Controller@{Controller}!get\+Page@{get\+Page}}
+\index{get\+Page@{get\+Page}!Controller@{Controller}}
+\subsubsection[{get\+Page}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Page (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classController_aa844281accdd5aa2ca1ab1d890332b76}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_ac85206dce558e214f72fc3ca56f8cc31}{\index{Controller@{Controller}!get\+Session\+Username@{get\+Session\+Username}}
+\index{get\+Session\+Username@{get\+Session\+Username}!Controller@{Controller}}
+\subsubsection[{get\+Session\+Username}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Session\+Username (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classController_ac85206dce558e214f72fc3ca56f8cc31}
+Get the username saved in the session.
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_ae8b4904843b2d665164620160b3c7157}{\index{Controller@{Controller}!get\+Title@{get\+Title}}
+\index{get\+Title@{get\+Title}!Controller@{Controller}}
+\subsubsection[{get\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classController_ae8b4904843b2d665164620160b3c7157}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}{\index{Controller@{Controller}!is\+Logged\+In@{is\+Logged\+In}}
+\index{is\+Logged\+In@{is\+Logged\+In}!Controller@{Controller}}
+\subsubsection[{is\+Logged\+In}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::is\+Logged\+In (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}
+Returns true if there's an active login session.
+
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classController_a555247a38f8b4ea98a85bed7c6798e0a}{\index{Controller@{Controller}!page\+Title@{page\+Title}}
+\index{page\+Title@{page\+Title}!Controller@{Controller}}
+\subsubsection[{page\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::page\+Title (
+\begin{DoxyParamCaption}
+\item[{}]{\$page}
+\end{DoxyParamCaption}
+)}}\label{classController_a555247a38f8b4ea98a85bed7c6798e0a}
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$request} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_a90590c2cd8c1a89cc6eada64f0f24361}{\index{Controller@{Controller}!safe\+Input@{safe\+Input}}
+\index{safe\+Input@{safe\+Input}!Controller@{Controller}}
+\subsubsection[{safe\+Input}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::safe\+Input (
+\begin{DoxyParamCaption}
+\item[{}]{\$input}
+\end{DoxyParamCaption}
+)}}\label{classController_a90590c2cd8c1a89cc6eada64f0f24361}
+Makes the input safe. \hypertarget{classController_ae560b1221cb9f3891c432c3dd0292922}{\index{Controller@{Controller}!set\+Title@{set\+Title}}
+\index{set\+Title@{set\+Title}!Controller@{Controller}}
+\subsubsection[{set\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::set\+Title (
+\begin{DoxyParamCaption}
+\item[{}]{\$title}
+\end{DoxyParamCaption}
+)}}\label{classController_ae560b1221cb9f3891c432c3dd0292922}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$title} & \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

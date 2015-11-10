@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['render',['render',['../classPresenter.html#a2194a46cf6c23dd4e483f1ee63bc2236',1,'Presenter']]]
+  ['logout',['logout',['../classBasePageController.html#ad065341a301057b6b0dfc3b1e56ed56a',1,'BasePageController']]]
 ];

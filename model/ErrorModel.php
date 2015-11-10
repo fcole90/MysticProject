@@ -27,16 +27,17 @@ class ErrorModel extends Model
 {
     private $message;
     private $header;
+    private $title;
     
-    public function __construct($request, $title, $message) {
-        parent::__construct($request);
+    public function __construct($title, $message) {
+        parent::__construct();
         $this->title = $title;
         $this->message = $message;
     }
     
     public function show()
     {
-        $page = new Presenter($this->getTitle(), $this->getContent());
+        $page = new Presenter( $this->title, $this->getContent());
         if (isset($this->header))
         {
             $page->setCustomHeader($this->header);

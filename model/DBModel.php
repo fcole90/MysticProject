@@ -33,8 +33,8 @@ relRequire('model/Model.php');
 abstract class DBModel extends Model
 {
     
-    public function __construct($request) {
-        parent::__construct($request);
+    public function __construct() {
+        parent::__construct();
     }
     /**
      * 

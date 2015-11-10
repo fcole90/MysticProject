@@ -24,125 +24,77 @@ relRequire("view/Presenter.php");
  */
 abstract class Model 
 {
+    
     /**
+     * Data to be sent back to the controller.
      * 
-     * @var string $title
+     * @var mixed[]
      */
-    private $title;
+    protected $data;
     
     /**
-     *
-     * @var string
+     * Error messages for the controller.
+     * 
+     * @var string[]
      */
-    private $baseTitle = "Fisherman's Friend Locator";
-    
-    /**
-     *
-     * @var array
-     */
-    public $request;
-    
-    /**
-     *
-     * @var type 
-     */
-    protected $username;
-
+    protected $error;
 
     /**
      * 
      * @param array $request
      */
-    public function __construct($request) 
+    public function __construct() 
     {
-        if(isset($request["username"]))
+        $this->data = array();
+        $this->error = array();
+    }
+    
+    
+    /**
+     * Add data to the associtive array.
+     * 
+     * @param string $name
+     * @param mixed $data
+     * @return boolean taskSucceded
+     */
+    public function addData($name, $data) 
+    {
+        if (isset($this->data[$name]))
         {
-            $this->username = $request["username"];
+            return false;
         }
         else
         {
-            $this->username = "";
+            $this->data[$name] = $data;
         }
-        
-        if (isset($request["page"]))
-        {
-            $this->setTitle($request["page"]);
-        }
-        else
-        {
-            $this->setTitle("home");
-        }
-        $this->request = $request;
     }
     
     /**
      * 
-     * @return string
-     */
-    public function baseTitle()
-    {
-        return $this->baseTitle;
-    }
-    
-    /**
+     * Retrieve data from the associative array.
      * 
-     * @param array $request
-     * @return string
+     * @param string $name
+     * @return mixed if data[$name] is not present returns null.
      */
-    public function pageTitle($page) 
+    public function getData($name)
     {
-        return ucfirst($page) . " - " . $this->baseTitle();
-    }
-    
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $this->pageTitle($title);
-    }
-    
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-
-    abstract function show();
-    
-    protected function isLoggedIn() 
-    {
-        return isset($_SESSION) && array_key_exists("username", $_SESSION);
-    }
-    
-    /**
-     * Destroys the session.
-     */
-    protected function closeSession()
-    {
-        $_SESSION = array();
-        
-        if (session_id() != "" || isset($_COOKIE[session_name()]))
+        if (!isset($this->data[$name]))
         {
-            setcookie(session_name(), '', time() - 2592000, '/');
+            return null;
         }
-        session_unset();
-        session_destroy();
+        else
+        {
+            return $this->data[$name];
+        }
     }
     
     /**
-     * Makes the input safe.
+     * Returns the error array.
+     * 
+     * @return string[]
      */
-    public function safeInput($input)
+    public function getError()
     {
-        if (isset($input))
-        {
-            $input = trim($input);
-            $input = stripslashes($input);
-            $input = htmlentities($input);
-            return $input;
-        }
-        return $input;
+        return $this->error;
     }
-    
 }

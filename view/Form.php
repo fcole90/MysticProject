@@ -1,5 +1,4 @@
 <?php
-relRequire("model/DBModel.php");
 relRequire("model/User.php");
 /* 
  * Copyright (C) 2015 fabio
@@ -21,9 +20,16 @@ relRequire("model/User.php");
 /**
  * Form to sign up to the website.
  */
-class SignUpForm
+class Form
 {   
-    public function getForm(User $user, &$error)
+    
+    /************************************
+     * Form functions                   *
+     ************************************/
+    
+    /** Signup **/
+    
+    public function getSignupForm(User $user, &$error)
     {
         
         foreach ($user->fieldList() as $field)
@@ -88,7 +94,7 @@ HTML;
         return $form;
     }
     
-    public function getConfirmation(User $user)
+    public function getSignupConfirmation(User $user)
     {
         foreach ($user->fieldList() as $field)
         {
@@ -110,12 +116,80 @@ HTML;
         return $confirm;
     }
     
-    public function getErrorDatabase()
+    public function getSignupErrorDatabase()
     {
         $error = "<h2>Sorry, an error occurred in the signup process.</h2>\n";
         $error .= "<p>If this error happens again, please"
           . " contact the administrator.</p>";
     }
+    
+    /** Login **/
+    
+    public function getLoginForm($username, &$error)
+    {
+        $warning = "";
+        if (isset($error))
+        {
+            $warning = "\n";
+            foreach ($error as $message)
+            {
+                $warning .= "<h3 class=\"warning\">$message</h3>\n";
+            }
+        }
+        
+        
+        
+        $form = <<<HTML
+<h2>Please, insert your username and password:</h2>$warning
+<form action="" method="post">
+    <p>Username: </p>
+    <input type="text" name="username" value="$username" required="true">
+    <br>
+    <p>Password: </p>
+    <input type="password" name="password" value="" required="true">
+    <br>
+    <input type="submit" value="Login">
+    
+</form>
+HTML;
+        return $form;
+    }
+    
+    /**
+     * Create a login confirmation.
+     * 
+     * @param string $username
+     * @return string
+     */
+    public function getLoginConfirmation($username)
+    {
+        $form = <<<HTML
+<h2>Welcome, $username.</h2>
+<p>You're being redirected to <a href="home">the homepage</a>.
+   Please <a href="home">click here</a> if you're not automatically redirected.</p>
+
+HTML;
+        return $form;
+    }
+    
+    /** Logout **/
+    
+    public function getLogout($username)
+    {
+        $form = <<<HTML
+<h2>Goodbie, $username</h2>
+<p>You're being redirected to <a href="home">the homepage</a>.
+   Please <a href="home">click here</a> if you're not automatically redirected.</p>
+          
+HTML;
+        return $form;
+    }
+    
+    
+    /************************************
+     * Helper functions                 *
+     ************************************/
+    
     
     /**
      * Generates a months dropdown menu.

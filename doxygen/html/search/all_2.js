@@ -1,5 +1,5 @@
 var searchData=
 [
   ['basepagecontroller',['BasePageController',['../classBasePageController.html',1,'']]],
-  ['basetitle',['baseTitle',['../classModel.html#abd27409e82e2413a8083c22fe73740b9',1,'Model']]]
+  ['basetitle',['baseTitle',['../classController.html#a3057228d46eddceb352a1537ef05e8b7',1,'Controller']]]
 ];

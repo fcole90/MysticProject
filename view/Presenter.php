@@ -55,11 +55,6 @@ class Presenter {
      */
     private $error;
 
-
-    /**
-     * @var string
-     */
-    private $session;
     /**
      * HTML for the content.
      * 
@@ -67,9 +62,27 @@ class Presenter {
      */
     private $content;
     
+    /**
+     * Custom header HTML.
+     *
+     * @var string
+     */
     private $header;
+    
+    /**
+     * Logged in flag
+     * 
+     * @var boolean
+     */
+    private $loggedIn;
 
-
+    
+    /**
+     * View constructor.
+     * 
+     * @param string $title of the page
+     * @param string $content of the page
+     */
     public function __construct($title, $content = "") 
     {
         $this->title = $title;
@@ -98,17 +111,27 @@ class Presenter {
         }
     }
     
+    /**
+     * Return some content to render.
+     * 
+     * @return string HTML content.
+     */
     public function getContent()
     {
         return $this->content;
     }
     
+    /**
+     * Receive some content to render.
+     * 
+     * @param string $content HTML content.
+     */
     public function setContent($content)
     {
         $this->content = $content;
     }
 
-        /**
+    /**
      * Render the page
      */
     
@@ -119,7 +142,6 @@ class Presenter {
             header($this->header);
         }
         
-        echo $this->session;
         
         echo "<!DOCTYPE html>\n";
         echo "<html>\n"; ///////// Start render
@@ -129,7 +151,7 @@ class Presenter {
         echo "\n  <body>\n"; //////// Start body
         
         new Header();
-        $nav = new Nav();
+        $nav = new Nav($this->loggedIn);
         $nav->render();
         unset($nav);
         
@@ -207,6 +229,18 @@ HTML;
         }
         return $text;
 
+    }
+    
+    /**
+     * Sets if a user is logged or not.
+     * 
+     * This affects the way some elements are displayed.
+     * 
+     * @param boolean $loggedIn
+     */
+    public function isLoggedIn($loggedIn) 
+    {
+        $this->loggedIn = $loggedIn;
     }
     
     

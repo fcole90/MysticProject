@@ -27,11 +27,8 @@ relRequire("parsedown/Parsedown.php");
 class GenericModel extends Model
 {
     
-    private $error;
-    
-    public function __construct($request) {
-        parent::__construct($request);
-        $this->error = array();
+    public function __construct() {
+        parent::__construct();
     }
     
     /**
@@ -44,37 +41,7 @@ class GenericModel extends Model
      * Handles the help page.
      */
     public function showHelpPage() {
-        $filepath = __ROOT__ . "/README.md";
         
-        if (!file_exists($filepath))
-        {
-            $this->error[] = "File not found: $filepath."
-              . " Please contact the administrator.";
-        }
-            
-        if(!($readme = fopen($filepath, "r")))
-        {
-            $this->error[] = "Could not open file: please contact the administrator.";
-        }
-        
-        if(!($readme_text = fread($readme, filesize($filepath))))
-        {
-            $this->error[] = "Could not read file: please contact the administrator.";
-        }
-        
-        $mark = new Parsedown();
-        $content = $mark->text($readme_text);
-        
-        $page = new Presenter($this->getTitle());
-        $page->setContent($content);
-        $page->setError($this->error);
-        $page->render();
-        
-        
-        if ($readme)
-        {
-            fclose($readme);
-        }
     }
 }
 
