@@ -29,8 +29,17 @@ class Nav
     private $linkClass = "fastlinks";
     private $moreLinkClass = "morelinks";
     
-    public function __construct($otherLinks = null)
+    /**
+     * Logged in flag.
+     * 
+     * @var boolean
+     */
+    private $loggedIn;
+    
+    public function __construct($loggedIn = false, $otherLinks = null)
     {
+        $this->loggedIn = $loggedIn;
+        
         if (isset($otherLinks))
         {
             $this->otherLinks = $otherLinks;
@@ -40,10 +49,10 @@ class Nav
     
     public function render()
     {
-        if (isset($_SESSION["username"]))
+        if ($this->loggedIn)
         {
             //Links when logged 
-            $login_profile_text = $_SESSION["username"];
+            $login_profile_text = "PROFILE";
             $login_profile_link = "profile";
             $this->otherLinks[] = "logout";
         }

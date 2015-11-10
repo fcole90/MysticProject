@@ -24,7 +24,7 @@ relRequire("model/User.php");
  *
  * @author fabio
  */
-class SignUpModel extends DBModel
+class UserAccessModel extends DBModel
 {
     private $user;
     private $passwordMinLength = 6;
@@ -190,5 +190,70 @@ class SignUpModel extends DBModel
         
         
     }   
+    
+    
+    /**
+     * Checks username and password.
+     * 
+     * @param string $username
+     * @param string $password
+     * @return boolean
+     */
+    public function checkLoginData($username, $password)
+    {        
+        try
+        {
+            $mysqli = $this->connect();
+        } 
+        catch (Exception $e) 
+        {
+            $this->error[] = $e->getMessage();
+        }
+        
+        
+        $text = "SELECT username, password FROM user WHERE username = ?;";
+        
+        if (!$stmt = $mysqli->prepare($text))
+        {
+            $this->error[] = "Error: could not prepare statement: $text";
+            return false;
+        }
+        
+        
+        if (!$stmt->bind_param("s", $username))
+        {
+            $this->error[] = "DB Error: could not bind parameters.";
+            return false;
+        }
+        
+        if (!$stmt->execute())
+        {
+            $this->error[] = "DB Error: could not execute the statement.";
+            return false;
+        }
+        
+        if (!$stmt->bind_result($user, $hash))
+        {
+            $this->error[] = "DB Error: could bind results.";
+            return false;
+        }
+        
+        $stmt->fetch();
+        
+        if (isset($user) && isset($hash) && password_verify($password, $hash))
+        {
+            $stmt->close();
+            $mysqli->close();
+            $this->error[] = "Welcome, $user!";
+            return true;
+        }
+        /* else */
+        $this->error[] = "Sorry, username or password are incorrect.";
+        $stmt->close();
+        $mysqli->close();
+        return false;
+        
+        
+    }
       
 }

@@ -2,12 +2,11 @@
 relRequire('controller/Controller.php');
 
 relRequire('view/Presenter.php');
-relRequire("view/SignUpForm.php");
+relRequire("view/Form.php");
 
 relRequire('model/HomeModel.php');
-relRequire('model/SignUpModel.php');
 relRequire("model/User.php");
-relRequire('model/LoginModel.php');
+relRequire('model/UserAccessModel.php');
 relRequire("model/ErrorModel.php");
 relRequire("model/GenericModel.php");
 /*
@@ -68,9 +67,10 @@ class BasePageController extends Controller
      */
     public function home() 
     {       
-        $model = new HomeModel();
+        //$model = new HomeModel();
         
         $page = new Presenter($this->getTitle());
+        $page->isLoggedIn($this->isLoggedIn());
         
         /* Temporary HTML */
         $content = <<<HTML
@@ -87,49 +87,156 @@ HTML;
     public function signup()
     {
         $page = new Presenter($this->getTitle());
+        $page->isLoggedIn($this->isLoggedIn());
+        
+        if($this->isLoggedIn())
+        {
+            $this->error[] = "You're already logged in and signed up!";
+            $page->setContent((new Form())->getLoginConfirmation($this->username));
+            $page->setError($this->error);
+            $page->setRedir();
+            $page->render();
+            return;
+        }
         
         /* Setup the fields to be used and initialize a User object */
-        $this->setFields();
+        $this->setSignupFields();
         
-        $model = new SignUpModel();
+        $model = new UserAccessModel();
         
         /* Check if the fields follow the necessary rules */
         if (!$this->checkFieldsSignUp($model))
         {
             /* Add the errors of the model to the errors of the controller */
             $this->error = array_merge($this->error, $model->getError());
-            $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
+            $page->setContent((new Form())->getSignupForm($this->user, $this->error));
         }
         else if($model->addUserToDatabase($this->user))
         {
-            $page->setContent((new SignUpForm())->getConfirmation($this->user));
+            $page->setContent((new Form())->getSignupConfirmation($this->user));
             $page->setRedir();
         }
         else
         {
             /* Add the errors of the model to the errors of the controller */
             $this->error = array_merge($this->error, $model->getError());
-            $page->setContent((new SignUpForm())->getForm($this->user, $this->error));
+            $page->setContent((new Form())->getSignupForm($this->user, $this->error));
         }
                 
         $page->render();
         
     }
     
-    public function login(&$request)
+    public function login()
     {
-        $model = new LoginModel($request);
-        $model->show();
+        
+        $page = new Presenter($this->getTitle());
+        $page->isLoggedIn($this->isLoggedIn());
+        
+        if($this->isLoggedIn())
+        {
+            $this->error[] = "You're already logged in!";
+            $page->setContent((new Form())->getLoginConfirmation($this->username));
+            $page->setError($this->error);
+            $page->setRedir();
+            $page->render();
+            return;
+        }
+        
+        /* No field is set, probably coming here from for first time */
+        if(!isset($this->request["username"]) && !isset($this->request["password"]))
+        {
+            $page->setContent((new Form())->getLoginForm("", $this->error));
+            $page->render();
+            return;
+        }
+        
+        /* Only username or password have not been set, warning. */
+        if (!isset($this->request["username"]) || !isset($this->request["password"]))
+        {
+            $this->error[] = "Please, mind that every field is mandatory.";
+            $page->setContent((new Form())->getLoginForm("", $this->error));
+            $page->render();
+            return;
+        }
+        
+        $username = $this->safeInput($this->request["username"]);
+        $password = $this->safeInput($this->request["password"]);
+        $model = new UserAccessModel();
+        
+        /* The user filled the fields but either the username or the password is wrong */
+        if(!$model->checkLoginData($username, $password))
+        {
+            $this->concatErrorArray($model->getError());
+            $page->setContent((new Form())->getLoginForm($username, $this->error));
+            $page->render();
+        }
+        else /* The user logged correctly and a session gets opened. */
+        {
+            $_SESSION["username"] = $username;
+            $page->setContent((new Form())->getLoginConfirmation($username));
+            $page->setRedir();
+            $page->render();
+        }        
     }
     
-    public function logout($request) {
-       $model = new LoginModel($request);
-       $model->logout();
+    /**
+     * Lets a user log out.
+     */
+    public function logout() 
+    {
+         
+        if(isset($_SESSION["username"]))
+        {
+            $page = new Presenter($this->getTitle());
+            $page->isLoggedIn($this->isLoggedIn());
+            $page->setContent((new Form())->getLogout($this->getSessionUsername()));
+            $this->closeSession();
+            $page->setRedir();
+            $page->render();
+        }
+        else
+        {
+            $this->error[] = "You're not logged in yet.";
+            $this->login();
+        }
     }
     
-    public function help($request) {
-        $model = new GenericModel($request);
-        $model->showHelpPage();
+    public function help() 
+    {
+        $page = new Presenter($this->getTitle());
+        $page->isLoggedIn($this->isLoggedIn());
+        
+        $filepath = __ROOT__ . "/README.md";
+        
+        if (!file_exists($filepath))
+        {
+            $this->error[] = "File not found: $filepath."
+              . " Please contact the administrator.";
+        }
+            
+        if(!($readme = fopen($filepath, "r")))
+        {
+            $this->error[] = "Could not open file: please contact the administrator.";
+        }
+        
+        if(!($readme_text = fread($readme, filesize($filepath))))
+        {
+            $this->error[] = "Could not read file: please contact the administrator.";
+        }
+        
+        $mark = new Parsedown();
+        $content = $mark->text($readme_text);
+        
+        $page->setContent($content);
+        $page->setError($this->error);
+        $page->render();
+        
+        
+        if ($readme)
+        {
+            fclose($readme);
+        }
     }
     
     /**
@@ -168,7 +275,7 @@ HTML;
     /**
      * Setup the user variable feeding it with the form fields.
      */
-    public function setFields()
+    public function setSignupFields()
     {
         $this->user = new User();
         foreach ($this->user->fieldList() as $field)
@@ -212,7 +319,7 @@ HTML;
      * @param Model $model
      * @return boolean checkPassed
      */
-    public function checkFieldsSignUp(SignUpModel $model)
+    public function checkFieldsSignUp(UserAccessModel $model)
     {
         /**First check is the fields exist**/
         $isValid = false;
@@ -341,6 +448,13 @@ HTML;
         return true;
     }
     
+    /**
+     * Checks that the date is in an appropriate format (YYYY-MM-DD).
+     * 
+     * @param string $field
+     * @param string $value
+     * @return boolean
+     */
     public function checkDate($field, $value)
     {
         $date = explode("-", $value);
@@ -353,6 +467,17 @@ HTML;
             return false;
         }
         return true;
+    }
+    
+    
+    /**
+     * Merges the passed error array with the current error array.
+     * 
+     * @param string[] $error
+     */
+    public function concatErrorArray($error)
+    {
+        $this->error = array_merge($this->error, $error);
     }
     
 }

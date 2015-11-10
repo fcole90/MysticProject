@@ -61,9 +61,9 @@ abstract class Controller
      */
     public function __construct($request) 
     {
-        if(isset($request["username"]))
+        if(isset($_SESSION["username"]))
         {
-            $this->username = $this->safeInput($request["username"]);
+            $this->username = $this->safeInput($_SESSION["username"]);
         }
         else
         {
@@ -164,9 +164,16 @@ abstract class Controller
             $input = htmlentities($input);
             return $input;
         }
-        return $input;
+        return "";
     }
     
-    
-    
+    /**
+     *  Get the username saved in the session. 
+     * 
+     * @return string
+     */
+    public function getSessionUsername() 
+    {
+        return $this->username;
+    }
 }

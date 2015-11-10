@@ -21,13 +21,13 @@ Inheritance diagram for Controller\+:\nopagebreak
 \item 
 \hyperlink{classController_ae560b1221cb9f3891c432c3dd0292922}{set\+Title} (\$title)
 \item 
-\hypertarget{classController_ae8b4904843b2d665164620160b3c7157}{{\bfseries get\+Title} ()}\label{classController_ae8b4904843b2d665164620160b3c7157}
-
+\hyperlink{classController_ae8b4904843b2d665164620160b3c7157}{get\+Title} ()
 \item 
-\hypertarget{classController_aa844281accdd5aa2ca1ab1d890332b76}{{\bfseries get\+Page} ()}\label{classController_aa844281accdd5aa2ca1ab1d890332b76}
-
+\hyperlink{classController_aa844281accdd5aa2ca1ab1d890332b76}{get\+Page} ()
 \item 
 \hyperlink{classController_a90590c2cd8c1a89cc6eada64f0f24361}{safe\+Input} (\$input)
+\item 
+\hyperlink{classController_ac85206dce558e214f72fc3ca56f8cc31}{get\+Session\+Username} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -38,8 +38,7 @@ Inheritance diagram for Controller\+:\nopagebreak
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}{{\bfseries is\+Logged\+In} ()}\label{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}
-
+\hyperlink{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}{is\+Logged\+In} ()
 \item 
 \hyperlink{classController_a67beb590eef4f36b07e6c9ef04fc8337}{close\+Session} ()
 \end{DoxyCompactItemize}
@@ -95,7 +94,51 @@ string
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}}\label{classController_a67beb590eef4f36b07e6c9ef04fc8337}
-Destroys the session. \hypertarget{classController_a555247a38f8b4ea98a85bed7c6798e0a}{\index{Controller@{Controller}!page\+Title@{page\+Title}}
+Destroys the session. \hypertarget{classController_aa844281accdd5aa2ca1ab1d890332b76}{\index{Controller@{Controller}!get\+Page@{get\+Page}}
+\index{get\+Page@{get\+Page}!Controller@{Controller}}
+\subsubsection[{get\+Page}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Page (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classController_aa844281accdd5aa2ca1ab1d890332b76}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_ac85206dce558e214f72fc3ca56f8cc31}{\index{Controller@{Controller}!get\+Session\+Username@{get\+Session\+Username}}
+\index{get\+Session\+Username@{get\+Session\+Username}!Controller@{Controller}}
+\subsubsection[{get\+Session\+Username}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Session\+Username (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classController_ac85206dce558e214f72fc3ca56f8cc31}
+Get the username saved in the session.
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_ae8b4904843b2d665164620160b3c7157}{\index{Controller@{Controller}!get\+Title@{get\+Title}}
+\index{get\+Title@{get\+Title}!Controller@{Controller}}
+\subsubsection[{get\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classController_ae8b4904843b2d665164620160b3c7157}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}{\index{Controller@{Controller}!is\+Logged\+In@{is\+Logged\+In}}
+\index{is\+Logged\+In@{is\+Logged\+In}!Controller@{Controller}}
+\subsubsection[{is\+Logged\+In}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::is\+Logged\+In (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classController_a014e1cea4dd7e6fb8fad83cdce9c6216}
+Returns true if there's an active login session.
+
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classController_a555247a38f8b4ea98a85bed7c6798e0a}{\index{Controller@{Controller}!page\+Title@{page\+Title}}
 \index{page\+Title@{page\+Title}!Controller@{Controller}}
 \subsubsection[{page\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::page\+Title (
 \begin{DoxyParamCaption}

@@ -55,11 +55,6 @@ class Presenter {
      */
     private $error;
 
-
-    /**
-     * @var string
-     */
-    private $session;
     /**
      * HTML for the content.
      * 
@@ -73,6 +68,13 @@ class Presenter {
      * @var string
      */
     private $header;
+    
+    /**
+     * Logged in flag
+     * 
+     * @var boolean
+     */
+    private $loggedIn;
 
     
     /**
@@ -140,7 +142,6 @@ class Presenter {
             header($this->header);
         }
         
-        echo $this->session;
         
         echo "<!DOCTYPE html>\n";
         echo "<html>\n"; ///////// Start render
@@ -150,7 +151,7 @@ class Presenter {
         echo "\n  <body>\n"; //////// Start body
         
         new Header();
-        $nav = new Nav();
+        $nav = new Nav($this->loggedIn);
         $nav->render();
         unset($nav);
         
@@ -228,6 +229,18 @@ HTML;
         }
         return $text;
 
+    }
+    
+    /**
+     * Sets if a user is logged or not.
+     * 
+     * This affects the way some elements are displayed.
+     * 
+     * @param boolean $loggedIn
+     */
+    public function isLoggedIn($loggedIn) 
+    {
+        $this->loggedIn = $loggedIn;
     }
     
     
