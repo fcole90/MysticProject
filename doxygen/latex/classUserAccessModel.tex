@@ -1,0 +1,110 @@
+\hypertarget{classUserAccessModel}{\section{User\+Access\+Model Class Reference}
+\label{classUserAccessModel}\index{User\+Access\+Model@{User\+Access\+Model}}
+}
+
+
+Inheritance diagram for User\+Access\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classUserAccessModel__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for User\+Access\+Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classUserAccessModel__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classUserAccessModel_a65363d66e0dcf1cdf7caea08de553e1e}{set\+User} (\$user)
+\item 
+\hyperlink{classUserAccessModel_a8b000dcb063400f3068ff83a4a467021}{add\+User\+To\+Database} (\hyperlink{classUser}{User} \$user)
+\item 
+\hyperlink{classUserAccessModel_a7ed6ab03bbd86466f0864996390254af}{check\+Field\+Not\+Exists} (\$fieldname, \$fieldvalue)
+\item 
+\hyperlink{classUserAccessModel_a4120f778b0415dec524876f84e6c87af}{check\+Login\+Data} (\$username, \$password)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classModel}{Model} class to handle the data for the signup process and add a new user.
+
+\begin{DoxyAuthor}{Author}
+fabio 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classUserAccessModel_a8b000dcb063400f3068ff83a4a467021}{\index{User\+Access\+Model@{User\+Access\+Model}!add\+User\+To\+Database@{add\+User\+To\+Database}}
+\index{add\+User\+To\+Database@{add\+User\+To\+Database}!User\+Access\+Model@{User\+Access\+Model}}
+\subsubsection[{add\+User\+To\+Database}]{\setlength{\rightskip}{0pt plus 5cm}User\+Access\+Model\+::add\+User\+To\+Database (
+\begin{DoxyParamCaption}
+\item[{{\bf User}}]{\$user}
+\end{DoxyParamCaption}
+)}}\label{classUserAccessModel_a8b000dcb063400f3068ff83a4a467021}
+Add a user to the database.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classUser}{User} & {\em \$user} & \\
+\hline
+\end{DoxyParams}
+Make the password safe.\hypertarget{classUserAccessModel_a7ed6ab03bbd86466f0864996390254af}{\index{User\+Access\+Model@{User\+Access\+Model}!check\+Field\+Not\+Exists@{check\+Field\+Not\+Exists}}
+\index{check\+Field\+Not\+Exists@{check\+Field\+Not\+Exists}!User\+Access\+Model@{User\+Access\+Model}}
+\subsubsection[{check\+Field\+Not\+Exists}]{\setlength{\rightskip}{0pt plus 5cm}User\+Access\+Model\+::check\+Field\+Not\+Exists (
+\begin{DoxyParamCaption}
+\item[{}]{\$fieldname, }
+\item[{}]{\$fieldvalue}
+\end{DoxyParamCaption}
+)}}\label{classUserAccessModel_a7ed6ab03bbd86466f0864996390254af}
+Returns true if the a field does not exist in the D\+B, returns false if the field already exists or there has been a connection error with the D\+B.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$fieldname} & \\
+\hline
+string & {\em \$fieldvalue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classUserAccessModel_a4120f778b0415dec524876f84e6c87af}{\index{User\+Access\+Model@{User\+Access\+Model}!check\+Login\+Data@{check\+Login\+Data}}
+\index{check\+Login\+Data@{check\+Login\+Data}!User\+Access\+Model@{User\+Access\+Model}}
+\subsubsection[{check\+Login\+Data}]{\setlength{\rightskip}{0pt plus 5cm}User\+Access\+Model\+::check\+Login\+Data (
+\begin{DoxyParamCaption}
+\item[{}]{\$username, }
+\item[{}]{\$password}
+\end{DoxyParamCaption}
+)}}\label{classUserAccessModel_a4120f778b0415dec524876f84e6c87af}
+Checks username and password.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & \\
+\hline
+string & {\em \$password} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\hypertarget{classUserAccessModel_a65363d66e0dcf1cdf7caea08de553e1e}{\index{User\+Access\+Model@{User\+Access\+Model}!set\+User@{set\+User}}
+\index{set\+User@{set\+User}!User\+Access\+Model@{User\+Access\+Model}}
+\subsubsection[{set\+User}]{\setlength{\rightskip}{0pt plus 5cm}User\+Access\+Model\+::set\+User (
+\begin{DoxyParamCaption}
+\item[{}]{\$user}
+\end{DoxyParamCaption}
+)}}\label{classUserAccessModel_a65363d66e0dcf1cdf7caea08de553e1e}
+Set a user. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+model/User\+Access\+Model.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,122 @@
+\hypertarget{classForm}{\section{Form Class Reference}
+\label{classForm}\index{Form@{Form}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classForm_a3e3459dffd7067e2e707e0a622945a66}{get\+Signup\+Form} (\hyperlink{classUser}{User} \$user, \&\$error)
+\item 
+\hypertarget{classForm_a6a05f450eb73a3524602817c34da17be}{{\bfseries get\+Signup\+Confirmation} (\hyperlink{classUser}{User} \$user)}\label{classForm_a6a05f450eb73a3524602817c34da17be}
+
+\item 
+\hypertarget{classForm_a11a02f548641b39c9c7c04436c95befa}{{\bfseries get\+Signup\+Error\+Database} ()}\label{classForm_a11a02f548641b39c9c7c04436c95befa}
+
+\item 
+\hyperlink{classForm_aa3ff4d216868165f1f8c442ae7ea7c95}{get\+Login\+Form} (\$username, \&\$error)
+\item 
+\hyperlink{classForm_a61045a8ccfd7f300a729027a70a00700}{get\+Login\+Confirmation} (\$username)
+\item 
+\hyperlink{classForm_a08c23069323910390d5fc8d4ede9690d}{get\+Logout} (\$username)
+\item 
+\hyperlink{classForm_a12b1a6bb3a44baa1b311e8cc42759f9c}{generate\+Months\+Options} (\$selected=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classForm_ae79e7e1de18f9f611d1e405349828104}{generate\+Days\+Options} (\$selected=\char`\"{}\char`\"{})
+\item 
+\hyperlink{classForm_a5bcd8bfb0770d2ca9e6874b329ab7f58}{generate\+Years\+Options} (\$selected=\char`\"{}\char`\"{})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classForm}{Form} to sign up to the website. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classForm_ae79e7e1de18f9f611d1e405349828104}{\index{Form@{Form}!generate\+Days\+Options@{generate\+Days\+Options}}
+\index{generate\+Days\+Options@{generate\+Days\+Options}!Form@{Form}}
+\subsubsection[{generate\+Days\+Options}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::generate\+Days\+Options (
+\begin{DoxyParamCaption}
+\item[{}]{\$selected = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classForm_ae79e7e1de18f9f611d1e405349828104}
+Generates a days dropdown menu. 
+\begin{DoxyParams}{Parameters}
+{\em a} & default option \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string days\+Options 
+\end{DoxyReturn}
+\hypertarget{classForm_a12b1a6bb3a44baa1b311e8cc42759f9c}{\index{Form@{Form}!generate\+Months\+Options@{generate\+Months\+Options}}
+\index{generate\+Months\+Options@{generate\+Months\+Options}!Form@{Form}}
+\subsubsection[{generate\+Months\+Options}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::generate\+Months\+Options (
+\begin{DoxyParamCaption}
+\item[{}]{\$selected = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classForm_a12b1a6bb3a44baa1b311e8cc42759f9c}
+Generates a months dropdown menu. 
+\begin{DoxyParams}{Parameters}
+{\em a} & default option \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string month\+Options 
+\end{DoxyReturn}
+\hypertarget{classForm_a5bcd8bfb0770d2ca9e6874b329ab7f58}{\index{Form@{Form}!generate\+Years\+Options@{generate\+Years\+Options}}
+\index{generate\+Years\+Options@{generate\+Years\+Options}!Form@{Form}}
+\subsubsection[{generate\+Years\+Options}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::generate\+Years\+Options (
+\begin{DoxyParamCaption}
+\item[{}]{\$selected = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classForm_a5bcd8bfb0770d2ca9e6874b329ab7f58}
+Generates a years dropdown menu. 
+\begin{DoxyParams}{Parameters}
+{\em a} & default option \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string years\+Options 
+\end{DoxyReturn}
+\hypertarget{classForm_a61045a8ccfd7f300a729027a70a00700}{\index{Form@{Form}!get\+Login\+Confirmation@{get\+Login\+Confirmation}}
+\index{get\+Login\+Confirmation@{get\+Login\+Confirmation}!Form@{Form}}
+\subsubsection[{get\+Login\+Confirmation}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Login\+Confirmation (
+\begin{DoxyParamCaption}
+\item[{}]{\$username}
+\end{DoxyParamCaption}
+)}}\label{classForm_a61045a8ccfd7f300a729027a70a00700}
+Create a login confirmation.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classForm_aa3ff4d216868165f1f8c442ae7ea7c95}{\index{Form@{Form}!get\+Login\+Form@{get\+Login\+Form}}
+\index{get\+Login\+Form@{get\+Login\+Form}!Form@{Form}}
+\subsubsection[{get\+Login\+Form}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Login\+Form (
+\begin{DoxyParamCaption}
+\item[{}]{\$username, }
+\item[{\&}]{\$error}
+\end{DoxyParamCaption}
+)}}\label{classForm_aa3ff4d216868165f1f8c442ae7ea7c95}
+Login \hypertarget{classForm_a08c23069323910390d5fc8d4ede9690d}{\index{Form@{Form}!get\+Logout@{get\+Logout}}
+\index{get\+Logout@{get\+Logout}!Form@{Form}}
+\subsubsection[{get\+Logout}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Logout (
+\begin{DoxyParamCaption}
+\item[{}]{\$username}
+\end{DoxyParamCaption}
+)}}\label{classForm_a08c23069323910390d5fc8d4ede9690d}
+Logout \hypertarget{classForm_a3e3459dffd7067e2e707e0a622945a66}{\index{Form@{Form}!get\+Signup\+Form@{get\+Signup\+Form}}
+\index{get\+Signup\+Form@{get\+Signup\+Form}!Form@{Form}}
+\subsubsection[{get\+Signup\+Form}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Signup\+Form (
+\begin{DoxyParamCaption}
+\item[{{\bf User}}]{\$user, }
+\item[{\&}]{\$error}
+\end{DoxyParamCaption}
+)}}\label{classForm_a3e3459dffd7067e2e707e0a622945a66}
+Signup Set the latest choices for the date fields 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+view/Form.\+php\end{DoxyCompactItemize}

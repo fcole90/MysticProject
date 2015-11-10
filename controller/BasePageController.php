@@ -248,24 +248,26 @@ HTML;
         $title = "Error 404 - Page not found";
         $message = "Sorry, the page you're looking for "
           . "does not exist or has been moved.";
-        $model = new ErrorModel($title, $message);
-        $model->setHeader("HTTP/1.0 404 Not Found");
-        $model->show();
+        $page = new Presenter($title);
+        $page->setError(array($message));
+        $page->setCustomHeader("HTTP/1.0 404 Not Found");
+        $page->render();
     }
     
     /**
      * Handles the 403 error.
      * @param request $request
      */
-    public function err403(&$request)
+    public function err403()
     {
         $title = "Error 403 - Forbidden";
         $message = "You're attempting to access an unauthorized "
           . "area. If you think you should be able to access this area "
           . "contact your administrator.";
-        $model = new ErrorModel($request, $title, $message);
-        $model->setHeader("HTTP/1.0 403 Forbidden");
-        $model->show();
+        $page = new Presenter($title);
+        $page->setError(array($message));
+        $page->setCustomHeader("HTTP/1.0 403 Forbidden");
+        $page->render();
     }
     
     /***********************************
