@@ -252,7 +252,7 @@ HTML;
         $page->setError(array($message));
         $page->setCustomHeader("HTTP/1.0 404 Not Found");
         $page->setContent("<img id='err404'src='https://media3.giphy.com/media/tj2MwoqitZLtm/giphy.gif'>");
-        $page->setRedir();
+        $page->setRedir("index", 10);
         $page->render();
     }
     

@@ -196,8 +196,8 @@ input.warning
 
 #err404 
 {
-    position: absolute;
-    left: -200px;
+    position: fixed;
+    left: -160px;
 }
 
 #map { height: 180px; }
