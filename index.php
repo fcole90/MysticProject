@@ -26,8 +26,12 @@ function relRequire($path)
  */
 class FrontController extends Controller
 {
-    /*
-     * Select the correct controller according to the page.
+    /**
+     * Select the correct controller function according to the page.
+     * 
+     * As a security feature the function have their name starting with
+     * "loadPage" to avoid the user exploiting that to call potentially 
+     * dangerous functions.
      */
     public static function page(&$request)
     {
@@ -35,19 +39,19 @@ class FrontController extends Controller
         
         if (isset($controller->page))
         {
-            if(is_callable(array($controller,$controller->page)))
+            $page = "loadPage" . ucfirst($controller->page); //Camel Case
+            if(is_callable(array($controller,$page)))
             {
-                $page = $controller->page;
                 $controller->$page();
             }
             else
             {
-                $controller->err404();
+                $controller->loadPageErr404();
             }
         }
         else //home
         {
-            $controller->home();
+            $controller->loadPageHome();
         }
     }
 }

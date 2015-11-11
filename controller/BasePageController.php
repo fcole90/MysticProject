@@ -40,6 +40,7 @@ class BasePageController extends Controller
      * @var string
      */
     const PASSWORD_MIN_LEN = 6;
+    const USER_MIN_LEN = 5;
     
     /**
      * Array of errors to be reported.
@@ -65,7 +66,7 @@ class BasePageController extends Controller
      * 
      * @param array $request
      */
-    public function home() 
+    public function loadPageHome() 
     {       
         //$model = new HomeModel();
         
@@ -84,7 +85,7 @@ HTML;
     /**
      * Handles the signup process.
      */
-    public function signup()
+    public function loadPageSignup()
     {
         $page = new Presenter($this->getTitle());
         $page->isLoggedIn($this->isLoggedIn());
@@ -127,7 +128,7 @@ HTML;
         
     }
     
-    public function login()
+    public function loadPageLogin()
     {
         
         $page = new Presenter($this->getTitle());
@@ -198,11 +199,11 @@ HTML;
         else
         {
             $this->error[] = "You're not logged in yet.";
-            $this->login();
+            $this->loadPageLogin();
         }
     }
     
-    public function help() 
+    public function loadPageHelp() 
     {
         $page = new Presenter($this->getTitle());
         $page->isLoggedIn($this->isLoggedIn());
@@ -243,7 +244,7 @@ HTML;
      * Handles the 404 error
      * @param request $request
      */
-    public function err404()
+    public function loadPageErr404()
     {
         $title = "Error 404 - Page not found";
         $message = "Sorry, the page you're looking for "
@@ -260,7 +261,7 @@ HTML;
      * Handles the 403 error.
      * @param request $request
      */
-    public function err403()
+    public function loadPageErr403()
     {
         $title = "Error 403 - Forbidden";
         $message = "You're attempting to access an unauthorized "
@@ -343,7 +344,7 @@ HTML;
         $current = "username";
         /** Usernames are lowercase only, but uppercase can be accepted and converted to lowercase. **/
         $this->user->set($current, strtolower($this->user->get($current)));
-        if (!$this->checkCharDigit($current, $this->user->get($current)) ||
+        if (!$this->checkCharDigit($current, $this->user->get($current), BasePageController::USER_MIN_LEN) ||
           !$model->checkFieldNotExists($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
@@ -353,14 +354,14 @@ HTML;
         
         
         $current = "firstname";
-        if (!$this->checkCharDigit($current, $this->user->get($current)))
+        if (!$this->checkCharSpaces($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
         }
         
         $current = "secondname";
-        if (!$this->checkCharDigit($current, $this->user->get($current)))
+        if (!$this->checkCharSpaces($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
@@ -410,12 +411,34 @@ HTML;
     /**
      * Helper function to check if strings contain only chars and digits.
      */
-    public function checkCharDigit($field, $value)
+    public function checkCharDigit($field, $value, $length = -1)
     {
+        $flag = true;
+          
         if (!preg_match("/^[a-zA-Z][a-zA-Z0-9]*$/",$value)) 
         {
             $this->error[] = "Only letters and numbers are allowed in $field."
               . " (Numbers not at beginning).";
+            $flag = false;
+        }
+        
+        if ($length != -1 && !(strlen($value) >= $length))
+        {
+            $this->error[] = "The $field field should be longer than $length.";
+            $flag = false;
+        }
+        
+        return $flag;
+    }
+    
+    /**
+     * Helper function to check if strings contain only chars and spaces.
+     */
+    public function checkCharSpaces($field, $value)
+    {
+        if (!preg_match("/^[a-zA-Z][a-zA-Z0-9 ]*$/",$value)) 
+        {
+            $this->error[] = "Only letters and spaces are allowed in $field.";
             return false;
         }
         return true;

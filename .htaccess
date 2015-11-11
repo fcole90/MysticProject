@@ -28,5 +28,5 @@ php_flag  display_errors        on
 php_value error_reporting       2039
 
 #Error pages
-ErrorDocument 403 /fisherman-locator-new/index.php?page=err403
-ErrorDocument 404 /fisherman-locator-new/index.php?page=err404
+ErrorDocument 403 /fisherman-locator-new/index.php?page=loadPageErr403
+ErrorDocument 404 /fisherman-locator-new/index.php?page=loadPageErr404

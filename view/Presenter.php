@@ -205,7 +205,7 @@ class Presenter {
      * 
      * @param type $link
      */
-    public function setRedir($link = "index", $sec = 3) 
+    public function setRedir($link = "index", $sec = 6) 
     {
         $this->redir = $link;
         $this->redir_time = $sec;
