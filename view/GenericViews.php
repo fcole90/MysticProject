@@ -36,11 +36,27 @@ class GenericView
             $value = $user->get($item);
             if (isset($value) && $item != "password")
             {
-                $text += "<tr><td>$item</td><td>$value</td></tr>";
+                $text .= "<tr><td class='field'>$item</td><td>$value</td></tr>";
             }
         }        
-        $text += "\n<table>";
-          
+        $text .= "\n</table>";
+        
+        return $text;
+    }
+    
+    public function getHomeContent($data)
+    {
+        $text = "<form class='search'><input type='search' id='search-box'>"
+          . "<input type='submit' value='Search' id='search-button'></form>";
+        $text .= "<table id='search-table'>\n\t";
+        
+        foreach ($data as $item)
+        {
+            $text .= "<tr><td class='field'>". $item['shop_name'] . "</td>"
+              . "<td>in " . $item["address"] . " a " . $item["city"] . "</td></tr>";
+        }        
+        $text .= "\n</table>";
+        
         return $text;
     }
 }

@@ -110,8 +110,98 @@ class ShopModel extends DBModel
         $stmt->close();
         $mysqli->close();
         
-        return true;
+        return true;       
+    }
+    
+    /**
+     * Retrieve the shop data from the database.
+     * 
+     * @param string $search
+     * @return string[][]
+     */
+    public function getData($search = "")
+    {        
+        $data = array();
+        try
+        {
+            $mysqli = $this->connect();
+        } 
+        catch (Exception $e) 
+        {
+            $this->error[] = $e->getMessage();
+        }
+        
+        if ($search == "")
+        {
+            $text = "SELECT * FROM shop";
+            if (!$stmt = $mysqli->prepare($text))
+        {
+            $this->error[] = "Error: could not prepare statement: $text";
+            return false;
+        }
+        }
+        else
+        {
+            $text = "SELECT * FROM shop WHERE city = ? OR name = ? OR address = ?";
+            $search .= "%";
+            if (!$stmt = $mysqli->prepare($text))
+            {
+                $this->error[] = "Error: could not prepare statement: $text";
+                return false;
+            }
+            if (!$stmt->bind_param("ss", $search, $search))
+            {
+                $this->error[] = "DB Error: could not bind parameters.";
+                return false;
+            }
+        }
         
         
+        if (!$stmt = $mysqli->prepare($text))
+        {
+            $this->error[] = "Error: could not prepare statement: $text";
+            return false;
+        }
+        
+        /*
+        if (!$stmt->bind_param("s", $username))
+        {
+            $this->error[] = "DB Error: could not bind parameters.";
+            return false;
+        }
+        */
+        
+        if (!$stmt->execute())
+        {
+            $this->error[] = "DB Error: could not execute the statement.";
+            return false;
+        }
+        
+        if (!$result = $stmt->get_result())
+        {
+            $this->error[] = "DB Error: could not get results.";
+            return false;
+        }
+        
+        if (isset($result))
+        {
+            while($row = $result->fetch_assoc())
+            {
+                foreach($row as $item => $value)
+                {
+                    $temp[$item] = $value;
+                }
+                $data[] = $temp;
+            }
+            $stmt->close();
+            $mysqli->close();
+            return $data;
+        }
+
+        /* else */        
+        $this->error[] = "Sorry, could not retrieve any information.";
+        $stmt->close();
+        $mysqli->close();
+        return false;
     }
 }

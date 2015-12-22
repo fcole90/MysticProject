@@ -27,13 +27,20 @@ function showlinks()
       $("#droplist").slideToggle("fast");
     }
 }
-/*
-//Event listners
-$(document).ready(function(){
-    $("#showlinks").click(showlinks());
-});
 
-*/
+function search()
+{
+    $.ajax({
+        url: "ajaxSearchShop",
+        data: {
+            search-string: $.("#search-box").text()
+        },
+        type: "POST"
+        success: populateSearchTable(data)
+    });
+}
+
+
 $(document).ready(function()
   {
       //var map = L.map('map').setView([51.505, -0.09], 13);

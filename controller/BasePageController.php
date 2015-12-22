@@ -75,14 +75,20 @@ class BasePageController extends Controller
      * @param array $request
      */
     public function loadPageHome() 
-    {       
+    {               
+        $model = new ShopModel();
+        $data = $model->getData();
+        if ($data)
+        {
+            $content = (new GenericView)->getHomeContent($data);
+            $this->presenter->setContent($content);
+        }
+        else
+        {
+            $this->error[] = "There has been an error retrieving data.";
+        }
         
-        /* Temporary HTML */
-        $content = <<<HTML
-<h2>Find your lozenges in "Fleetwood"</h2>
-<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-3.1280136108398438%2C53.86346094359846%2C-2.8873443603515625%2C53.985568980647656&amp;layer=mapnik&amp;marker=53.924650964860085%2C-3.007637200000005" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?mlat=53.9247&amp;mlon=-3.0076#map=12/53.9247/-3.0076">View Larger Map</a></small>
-HTML;
-        $this->presenter->setContent($content);
+        $this->concatErrorArray($model->getError());
         $this->presenter->render();
     }
     
@@ -225,7 +231,6 @@ HTML;
             if($this->checkFieldsAddshop($data) && $model->addShopToDatabase($data))
             {
                 $this->presenter->setContent((new Form)->getAddshopConfirmation($data));
-                $this->presenter->setError(array("Something went wrong.."));
                 $this->presenter->setRedir();
                 $this->presenter->render();
                 return;
@@ -233,6 +238,7 @@ HTML;
             else
             {
                 $this->concatErrorArray($model->getError());
+                $this->presenter->setError(array("Something went wrong.."));
                 $this->presenter->setContent((new Form)->getAddshopForm($data, $this->error));
                 $this->presenter->render();
                 return;
@@ -271,10 +277,22 @@ HTML;
             {
                 $this->presenter->setContent((new GenericView)->getProfileView($user));
             }
+            else
+            {
+                $this->error[] = "Something naughty happened retrieving the data!";
+            }
             
             $this->presenter->setError($this->error);
             $this->presenter->render();            
         }
+    }
+    
+    
+    public function loadPageAjaxSearchShop()
+    {
+        $search = $this->safeInput($this->request["search-string"]);
+        $model = new ShopModel();
+        $data = $model->getData($search);
     }
     
     /**

@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6, input[type="submit"]
 }
 
 /** Use a special font for paragraphs **/
-p
+p, td
 {
 	  font-family: Walkway;
     margin: 0;
@@ -41,14 +41,25 @@ p
     border: 0;
 }
 
+.field 
+{
+    color: #ed2000;
+    padding: 0.2em;
+    padding-right: 1em;
+}
+
+table {width: auto}
+
+
 input, select
 {
     font-family: Walkway;
 }
 
 /*Font size*/
+td {font-size: 4.8vw}
 p, input, select{font-size: 1.4em}
-h2, input[type=submit] {font-size: 1.8em;}
+h2, input[type="submit"] {font-size: 1.8em;}
 h3 {font-size: 1.5em ;}
 
 a
@@ -138,7 +149,6 @@ input.warning
     text-align: center;
     color: #ff3300;
     width: 100%;
-    overflow: hidden;
 }
 
 .fastlinks
@@ -232,13 +242,29 @@ input[type="submit"]
     border-color: darkgray;
     width: auto;
     float: right;
-    margin-top: 0.5em;
+    font-size: 9vw;
+}
+
+#search-box
+{
+    margin-bottom: 0;
+}
+
+#search-button
+{
+    width: 100%;
+    margin-top: 0;
 }
 
 input[type="submit"]:hover
 {
     background-color: #fbfbfb;
     box-shadow: 1px 5px 10px darkgray;
+}
+
+input[type="search"]
+{
+    font-size: 9vw;
 }
 
 select
@@ -297,6 +323,8 @@ footer p
     {
       margin: 0 5em 0 5em;    
     }
+    
+    td {font-size: 1.8em}
                 
     #mainnav
     {
@@ -321,7 +349,7 @@ footer p
     
     .fastlinks p
     {
-        font-size: 2.15em;
+        font-size: 2em;
         text-align: center;
         clear: both;
     }
@@ -356,7 +384,7 @@ footer p
    
     .morelinks p
     {
-        font-size: 2.15em;
+        font-size: 2em;
         padding: 0;
         padding-left: 0.15em;
         padding-right: 0.15em;
@@ -368,11 +396,33 @@ footer p
         display: none;
     }
     
+    input, input[type="submit"], input[type="search"]
+    {
+        font-size: 1.8em
+    }
+    
     
     /* Form */
     form
     {
        width: 70%;
+    }
+    
+    form.search
+    {
+        width: 100%;
+    }
+    
+    #search-box
+    {
+        width: 80%;
+        float: left;
+        
+    }
+    
+    #search-button
+    {
+        width: auto;
     }
    
 }

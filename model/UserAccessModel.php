@@ -264,6 +264,8 @@ class UserAccessModel extends DBModel
      */
     public function getUser($username)
     {        
+        $this->user = new User;
+        
         try
         {
             $mysqli = $this->connect();
@@ -295,16 +297,9 @@ class UserAccessModel extends DBModel
             return false;
         }
         
-        
-        if (!$stmt->store_result())
-        {
-            $this->error[] = "DB Error: could not store the result.";
-            return false;
-        }
-        
         if (!$result = $stmt->get_result())
         {
-            $this->error[] = "DB Error: could get results.";
+            $this->error[] = "DB Error: could not get results: $username";
             return false;
         }
         
@@ -316,20 +311,21 @@ class UserAccessModel extends DBModel
             {
                 if($field != "password")
                 {
-                    $this->user->$field = $row[$field]; 
+                    $this->user->set($field, $row[$field]); 
                 }
             }
             $stmt->close();
             $mysqli->close();
             return $this->user;
         }
+
         /* else */
+        
         $this->error[] = "Sorry, could not retrieve any information.";
         $stmt->close();
         $mysqli->close();
         return false;
-        
-        
+       
     }
       
 }

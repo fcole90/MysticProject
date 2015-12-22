@@ -164,6 +164,8 @@ abstract class Controller
     
     /**
      * Makes the input safe.
+     * @param $input string
+     * @return string
      */
     public function safeInput($input)
     {
