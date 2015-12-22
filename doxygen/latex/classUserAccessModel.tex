@@ -29,6 +29,8 @@ Collaboration diagram for User\+Access\+Model\+:\nopagebreak
 \hyperlink{classUserAccessModel_a7ed6ab03bbd86466f0864996390254af}{check\+Field\+Not\+Exists} (\$fieldname, \$fieldvalue)
 \item 
 \hyperlink{classUserAccessModel_a4120f778b0415dec524876f84e6c87af}{check\+Login\+Data} (\$username, \$password)
+\item 
+\hyperlink{classUserAccessModel_a81acfe08b082369c72f78c5e8327ea72}{get\+User} (\$username)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -95,6 +97,23 @@ string & {\em \$password} & \\
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 boolean 
+\end{DoxyReturn}
+\hypertarget{classUserAccessModel_a81acfe08b082369c72f78c5e8327ea72}{\index{User\+Access\+Model@{User\+Access\+Model}!get\+User@{get\+User}}
+\index{get\+User@{get\+User}!User\+Access\+Model@{User\+Access\+Model}}
+\subsubsection[{get\+User}]{\setlength{\rightskip}{0pt plus 5cm}User\+Access\+Model\+::get\+User (
+\begin{DoxyParamCaption}
+\item[{}]{\$username}
+\end{DoxyParamCaption}
+)}}\label{classUserAccessModel_a81acfe08b082369c72f78c5e8327ea72}
+Get a user from the database
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+user or F\+A\+L\+S\+E if it fails 
 \end{DoxyReturn}
 \hypertarget{classUserAccessModel_a65363d66e0dcf1cdf7caea08de553e1e}{\index{User\+Access\+Model@{User\+Access\+Model}!set\+User@{set\+User}}
 \index{set\+User@{set\+User}!User\+Access\+Model@{User\+Access\+Model}}

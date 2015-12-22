@@ -92,8 +92,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a24c04a54ce929bc12219f037a794d439"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a24c04a54ce929bc12219f037a794d439">__construct</a> ($title, $content=&quot;&quot;)</td></tr>
-<tr class="separator:a24c04a54ce929bc12219f037a794d439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a364fc50678030d816f515223be72b23a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a364fc50678030d816f515223be72b23a">__construct</a> ($title, $links, $content=&quot;&quot;)</td></tr>
+<tr class="separator:a364fc50678030d816f515223be72b23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a299e31916fc252227e369fc5efad77f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a299e31916fc252227e369fc5efad77f9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>setCustomHeader</b> ($header)</td></tr>
 <tr class="separator:a299e31916fc252227e369fc5efad77f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,19 +109,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1d66815ed950c7362a9c87bbcc6d9b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e4fe61038c5535719c6d7bc3b557019"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a5e4fe61038c5535719c6d7bc3b557019">printErrorList</a> ()</td></tr>
 <tr class="separator:a5e4fe61038c5535719c6d7bc3b557019"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a517ff93f6c099065a0d67c0994f0b76b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a517ff93f6c099065a0d67c0994f0b76b">setRedir</a> ($link=&quot;index&quot;, $sec=3)</td></tr>
-<tr class="separator:a517ff93f6c099065a0d67c0994f0b76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dffb86806a017ebd3e13ca331c6f15a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a7dffb86806a017ebd3e13ca331c6f15a">setRedir</a> ($link=&quot;index&quot;, $sec=6)</td></tr>
+<tr class="separator:a7dffb86806a017ebd3e13ca331c6f15a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace2a8a72ee53e6be953614d00e29f741"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace2a8a72ee53e6be953614d00e29f741"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>printRedir</b> ()</td></tr>
 <tr class="separator:ace2a8a72ee53e6be953614d00e29f741"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0b057b552ee1d7c4a3cce5f9777f3c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#af0b057b552ee1d7c4a3cce5f9777f3c9">isLoggedIn</a> ($loggedIn)</td></tr>
-<tr class="separator:af0b057b552ee1d7c4a3cce5f9777f3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80cf6f790c8705d20632f7e3a73947fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPresenter.html#a80cf6f790c8705d20632f7e3a73947fe">setTitle</a> ($title)</td></tr>
+<tr class="separator:a80cf6f790c8705d20632f7e3a73947fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes the whole view and renders the page.</p>
 <dl class="section author"><dt>Author</dt><dd>fabio </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a24c04a54ce929bc12219f037a794d439"></a>
+<a class="anchor" id="a364fc50678030d816f515223be72b23a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -130,6 +130,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$title</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$links</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -148,6 +154,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramtype">string</td><td class="paramname">$title</td><td>of the page </td></tr>
+    <tr><td class="paramtype"></td><td class="paramname">string[][]</td><td>$links (title, link) </td></tr>
     <tr><td class="paramtype">string</td><td class="paramname">$content</td><td>of the page </td></tr>
   </table>
   </dd>
@@ -170,30 +177,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Return some content to render.</p>
 <dl class="section return"><dt>Returns</dt><dd>string HTML content. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="af0b057b552ee1d7c4a3cce5f9777f3c9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Presenter::isLoggedIn </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$loggedIn</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Sets if a user is logged or not.</p>
-<p>This affects the way some elements are displayed.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">boolean</td><td class="paramname">$loggedIn</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -308,7 +291,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a517ff93f6c099065a0d67c0994f0b76b"></a>
+<a class="anchor" id="a7dffb86806a017ebd3e13ca331c6f15a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -322,7 +305,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$sec</em> = <code>3</code>&#160;</td>
+          <td class="paramname"><em>$sec</em> = <code>6</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -340,13 +323,35 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a80cf6f790c8705d20632f7e3a73947fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Presenter::setTitle </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$title</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$title</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>view/Presenter.php</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 10 2015 18:09:35 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 22 2015 17:15:16 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

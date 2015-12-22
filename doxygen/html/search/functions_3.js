@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['checkchardigit',['checkCharDigit',['../classBasePageController.html#a34d606ee039e2042cf6727ac16dabb70',1,'BasePageController']]],
+  ['checkchardigit',['checkCharDigit',['../classBasePageController.html#ade6dad738c6fce22cf8b44028628090d',1,'BasePageController']]],
+  ['checkcharspaces',['checkCharSpaces',['../classBasePageController.html#a82b064f99d35b69e42a6a267e28ed04b',1,'BasePageController']]],
   ['checkdate',['checkDate',['../classBasePageController.html#a6f1a0a900ee8f95b6b6f12c52272a9a7',1,'BasePageController']]],
+  ['checkdecimal',['checkDecimal',['../classBasePageController.html#ad79d970cb91298dfa2206bfe22516618',1,'BasePageController']]],
   ['checkemail',['checkEmail',['../classBasePageController.html#a5a0788181caf223a4ce208702c93e0c8',1,'BasePageController']]],
   ['checkfieldnotexists',['checkFieldNotExists',['../classUserAccessModel.html#a7ed6ab03bbd86466f0864996390254af',1,'UserAccessModel']]],
   ['checkfieldssignup',['checkFieldsSignUp',['../classBasePageController.html#a56e85dfb915144831cf39435b88774f5',1,'BasePageController']]],

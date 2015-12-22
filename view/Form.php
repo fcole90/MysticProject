@@ -185,6 +185,77 @@ HTML;
         return $form;
     }
     
+    /**
+     * Return a shop form.
+     * 
+     * @param string[][] $data
+     * @param string[] $error
+     * @return string
+     */
+    public function getAddshopForm($data, &$error)
+    {
+        
+        foreach ($data as $key => $value)
+        {
+            $$key = $value; //Get the variable of the variable
+        }
+                
+        $warning = "";
+        if (isset($error))
+        {
+            $warning = "\n";
+            foreach ($error as $message)
+            {
+                $warning .= "<h3 class=\"warning\">$message</h3>\n";
+            }
+        }
+        /*
+        $data["address"] = "";
+        //$data["shop_name"] = "";
+        //$data["typeOfShop"] = "";
+        $data["VATNumber"] = "";
+        $data["latitude"] = "";
+        $data["longitude"] = "";
+        $data["owner"] = "";
+         */
+        $form = <<<HTML
+<h2>Fill in your data:</h2>$warning
+<form action="" method="post">
+    <p>Shop Name:</p>
+    <input type="text" name="shop_name" value="$shop_name" required="true">
+    <br>
+    <p>City:</p>
+    <input type="text" name="city" value="$city" required="true">
+    <br>
+    <p>Address:</p>
+    <input type="text" name="address" value="$address" required="true">
+    <br>
+
+    <input type="submit" value="Add shop!">
+    
+</form>
+HTML;
+
+        return $form;
+    }
+    
+    
+    /**
+     * Create a login confirmation.
+     * 
+     * @param string $username
+     * @return string
+     */
+    public function getAddshopConfirmation()
+    {
+        $form = <<<HTML
+<h2>Your shop has been succesfully registered.</h2>
+<p>You're being redirected to <a href="home">the homepage</a>.
+   Please <a href="home">click here</a> if you're not automatically redirected.</p>
+
+HTML;
+        return $form;
+    }
     
     /************************************
      * Helper functions                 *

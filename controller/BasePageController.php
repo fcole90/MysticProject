@@ -3,8 +3,10 @@ relRequire('controller/Controller.php');
 
 relRequire('view/Presenter.php');
 relRequire("view/Form.php");
+relRequire('view/GenericViews.php');
 
 relRequire('model/HomeModel.php');
+relRequire('model/ShopModel.php');
 relRequire("model/User.php");
 relRequire('model/UserAccessModel.php');
 relRequire("model/ErrorModel.php");
@@ -49,10 +51,16 @@ class BasePageController extends Controller
      */
     private $error;
     
+    /**
+     * @var Presenter View of the page.
+     */
+    private $presenter;
+    
     public function __construct(&$request)
     {
         parent::__construct($request);
         $this->error = array();
+        $this->presenter = new Presenter($this->getTitle(), $this->getLinks());
     }
     
     
@@ -68,18 +76,14 @@ class BasePageController extends Controller
      */
     public function loadPageHome() 
     {       
-        //$model = new HomeModel();
-        
-        $page = new Presenter($this->getTitle());
-        $page->isLoggedIn($this->isLoggedIn());
         
         /* Temporary HTML */
         $content = <<<HTML
 <h2>Find your lozenges in "Fleetwood"</h2>
 <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-3.1280136108398438%2C53.86346094359846%2C-2.8873443603515625%2C53.985568980647656&amp;layer=mapnik&amp;marker=53.924650964860085%2C-3.007637200000005" style="border: 1px solid black"></iframe><br/><small><a href="http://www.openstreetmap.org/?mlat=53.9247&amp;mlon=-3.0076#map=12/53.9247/-3.0076">View Larger Map</a></small>
 HTML;
-        $page->setContent($content);
-        $page->render();
+        $this->presenter->setContent($content);
+        $this->presenter->render();
     }
     
     /**
@@ -87,16 +91,14 @@ HTML;
      */
     public function loadPageSignup()
     {
-        $page = new Presenter($this->getTitle());
-        $page->isLoggedIn($this->isLoggedIn());
         
         if($this->isLoggedIn())
         {
             $this->error[] = "You're already logged in and signed up!";
-            $page->setContent((new Form())->getLoginConfirmation($this->username));
-            $page->setError($this->error);
-            $page->setRedir();
-            $page->render();
+            $this->presenter->setContent((new Form())->getLoginConfirmation($this->username));
+            $this->presenter->setError($this->error);
+            $this->presenter->setRedir();
+            $this->presenter->render();
             return;
         }
         
@@ -110,45 +112,42 @@ HTML;
         {
             /* Add the errors of the model to the errors of the controller */
             $this->error = array_merge($this->error, $model->getError());
-            $page->setContent((new Form())->getSignupForm($this->user, $this->error));
+            $this->presenter->setContent((new Form())->getSignupForm($this->user, $this->error));
         }
         else if($model->addUserToDatabase($this->user))
         {
-            $page->setContent((new Form())->getSignupConfirmation($this->user));
-            $page->setRedir();
+            $this->presenter->setContent((new Form())->getSignupConfirmation($this->user));
+            $this->presenter->setRedir();
         }
         else
         {
             /* Add the errors of the model to the errors of the controller */
             $this->error = array_merge($this->error, $model->getError());
-            $page->setContent((new Form())->getSignupForm($this->user, $this->error));
+            $this->presenter->setContent((new Form())->getSignupForm($this->user, $this->error));
         }
                 
-        $page->render();
+        $this->presenter->render();
         
     }
     
     public function loadPageLogin()
     {
-        
-        $page = new Presenter($this->getTitle());
-        $page->isLoggedIn($this->isLoggedIn());
-        
+                
         if($this->isLoggedIn())
         {
             $this->error[] = "You're already logged in!";
-            $page->setContent((new Form())->getLoginConfirmation($this->username));
-            $page->setError($this->error);
-            $page->setRedir();
-            $page->render();
+            $this->presenter->setContent((new Form())->getLoginConfirmation($this->username));
+            $this->presenter->setError($this->error);
+            $this->presenter->setRedir();
+            $this->presenter->render();
             return;
         }
         
         /* No field is set, probably coming here from for first time */
         if(!isset($this->request["username"]) && !isset($this->request["password"]))
         {
-            $page->setContent((new Form())->getLoginForm("", $this->error));
-            $page->render();
+            $this->presenter->setContent((new Form())->getLoginForm("", $this->error));
+            $this->presenter->render();
             return;
         }
         
@@ -156,8 +155,8 @@ HTML;
         if (!isset($this->request["username"]) || !isset($this->request["password"]))
         {
             $this->error[] = "Please, mind that every field is mandatory.";
-            $page->setContent((new Form())->getLoginForm("", $this->error));
-            $page->render();
+            $this->presenter->setContent((new Form())->getLoginForm("", $this->error));
+            $this->presenter->render();
             return;
         }
         
@@ -169,15 +168,15 @@ HTML;
         if(!$model->checkLoginData($username, $password))
         {
             $this->concatErrorArray($model->getError());
-            $page->setContent((new Form())->getLoginForm($username, $this->error));
-            $page->render();
+            $this->presenter->setContent((new Form())->getLoginForm($username, $this->error));
+            $this->presenter->render();
         }
         else /* The user logged correctly and a session gets opened. */
         {
             $_SESSION["username"] = $username;
-            $page->setContent((new Form())->getLoginConfirmation($username));
-            $page->setRedir();
-            $page->render();
+            $this->presenter->setContent((new Form())->getLoginConfirmation($username));
+            $this->presenter->setRedir();
+            $this->presenter->render();
         }        
     }
     
@@ -187,14 +186,13 @@ HTML;
     public function logout() 
     {
          
-        if(isset($_SESSION["username"]))
+        if($this->isLoggedIn())
         {
-            $page = new Presenter($this->getTitle());
-            $page->isLoggedIn($this->isLoggedIn());
-            $page->setContent((new Form())->getLogout($this->getSessionUsername()));
+
+            $this->presenter->setContent((new Form())->getLogout($this->getSessionUsername()));
             $this->closeSession();
-            $page->setRedir();
-            $page->render();
+            $this->presenter->setRedir();
+            $this->presenter->render();
         }
         else
         {
@@ -203,40 +201,79 @@ HTML;
         }
     }
     
-    public function loadPageHelp() 
+    
+    /**
+     * Page to add a new fisherman shop.
+     */
+    public function loadPageAddshop() 
     {
-        $page = new Presenter($this->getTitle());
-        $page->isLoggedIn($this->isLoggedIn());
-        
-        $filepath = __ROOT__ . "/README.md";
-        
-        if (!file_exists($filepath))
+        if(!$this->isLoggedIn())
         {
-            $this->error[] = "File not found: $filepath."
-              . " Please contact the administrator.";
+            $this->error[] = "You need to log in to visit this page!";
+            $this->loadPageLogin();
+            return;
         }
+        
+        $this->presenter->setTitle("Add a shop");
+        
+        $data = $this->setAddshopData();
+
+        
+        if(isset($this->request["address"]))
+        {
+            $model = new ShopModel();
+            if($this->checkFieldsAddshop($data) && $model->addShopToDatabase($data))
+            {
+                $this->presenter->setContent((new Form)->getAddshopConfirmation($data));
+                $this->presenter->setError(array("Something went wrong.."));
+                $this->presenter->setRedir();
+                $this->presenter->render();
+                return;
+            }
+            else
+            {
+                $this->concatErrorArray($model->getError());
+                $this->presenter->setContent((new Form)->getAddshopForm($data, $this->error));
+                $this->presenter->render();
+                return;
+            }
             
-        if(!($readme = fopen($filepath, "r")))
-        {
-            $this->error[] = "Could not open file: please contact the administrator.";
         }
-        
-        if(!($readme_text = fread($readme, filesize($filepath))))
+        else
         {
-            $this->error[] = "Could not read file: please contact the administrator.";
+            $this->presenter->setContent((new Form)->getAddshopForm($data, $this->error));
+            $this->presenter->render();
         }
-        
-        $mark = new Parsedown();
-        $content = $mark->text($readme_text);
-        
-        $page->setContent($content);
-        $page->setError($this->error);
-        $page->render();
-        
-        
-        if ($readme)
+    }
+    
+    public function loadPageHelp() 
+    {    
+        phpinfo();
+    }
+    
+    /**
+     * Handles the profile page.
+     */
+    public function loadPageProfile()
+    {
+        if (!$this->isLoggedIn())
         {
-            fclose($readme);
+            $this->error[] = "You're not logged in!";
+            $this->loadPageLogin();
+        }
+        else
+        {
+            $model = new UserAccessModel;
+            $user = $model->getUser($this->username);
+            $this->concatErrorArray($model->getError());
+            
+            if($user)
+            {
+                $this->presenter->setContent((new GenericView)->getProfileView($user));
+            }
+            
+            $this->presenter->setError($this->error);
+            $this->presenter->render();            
         }
     }
     
@@ -249,12 +286,11 @@ HTML;
         $title = "Error 404 - Page not found";
         $message = "Sorry, the page you're looking for "
           . "does not exist or has been moved.";
-        $page = new Presenter($title);
-        $page->setError(array($message));
-        $page->setCustomHeader("HTTP/1.0 404 Not Found");
-        $page->setContent("<img id='err404'src='https://media3.giphy.com/media/tj2MwoqitZLtm/giphy.gif'>");
-        $page->setRedir("index", 10);
-        $page->render();
+        $this->presenter->setError(array($message));
+        $this->presenter->setCustomHeader("HTTP/1.0 404 Not Found");
+        $this->presenter->setContent("<img id='err404'src='https://media3.giphy.com/media/tj2MwoqitZLtm/giphy.gif'>");
+        $this->presenter->setRedir("index", 10);
+        $this->presenter->render();
     }
     
     /**
@@ -267,10 +303,9 @@ HTML;
         $message = "You're attempting to access an unauthorized "
           . "area. If you think you should be able to access this area "
           . "contact your administrator.";
-        $page = new Presenter($title);
-        $page->setError(array($message));
-        $page->setCustomHeader("HTTP/1.0 403 Forbidden");
-        $page->render();
+        $this->presenter->setError(array($message));
+        $this->presenter->setCustomHeader("HTTP/1.0 403 Forbidden");
+        $this->presenter->render();
     }
     
     /***********************************
@@ -430,7 +465,7 @@ HTML;
         
         return $flag;
     }
-    
+        
     /**
      * Helper function to check if strings contain only chars and spaces.
      */
@@ -439,6 +474,19 @@ HTML;
         if (!preg_match("/^[a-zA-Z][a-zA-Z0-9 ]*$/",$value)) 
         {
             $this->error[] = "Only letters and spaces are allowed in $field.";
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Helper function to check if strings contain only decimal digits.
+     */
+    public function checkDecimal($field, $value)
+    {
+        if (!preg_match("/^[0-9]*[.]+[0-9]*$/", $value)) 
+        {
+            $this->error[] = "You should write a decimal number in $field.";
             return false;
         }
         return true;
@@ -505,6 +553,102 @@ HTML;
     public function concatErrorArray($error)
     {
         $this->error = array_merge($this->error, $error);
+    }
+    
+    
+    /**
+     * Returns an associative array of strings containing 
+     * data if it has been passed.
+     * 
+     * @return string[]
+     */
+    public function setAddshopData() 
+    {
+        $data = array();
+        $data["address"] = "";
+        $data["shop_name"] = "";
+        $data["city"] = "";
+        //$data["typeOfShop"] = "";
+        $data["VATNumber"] = "";
+        $data["latitude"] = "";
+        $data["longitude"] = "";
+        $data["owner"] = "";
+        
+        foreach ($data as $key => $value) 
+        {
+            if (isset($this->request[$key]))
+            {
+                $data[$key] = $this->safeInput($this->request[$key]);
+            }
+        }
+        
+        return $data;
+    }
+    
+    public function checkFieldsAddshop($data)
+    {
+        $isValid = true;
+                
+        $current = "address";
+        if ($current == "")
+        {
+           $this->error[] = "Field $current cannot be empty.";
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        else if (!$this->checkCharSpaces($current, $data[$current]))
+        {
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        
+        $current = "city";
+        if ($current == "")
+        {
+           $this->error[] = "Field $current cannot be empty.";
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        else if (!$this->checkCharSpaces($current, $data[$current]))
+        {
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        
+        $current = "shop_name";
+        if ($current == "")
+        {
+           $this->error[] = "Field $current cannot be empty.";
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        
+        $current = "VATNumber";
+        if ($data[$current] != "" && !$this->checkCharSpaces($current, $data[$current]))
+        {
+           $this->error[] = "Field $current is not correct.";
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        
+        $current = "latitude";
+        if ($data[$current] != "" && !$this->checkDecimal($current, $data[$current]))
+        {
+           $this->error[] = "Field $current is not a decimal value.";
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        
+        $current = "longitude";
+        if ($data[$current] != "" && !$this->checkDecimal($current, $data[$current]))
+        {
+           $this->error[] = "Field $current is not a decimal value.";
+           $data[$current] = $this->setWarning($data[$current]);
+           $isValid = false;
+        }
+        
+        return $isValid;
+        
     }
     
 }

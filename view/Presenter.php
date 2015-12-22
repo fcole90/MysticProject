@@ -69,24 +69,27 @@ class Presenter {
      */
     private $header;
     
-    /**
-     * Logged in flag
-     * 
-     * @var boolean
-     */
-    private $loggedIn;
-
     
+    /**
+     * Links to display. (title, link)
+     * 
+     * @var string[][]
+     */
+    private $links;
+
+
     /**
      * View constructor.
      * 
      * @param string $title of the page
+     * @param string[][] $links (title, link)
      * @param string $content of the page
      */
-    public function __construct($title, $content = "") 
+    public function __construct($title, $links, $content = "") 
     {
         $this->title = $title;
-        $this->content = $content;        
+        $this->content = $content;      
+        $this->links = $links;
     }
     
     public function setCustomHeader($header)
@@ -151,7 +154,7 @@ class Presenter {
         echo "\n  <body>\n"; //////// Start body
         
         new Header();
-        $nav = new Nav($this->loggedIn);
+        $nav = new Nav($this->links);
         $nav->render();
         unset($nav);
         
@@ -232,15 +235,12 @@ HTML;
     }
     
     /**
-     * Sets if a user is logged or not.
      * 
-     * This affects the way some elements are displayed.
-     * 
-     * @param boolean $loggedIn
+     * @param string $title
      */
-    public function isLoggedIn($loggedIn) 
+    public function setTitle($title) 
     {
-        $this->loggedIn = $loggedIn;
+        $this->title = $title;
     }
     
     

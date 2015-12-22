@@ -255,5 +255,81 @@ class UserAccessModel extends DBModel
         
         
     }
+    
+    /**
+     * Get a user from the database
+     * 
+     * @param string $username
+     * @return user or FALSE if it fails
+     */
+    public function getUser($username)
+    {        
+        try
+        {
+            $mysqli = $this->connect();
+        } 
+        catch (Exception $e) 
+        {
+            $this->error[] = $e->getMessage();
+        }
+        
+        
+        $text = "SELECT * FROM user WHERE username = ?;";
+        
+        if (!$stmt = $mysqli->prepare($text))
+        {
+            $this->error[] = "Error: could not prepare statement: $text";
+            return false;
+        }
+        
+        
+        if (!$stmt->bind_param("s", $username))
+        {
+            $this->error[] = "DB Error: could not bind parameters.";
+            return false;
+        }
+        
+        if (!$stmt->execute())
+        {
+            $this->error[] = "DB Error: could not execute the statement.";
+            return false;
+        }
+        
+        
+        if (!$stmt->store_result())
+        {
+            $this->error[] = "DB Error: could not store the result.";
+            return false;
+        }
+        
+        if (!$result = $stmt->get_result())
+        {
+            $this->error[] = "DB Error: could get results.";
+            return false;
+        }
+        
+        $row = $result->fetch_assoc();
+        
+        if (isset($row))
+        {
+            foreach ($this->user->fieldlist() as $field)
+            {
+                if($field != "password")
+                {
+                    $this->user->$field = $row[$field]; 
+                }
+            }
+            $stmt->close();
+            $mysqli->close();
+            return $this->user;
+        }
+        /* else */
+        $this->error[] = "Sorry, could not retrieve any information.";
+        $stmt->close();
+        $mysqli->close();
+        return false;
+        
+        
+    }
       
 }

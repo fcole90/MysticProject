@@ -200,7 +200,7 @@ input.warning
     left: -160px;
 }
 
-#map { height: 180px; }
+iframe { width: 85vw; }
 
 /* Forms */
 

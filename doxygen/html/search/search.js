@@ -8,8 +8,8 @@
 var indexSectionsWithContent =
 {
   0: "_abcdefghilmnprsu",
-  1: "bcdefghlmnpu",
-  2: "_abcdefghilprs"
+  1: "bcdefghlmnpsu",
+  2: "_abcdfgilprs"
 };
 
 var indexSectionNames =

@@ -36,10 +36,8 @@ class Nav
      */
     private $loggedIn;
     
-    public function __construct($loggedIn = false, $otherLinks = null)
+    public function __construct($otherLinks = null)
     {
-        $this->loggedIn = $loggedIn;
-        
         if (isset($otherLinks))
         {
             $this->otherLinks = $otherLinks;
@@ -49,19 +47,10 @@ class Nav
     
     public function render()
     {
-        if ($this->loggedIn)
-        {
-            //Links when logged 
-            $login_profile_text = "PROFILE";
-            $login_profile_link = "profile";
-            $this->otherLinks[] = "logout";
-        }
-        else
-        {
-            $login_profile_text = "LOGIN";
-            $login_profile_link = "login";
-            $this->otherLinks[] = "signup";
-        }
+        $first_link = array_shift($this->otherLinks);
+        $login_profile_text = $first_link[0];
+        $login_profile_link = $first_link[1];
+
         
         $text = <<<HTML
         
@@ -94,8 +83,9 @@ HTML;
         echo $text;
         if (isset($this->otherLinks))
         {
-            foreach ($this->otherLinks as $link) {
-                $p = ucfirst($link);
+            foreach ($this->otherLinks as $item) {
+                $p = ucfirst($item[0]);
+                $link = $item[1];
                 echo <<<HTML
             <li class="$this->moreLinkClass">
               <a href="$link">

@@ -4,7 +4,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classPresenter_a24c04a54ce929bc12219f037a794d439}{\+\_\+\+\_\+construct} (\$title, \$content=\char`\"{}\char`\"{})
+\hyperlink{classPresenter_a364fc50678030d816f515223be72b23a}{\+\_\+\+\_\+construct} (\$title, \$links, \$content=\char`\"{}\char`\"{})
 \item 
 \hypertarget{classPresenter_a299e31916fc252227e369fc5efad77f9}{{\bfseries set\+Custom\+Header} (\$header)}\label{classPresenter_a299e31916fc252227e369fc5efad77f9}
 
@@ -21,12 +21,12 @@
 \item 
 \hyperlink{classPresenter_a5e4fe61038c5535719c6d7bc3b557019}{print\+Error\+List} ()
 \item 
-\hyperlink{classPresenter_a517ff93f6c099065a0d67c0994f0b76b}{set\+Redir} (\$link=\char`\"{}index\char`\"{}, \$sec=3)
+\hyperlink{classPresenter_a7dffb86806a017ebd3e13ca331c6f15a}{set\+Redir} (\$link=\char`\"{}index\char`\"{}, \$sec=6)
 \item 
 \hypertarget{classPresenter_ace2a8a72ee53e6be953614d00e29f741}{{\bfseries print\+Redir} ()}\label{classPresenter_ace2a8a72ee53e6be953614d00e29f741}
 
 \item 
-\hyperlink{classPresenter_af0b057b552ee1d7c4a3cce5f9777f3c9}{is\+Logged\+In} (\$logged\+In)
+\hyperlink{classPresenter_a80cf6f790c8705d20632f7e3a73947fe}{set\+Title} (\$title)
 \end{DoxyCompactItemize}
 
 
@@ -39,19 +39,22 @@ fabio
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classPresenter_a24c04a54ce929bc12219f037a794d439}{\index{Presenter@{Presenter}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\hypertarget{classPresenter_a364fc50678030d816f515223be72b23a}{\index{Presenter@{Presenter}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
 \index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Presenter@{Presenter}}
 \subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::\+\_\+\+\_\+construct (
 \begin{DoxyParamCaption}
 \item[{}]{\$title, }
+\item[{}]{\$links, }
 \item[{}]{\$content = {\ttfamily \char`\"{}\char`\"{}}}
 \end{DoxyParamCaption}
-)}}\label{classPresenter_a24c04a54ce929bc12219f037a794d439}
+)}}\label{classPresenter_a364fc50678030d816f515223be72b23a}
 View constructor.
 
 
 \begin{DoxyParams}[1]{Parameters}
 string & {\em \$title} & of the page \\
+\hline
+ & {\em string\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}} & \$links (title, link) \\
 \hline
 string & {\em \$content} & of the page \\
 \hline
@@ -71,22 +74,6 @@ Return some content to render.
 \begin{DoxyReturn}{Returns}
 string H\+T\+M\+L content. 
 \end{DoxyReturn}
-\hypertarget{classPresenter_af0b057b552ee1d7c4a3cce5f9777f3c9}{\index{Presenter@{Presenter}!is\+Logged\+In@{is\+Logged\+In}}
-\index{is\+Logged\+In@{is\+Logged\+In}!Presenter@{Presenter}}
-\subsubsection[{is\+Logged\+In}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::is\+Logged\+In (
-\begin{DoxyParamCaption}
-\item[{}]{\$logged\+In}
-\end{DoxyParamCaption}
-)}}\label{classPresenter_af0b057b552ee1d7c4a3cce5f9777f3c9}
-Sets if a user is logged or not.
-
-This affects the way some elements are displayed.
-
-
-\begin{DoxyParams}[1]{Parameters}
-boolean & {\em \$logged\+In} & \\
-\hline
-\end{DoxyParams}
 \hypertarget{classPresenter_a327ab1b725813be28114753935b42cd4}{\index{Presenter@{Presenter}!print\+Content@{print\+Content}}
 \index{print\+Content@{print\+Content}!Presenter@{Presenter}}
 \subsubsection[{print\+Content}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::print\+Content (
@@ -147,17 +134,29 @@ Sets the error list.
 {\em string\mbox{[}$\,$\mbox{]}} & \$error\+Array \\
 \hline
 \end{DoxyParams}
-\hypertarget{classPresenter_a517ff93f6c099065a0d67c0994f0b76b}{\index{Presenter@{Presenter}!set\+Redir@{set\+Redir}}
+\hypertarget{classPresenter_a7dffb86806a017ebd3e13ca331c6f15a}{\index{Presenter@{Presenter}!set\+Redir@{set\+Redir}}
 \index{set\+Redir@{set\+Redir}!Presenter@{Presenter}}
 \subsubsection[{set\+Redir}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::set\+Redir (
 \begin{DoxyParamCaption}
 \item[{}]{\$link = {\ttfamily \char`\"{}index\char`\"{}}, }
-\item[{}]{\$sec = {\ttfamily 3}}
+\item[{}]{\$sec = {\ttfamily 6}}
 \end{DoxyParamCaption}
-)}}\label{classPresenter_a517ff93f6c099065a0d67c0994f0b76b}
+)}}\label{classPresenter_a7dffb86806a017ebd3e13ca331c6f15a}
 
 \begin{DoxyParams}[1]{Parameters}
 type & {\em \$link} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classPresenter_a80cf6f790c8705d20632f7e3a73947fe}{\index{Presenter@{Presenter}!set\+Title@{set\+Title}}
+\index{set\+Title@{set\+Title}!Presenter@{Presenter}}
+\subsubsection[{set\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::set\+Title (
+\begin{DoxyParamCaption}
+\item[{}]{\$title}
+\end{DoxyParamCaption}
+)}}\label{classPresenter_a80cf6f790c8705d20632f7e3a73947fe}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$title} & \\
 \hline
 \end{DoxyParams}
 

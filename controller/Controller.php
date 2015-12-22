@@ -55,6 +55,7 @@ abstract class Controller
      */
     protected $page;
     
+    
     /**
      * 
      * @param array $request
@@ -108,6 +109,15 @@ abstract class Controller
     {
         $this->title = $this->pageTitle($title);
     }
+    
+    /**
+     * @param string $title
+     */
+    public function setCustomTitle($title)
+     {
+         $title = ucfirst($title) . " - " . $this->baseTitle();
+         $this->setTitle($title);
+     }
     
     /**
      * 
@@ -175,5 +185,29 @@ abstract class Controller
     public function getSessionUsername() 
     {
         return $this->username;
+    }
+    
+    /**
+     * Returns a list of links.
+     */
+    public function getLinks()
+    {
+        $linklist = array();
+        
+        if ($this->isLoggedIn())
+        {
+            //Links when logged 
+            //array(title, link)
+            $linklist[] = array("PROFILE", "profile");
+            $linklist[] = array("logout","logout");
+            $linklist[] = array("add a shop", "addshop");
+        }
+        else
+        {
+            $linklist[] = array("LOGIN", "login");
+            $linklist[] = array("signup", "signup");
+        }
+                
+        return $linklist;
     }
 }
