@@ -133,36 +133,31 @@ class ShopModel extends DBModel
         
         if ($search == "")
         {
-            $text = "SELECT * FROM shop";
+            $text = "SELECT * FROM shop;";
             if (!$stmt = $mysqli->prepare($text))
-        {
-            $this->error[] = "Error: could not prepare statement: $text";
+            {
+            $this->error[] = "Error: could not prepare statement: $mysqli->error";
             return false;
-        }
+            }
         }
         else
         {
-            $text = "SELECT * FROM shop WHERE city = ? OR name = ? OR address = ?";
+            $text = "SELECT * FROM shop WHERE city like ? OR shop_name like ? OR address like ?;";
             $search .= "%";
             if (!$stmt = $mysqli->prepare($text))
             {
-                $this->error[] = "Error: could not prepare statement: $text";
+                $this->error[] = "Error: could not prepare statement: $mysqli->error";
+                print_r("Errors: ");
+
                 return false;
             }
-            if (!$stmt->bind_param("ss", $search, $search))
+            if (!$stmt->bind_param("sss", $search, $search, $search))
             {
                 $this->error[] = "DB Error: could not bind parameters.";
                 return false;
             }
         }
-        
-        
-        if (!$stmt = $mysqli->prepare($text))
-        {
-            $this->error[] = "Error: could not prepare statement: $text";
-            return false;
-        }
-        
+                
         /*
         if (!$stmt->bind_param("s", $username))
         {
@@ -193,11 +188,13 @@ class ShopModel extends DBModel
                 }
                 $data[] = $temp;
             }
+            
             $stmt->close();
             $mysqli->close();
             return $data;
         }
-
+        
+        
         /* else */        
         $this->error[] = "Sorry, could not retrieve any information.";
         $stmt->close();

@@ -177,6 +177,16 @@ class Presenter {
         echo "</html>"; /////// End render
     }
     
+    //Render a json formatted content
+    public function json()
+    {
+        header('Cache-Control: no-cache, must-revalidate');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        //header('Content-type: application/json');
+        
+        echo $this->content;
+    }
+    
     /**
      * Sets the error list.
      * @param string[] $errorArray

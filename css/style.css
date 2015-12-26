@@ -27,7 +27,7 @@ body
 }
 
 /** Use the special font for titles **/
-h1, h2, h3, h4, h5, h6, input[type="submit"]
+h1, h2, h3, h4, h5, h6, input[type="submit"], input[type="button"]
 {
 	  font-family: BebasNeue;
 }
@@ -59,7 +59,7 @@ input, select
 /*Font size*/
 td {font-size: 4.8vw}
 p, input, select{font-size: 1.4em}
-h2, input[type="submit"] {font-size: 1.8em;}
+h2, input[type="submit"], input[type="button"] {font-size: 1.8em;}
 h3 {font-size: 1.5em ;}
 
 a
@@ -233,7 +233,7 @@ input
     border-color: darkgray;
 }
 
-input[type="submit"]
+input[type="submit"], input[type="button"]
 {
     color: #ed2000;
     background-color: #fff;
@@ -243,6 +243,11 @@ input[type="submit"]
     width: auto;
     float: right;
     font-size: 9vw;
+}
+
+input[type="button"]
+{
+    float: none;
 }
 
 #search-box
@@ -256,7 +261,7 @@ input[type="submit"]
     margin-top: 0;
 }
 
-input[type="submit"]:hover
+input[type="submit"]:hover, input[type="button"]:hover
 {
     background-color: #fbfbfb;
     box-shadow: 1px 5px 10px darkgray;
@@ -396,7 +401,7 @@ footer p
         display: none;
     }
     
-    input, input[type="submit"], input[type="search"]
+    input, input[type="submit"], input[type="search"], input[type="button"]
     {
         font-size: 1.8em
     }

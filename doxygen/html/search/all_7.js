@@ -8,7 +8,7 @@ var searchData=
   ['getaddshopconfirmation',['getAddshopConfirmation',['../classForm.html#a00d84099c9d0a8fd6cdc77983b2dac93',1,'Form']]],
   ['getaddshopform',['getAddshopForm',['../classForm.html#a9fe8a5c4812f4cbe0ff7daa05ea40cbf',1,'Form']]],
   ['getcontent',['getContent',['../classPresenter.html#a8a9d11db6633e0ebb898abd4580f8988',1,'Presenter']]],
-  ['getdata',['getData',['../classModel.html#a8e1cba2731a082294561ce1b499f3402',1,'Model']]],
+  ['getdata',['getData',['../classModel.html#a8e1cba2731a082294561ce1b499f3402',1,'Model\getData()'],['../classShopModel.html#a5c5c4b2e0ea0e4adb98e6e6dea5011b6',1,'ShopModel\getData()']]],
   ['getdate',['getDate',['../classBasePageController.html#a2aaad6f0fa836c9d7e6d9df5974cb4a7',1,'BasePageController']]],
   ['geterror',['getError',['../classModel.html#a0372eec1043cef6e9b6a50220cb0b031',1,'Model']]],
   ['getlinks',['getLinks',['../classController.html#a50e4138bea238a7bba318fffb948eeb1',1,'Controller']]],

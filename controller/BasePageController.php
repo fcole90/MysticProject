@@ -89,6 +89,7 @@ class BasePageController extends Controller
         }
         
         $this->concatErrorArray($model->getError());
+        $this->presenter->setError($this->error);
         $this->presenter->render();
     }
     
@@ -290,9 +291,19 @@ class BasePageController extends Controller
     
     public function loadPageAjaxSearchShop()
     {
-        $search = $this->safeInput($this->request["search-string"]);
         $model = new ShopModel();
-        $data = $model->getData($search);
+        if (isset($this->request["searchstring"]))
+        {
+            $search = $this->safeInput($this->request["searchstring"]);
+            $data = $model->getData($search);
+        }
+        else
+        {
+            $data = $model->getData();
+        }
+        $json = json_encode($data);
+        $this->presenter->setContent($json);
+        $this->presenter->json();
     }
     
     /**
