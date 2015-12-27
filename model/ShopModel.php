@@ -244,13 +244,9 @@ class ShopModel extends DBModel
         if (!$stmt->bind_param("si", $shop_name, $id))
         {
             $this->error[] = "DB Error: could not bind parameters.";
-            return false;
-        }
-                
-        
-        if (!$stmt->bind_param("s", $username))
-        {
-            $this->error[] = "DB Error: could not bind parameters.";
+            $this->error[] = "shop_name: $shop_name";
+            $this->error[] = "id: $id";
+            
             return false;
         }
         
