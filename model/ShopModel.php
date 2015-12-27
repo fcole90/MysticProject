@@ -1,7 +1,7 @@
 <?php
 relRequire("model/DBModel.php");
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,18 +19,26 @@ relRequire("model/DBModel.php");
  */
 
 /**
- * Description of shopModel
+ * Class to interact with the shop table in the database.
  *
- * @author fabio
+ * @author Fabio Colella
  */
 class ShopModel extends DBModel
 {
-    
+    /**
+     * The constructor.
+     */
     public function __construct() 
     {
         parent::__construct();
     }    
     
+    /**
+     * Adds a shop to the database.
+     * 
+     * @param array $data associative array where each key is a field.
+     * @return boolean true if the operation succedeed.
+     */
     public function addShopToDatabase($data)
     {
         
@@ -53,23 +61,33 @@ class ShopModel extends DBModel
             return false;
         }
         
-        $sFields = ""; // used to bind param in ssss like string
-        // dynamically create the statement
+        /** Used to bind params in ssss asstrings **/
+        $sFields = "";
+        
+        /** Dynamically create the query statement **/
         $text = "INSERT INTO shop (";
+        
+        /** Associate the fields **/
         foreach ($data as $field => $value)
         {
             $text .= "$field, ";
             $sFields .= "s";
         }
-        $text = rtrim($text, ", "); //remove last comma
+        
+        /** Remove last comma **/
+        $text = rtrim($text, ", "); 
+        
         $text .= ") ";
         $text .= "values (";
+        
+        /** Associate the values **/
         foreach ($data as $field)
         {
             $text .= "?, ";
         }
         $text = rtrim($text, ", "); //remove last comma
         $text .= ") ";
+        /** Query statement completed **/
         
         // Create the list of the params for bind_param
         $paramList[] = $sFields;
@@ -114,10 +132,10 @@ class ShopModel extends DBModel
     }
     
     /**
-     * Retrieve the shop data from the database.
+     * Retrieve a list of shop data for the shops that match the searched criteria.
      * 
-     * @param string $search
-     * @return string[][]
+     * @param string $search the searched term.
+     * @return array[] the data list of the shops.
      */
     public function getData($search = "")
     {        
@@ -156,14 +174,6 @@ class ShopModel extends DBModel
                 return false;
             }
         }
-                
-        /*
-        if (!$stmt->bind_param("s", $username))
-        {
-            $this->error[] = "DB Error: could not bind parameters.";
-            return false;
-        }
-        */
         
         if (!$stmt->execute())
         {
@@ -177,6 +187,7 @@ class ShopModel extends DBModel
             return false;
         }
         
+        /** Create the data array **/
         if (isset($result))
         {
             while($row = $result->fetch_assoc())
@@ -202,10 +213,13 @@ class ShopModel extends DBModel
     }
     
     /**
-     * Delete a shop data from the database.
+     * Delete a shop from the database.
      * 
-     * @param string $search
-     * @return string[][]
+     * This function uses SQL transactions.
+     * 
+     * @param string $shop_name the name of shop to remove.
+     * @param integer $id the id of the shop to remove.
+     * @return boolean true if the operation succeeded.
      */
     public function removeShop($shop_name, $id)
     {        

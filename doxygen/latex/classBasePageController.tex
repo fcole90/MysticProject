@@ -29,27 +29,25 @@ Collaboration diagram for Base\+Page\+Controller\+:\nopagebreak
 \item 
 \hyperlink{classBasePageController_aae6760084899d261e8f19f8dc2cbfd30}{load\+Page\+Signup} ()
 \item 
-\hypertarget{classBasePageController_a36cdd7c6a038c2664b333fbf8de6383a}{{\bfseries load\+Page\+Login} ()}\label{classBasePageController_a36cdd7c6a038c2664b333fbf8de6383a}
-
+\hyperlink{classBasePageController_a36cdd7c6a038c2664b333fbf8de6383a}{load\+Page\+Login} ()
 \item 
-\hyperlink{classBasePageController_ad065341a301057b6b0dfc3b1e56ed56a}{logout} ()
+\hyperlink{classBasePageController_ae7d620e0d251d06407cfe960cafe3d57}{load\+Page\+Logout} ()
 \item 
 \hyperlink{classBasePageController_aecf3ccde53aaa9b780feb5e12f2904ea}{load\+Page\+Addshop} ()
 \item 
-\hypertarget{classBasePageController_ae7ecc6f491f580059698d1a1a8e8d9ac}{{\bfseries load\+Page\+Help} ()}\label{classBasePageController_ae7ecc6f491f580059698d1a1a8e8d9ac}
-
+\hyperlink{classBasePageController_ae7ecc6f491f580059698d1a1a8e8d9ac}{load\+Page\+Help} ()
 \item 
 \hyperlink{classBasePageController_affa5617be55ed9bf233fd7bd1b2e19c9}{load\+Page\+Profile} ()
 \item 
-\hypertarget{classBasePageController_ad63921678e571dbd0a37d3afd6b55f5a}{{\bfseries load\+Page\+Remove\+Shop} ()}\label{classBasePageController_ad63921678e571dbd0a37d3afd6b55f5a}
-
+\hyperlink{classBasePageController_ad63921678e571dbd0a37d3afd6b55f5a}{load\+Page\+Remove\+Shop} ()
 \item 
-\hypertarget{classBasePageController_a96ace79928e80d29e6560b1fb965e859}{{\bfseries load\+Page\+Ajax\+Search\+Shop} ()}\label{classBasePageController_a96ace79928e80d29e6560b1fb965e859}
-
+\hyperlink{classBasePageController_a96ace79928e80d29e6560b1fb965e859}{load\+Page\+Ajax\+Search\+Shop} ()
 \item 
 \hyperlink{classBasePageController_a07d3e03b8e2ec5cc698f057a3496c14b}{load\+Page\+Err404} ()
 \item 
 \hyperlink{classBasePageController_a9ecd03fb676ab32ee9c2cb4e412757cc}{load\+Page\+Err403} ()
+\item 
+\hyperlink{classBasePageController_a179555764b7f9269d724522d4c32a59b}{load\+Page\+Tests} ()
 \item 
 \hyperlink{classBasePageController_a877c4f32b7d39e566f7832aef94c2f11}{set\+Signup\+Fields} ()
 \item 
@@ -61,7 +59,9 @@ Collaboration diagram for Base\+Page\+Controller\+:\nopagebreak
 \item 
 \hyperlink{classBasePageController_ade6dad738c6fce22cf8b44028628090d}{check\+Char\+Digit} (\$field, \$value, \$length=-\/1)
 \item 
-\hyperlink{classBasePageController_a82b064f99d35b69e42a6a267e28ed04b}{check\+Char\+Spaces} (\$field, \$value)
+\hyperlink{classBasePageController_ab4d71880bb1227a04df998de6cfc0f34}{check\+Char\+Spaces} (\$field, \$value, \$length=-\/1)
+\item 
+\hyperlink{classBasePageController_aaf4afedf5bb714c46c29e007eb095e55}{check\+Composed\+Strings} (\$field, \$value, \$symbols=\char`\"{}a-\/z\+A-\/Z0-\/9 ',.-\/°\char`\"{}, \$length=-\/1)
 \item 
 \hyperlink{classBasePageController_ad79d970cb91298dfa2206bfe22516618}{check\+Decimal} (\$field, \$value)
 \item 
@@ -75,8 +75,7 @@ Collaboration diagram for Base\+Page\+Controller\+:\nopagebreak
 \item 
 \hyperlink{classBasePageController_a153a1dcf2e23be9499f8083828671c26}{set\+Addshop\+Data} ()
 \item 
-\hypertarget{classBasePageController_aa71c4d8a5aa7b90d2074e511fe4ddcc2}{{\bfseries check\+Fields\+Addshop} (\$data)}\label{classBasePageController_aa71c4d8a5aa7b90d2074e511fe4ddcc2}
-
+\hyperlink{classBasePageController_aa71c4d8a5aa7b90d2074e511fe4ddcc2}{check\+Fields\+Addshop} (\$data)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -86,15 +85,18 @@ Collaboration diagram for Base\+Page\+Controller\+:\nopagebreak
 \item 
 \hypertarget{classBasePageController_acc0b220a790dddcd88a8ff7fd8fb88c9}{const {\bfseries U\+S\+E\+R\+\_\+\+M\+I\+N\+\_\+\+L\+E\+N} = 5}\label{classBasePageController_acc0b220a790dddcd88a8ff7fd8fb88c9}
 
+\item 
+\hypertarget{classBasePageController_a038012b54b56da5c27dbfc773ce75b00}{const {\bfseries F\+I\+E\+L\+D\+\_\+\+M\+I\+N\+\_\+\+L\+E\+N} = 1}\label{classBasePageController_a038012b54b56da5c27dbfc773ce75b00}
+
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-Handles the pages.
+Handles the pages, the checks, sanitizes the input and more.
 
 \begin{DoxyAuthor}{Author}
-fabio 
+Fabio Colella. 
 \end{DoxyAuthor}
 
 
@@ -108,15 +110,68 @@ fabio
 \item[{}]{\$length = {\ttfamily -\/1}}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_ade6dad738c6fce22cf8b44028628090d}
-Helper function to check if strings contain only chars and digits. \hypertarget{classBasePageController_a82b064f99d35b69e42a6a267e28ed04b}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Char\+Spaces@{check\+Char\+Spaces}}
+Helper function to check if strings contain only chars and digits.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the name of the field. \\
+\hline
+string & {\em \$value} & the value of the field. \\
+\hline
+int & {\em \$length} & (optional) checks also the lenghts of the value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the test is passed. 
+\end{DoxyReturn}
+\hypertarget{classBasePageController_ab4d71880bb1227a04df998de6cfc0f34}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Char\+Spaces@{check\+Char\+Spaces}}
 \index{check\+Char\+Spaces@{check\+Char\+Spaces}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{check\+Char\+Spaces}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::check\+Char\+Spaces (
 \begin{DoxyParamCaption}
 \item[{}]{\$field, }
-\item[{}]{\$value}
+\item[{}]{\$value, }
+\item[{}]{\$length = {\ttfamily -\/1}}
 \end{DoxyParamCaption}
-)}}\label{classBasePageController_a82b064f99d35b69e42a6a267e28ed04b}
-Helper function to check if strings contain only chars and spaces. \hypertarget{classBasePageController_a6f1a0a900ee8f95b6b6f12c52272a9a7}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Date@{check\+Date}}
+)}}\label{classBasePageController_ab4d71880bb1227a04df998de6cfc0f34}
+Helper function to check if strings contain only chars and spaces. 
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the name of the field. \\
+\hline
+string & {\em \$value} & the value of the field. \\
+\hline
+int & {\em \$length} & (optional) checks also the lenghts of the value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the test is passed. 
+\end{DoxyReturn}
+\hypertarget{classBasePageController_aaf4afedf5bb714c46c29e007eb095e55}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Composed\+Strings@{check\+Composed\+Strings}}
+\index{check\+Composed\+Strings@{check\+Composed\+Strings}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{check\+Composed\+Strings}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::check\+Composed\+Strings (
+\begin{DoxyParamCaption}
+\item[{}]{\$field, }
+\item[{}]{\$value, }
+\item[{}]{\$symbols = {\ttfamily \char`\"{}a-\/zA-\/Z0-\/9~',.-\/°\char`\"{}}, }
+\item[{}]{\$length = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_aaf4afedf5bb714c46c29e007eb095e55}
+Helper function to check if strings contain only certain symbols.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the name of the field. \\
+\hline
+string & {\em \$value} & the value of the field. \\
+\hline
+string & {\em \$symbols} & A list of symbols allowed, default\+: \char`\"{}a-\/z\+A-\/\+Z0-\/9 ',.-\/°\char`\"{}. \\
+\hline
+int & {\em \$length} & (optional) checks also the lenghts of the value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the test is passed. 
+\end{DoxyReturn}
+\hypertarget{classBasePageController_a6f1a0a900ee8f95b6b6f12c52272a9a7}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Date@{check\+Date}}
 \index{check\+Date@{check\+Date}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{check\+Date}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::check\+Date (
 \begin{DoxyParamCaption}
@@ -128,13 +183,13 @@ Checks that the date is in an appropriate format (Y\+Y\+Y\+Y-\/\+M\+M-\/\+D\+D).
 
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$field} & \\
+string & {\em \$field} & the name of the field. \\
 \hline
-string & {\em \$value} & \\
+string & {\em \$value} & the value of the field. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-boolean 
+boolean true if the test is passed. 
 \end{DoxyReturn}
 \hypertarget{classBasePageController_ad79d970cb91298dfa2206bfe22516618}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Decimal@{check\+Decimal}}
 \index{check\+Decimal@{check\+Decimal}!Base\+Page\+Controller@{Base\+Page\+Controller}}
@@ -144,7 +199,19 @@ boolean
 \item[{}]{\$value}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_ad79d970cb91298dfa2206bfe22516618}
-Helper function to check if strings contain only decimal digits. \hypertarget{classBasePageController_a5a0788181caf223a4ce208702c93e0c8}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Email@{check\+Email}}
+Helper function to check if strings contain only decimal numbers.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the name of the field. \\
+\hline
+string & {\em \$value} & the value of the field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the test is passed. 
+\end{DoxyReturn}
+\hypertarget{classBasePageController_a5a0788181caf223a4ce208702c93e0c8}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Email@{check\+Email}}
 \index{check\+Email@{check\+Email}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{check\+Email}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::check\+Email (
 \begin{DoxyParamCaption}
@@ -152,22 +219,55 @@ Helper function to check if strings contain only decimal digits. \hypertarget{cl
 \item[{}]{\$value}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_a5a0788181caf223a4ce208702c93e0c8}
-Helper function to check if the string is a valid email address. \hypertarget{classBasePageController_a56e85dfb915144831cf39435b88774f5}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Fields\+Sign\+Up@{check\+Fields\+Sign\+Up}}
+Helper function to check if the string is a valid email address.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the name of the field. \\
+\hline
+string & {\em \$value} & the value of the field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the test is passed. 
+\end{DoxyReturn}
+\hypertarget{classBasePageController_aa71c4d8a5aa7b90d2074e511fe4ddcc2}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Fields\+Addshop@{check\+Fields\+Addshop}}
+\index{check\+Fields\+Addshop@{check\+Fields\+Addshop}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{check\+Fields\+Addshop}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::check\+Fields\+Addshop (
+\begin{DoxyParamCaption}
+\item[{}]{\$data}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_aa71c4d8a5aa7b90d2074e511fe4ddcc2}
+Checks the fields one by one to add a shop.
+
+If adding new fields this class needs to be edited.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$data} & associative array where the name of the field is the key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the test is passed. 
+\end{DoxyReturn}
+\hypertarget{classBasePageController_a56e85dfb915144831cf39435b88774f5}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!check\+Fields\+Sign\+Up@{check\+Fields\+Sign\+Up}}
 \index{check\+Fields\+Sign\+Up@{check\+Fields\+Sign\+Up}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{check\+Fields\+Sign\+Up}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::check\+Fields\+Sign\+Up (
 \begin{DoxyParamCaption}
 \item[{{\bf User\+Access\+Model}}]{\$model}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_a56e85dfb915144831cf39435b88774f5}
-Checks the fields one by one.
+Checks the fields one by one for the sign up process.
 
-If adding new fields this class needs to be edited. 
+If adding new fields this class needs to be edited.
+
+
 \begin{DoxyParams}[1]{Parameters}
-\hyperlink{classModel}{Model} & {\em \$model} & \\
+\hyperlink{classUserAccessModel}{User\+Access\+Model} & {\em \$model} & a model to access the user table on the D\+B. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-boolean check\+Passed 
+boolean true if the test is passed. 
 \end{DoxyReturn}
 First check is the fields exist
 
@@ -183,7 +283,19 @@ Usernames are lowercase only, but uppercase can be accepted and converted to low
 \item[{}]{\$value}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_a6829b94ed721619b43879475c75b8fc8}
-Helper function to check if the string is strong enough to be used as a password. \hypertarget{classBasePageController_ac0083ad81bbac88f3ca4bdf258566a07}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!concat\+Error\+Array@{concat\+Error\+Array}}
+Helper function to check if the string is strong enough to be used as a password.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the name of the field. \\
+\hline
+string & {\em \$value} & the value of the field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the test is passed. 
+\end{DoxyReturn}
+\hypertarget{classBasePageController_ac0083ad81bbac88f3ca4bdf258566a07}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!concat\+Error\+Array@{concat\+Error\+Array}}
 \index{concat\+Error\+Array@{concat\+Error\+Array}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{concat\+Error\+Array}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::concat\+Error\+Array (
 \begin{DoxyParamCaption}
@@ -193,8 +305,8 @@ Helper function to check if the string is strong enough to be used as a password
 Merges the passed error array with the current error array.
 
 
-\begin{DoxyParams}{Parameters}
-{\em string\mbox{[}$\,$\mbox{]}} & \$error \\
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$error} & \\
 \hline
 \end{DoxyParams}
 \hypertarget{classBasePageController_a2aaad6f0fa836c9d7e6d9df5974cb4a7}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!get\+Date@{get\+Date}}
@@ -210,15 +322,15 @@ Returns a standard date in the Y\+Y\+Y\+Y-\/\+M\+M-\/\+D\+D format.
 
 
 \begin{DoxyParams}[1]{Parameters}
-type & {\em \$year} & \\
+type & {\em \$year} & the year \\
 \hline
-type & {\em \$month} & \\
+type & {\em \$month} & the month \\
 \hline
-type & {\em \$day} & \\
+type & {\em \$day} & the day \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string 
+string date in the Y\+Y\+Y\+Y-\/\+M\+M-\/\+D\+D format. 
 \end{DoxyReturn}
 \hypertarget{classBasePageController_aecf3ccde53aaa9b780feb5e12f2904ea}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Addshop@{load\+Page\+Addshop}}
 \index{load\+Page\+Addshop@{load\+Page\+Addshop}!Base\+Page\+Controller@{Base\+Page\+Controller}}
@@ -227,7 +339,22 @@ string
 {}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_aecf3ccde53aaa9b780feb5e12f2904ea}
-Page to add a new fisherman shop. \hypertarget{classBasePageController_a9ecd03fb676ab32ee9c2cb4e412757cc}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Err403@{load\+Page\+Err403}}
+Page to add a new fisherman shop. A field is set, we can assume the user already filled the form.
+
+Case everything went well.
+
+There's been a database error.
+
+The user filled the fields disrespecting some rule.
+
+No field is set, we can assume the user is coming there for the first time. \hypertarget{classBasePageController_a96ace79928e80d29e6560b1fb965e859}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Ajax\+Search\+Shop@{load\+Page\+Ajax\+Search\+Shop}}
+\index{load\+Page\+Ajax\+Search\+Shop@{load\+Page\+Ajax\+Search\+Shop}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{load\+Page\+Ajax\+Search\+Shop}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Ajax\+Search\+Shop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_a96ace79928e80d29e6560b1fb965e859}
+Handles an Ajax request to search a shop. \hypertarget{classBasePageController_a9ecd03fb676ab32ee9c2cb4e412757cc}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Err403@{load\+Page\+Err403}}
 \index{load\+Page\+Err403@{load\+Page\+Err403}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{load\+Page\+Err403}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Err403 (
 \begin{DoxyParamCaption}
@@ -246,12 +373,19 @@ request & {\em \$request} & \\
 {}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_a07d3e03b8e2ec5cc698f057a3496c14b}
-Handles the 404 error 
+Handles the 404 error. 
 \begin{DoxyParams}[1]{Parameters}
 request & {\em \$request} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{classBasePageController_a66084d1db3fcc8a5cb1f44cd82b7948a}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Home@{load\+Page\+Home}}
+Let's make a laugh of that. \hypertarget{classBasePageController_ae7ecc6f491f580059698d1a1a8e8d9ac}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Help@{load\+Page\+Help}}
+\index{load\+Page\+Help@{load\+Page\+Help}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{load\+Page\+Help}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_ae7ecc6f491f580059698d1a1a8e8d9ac}
+Creates an informative page. \hypertarget{classBasePageController_a66084d1db3fcc8a5cb1f44cd82b7948a}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Home@{load\+Page\+Home}}
 \index{load\+Page\+Home@{load\+Page\+Home}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{load\+Page\+Home}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Home (
 \begin{DoxyParamCaption}
@@ -265,38 +399,79 @@ Renders the home page.
 array & {\em \$request} & \\
 \hline
 \end{DoxyParams}
-\hypertarget{classBasePageController_affa5617be55ed9bf233fd7bd1b2e19c9}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Profile@{load\+Page\+Profile}}
+\hypertarget{classBasePageController_a36cdd7c6a038c2664b333fbf8de6383a}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Login@{load\+Page\+Login}}
+\index{load\+Page\+Login@{load\+Page\+Login}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{load\+Page\+Login}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_a36cdd7c6a038c2664b333fbf8de6383a}
+Handles the login process. \hypertarget{classBasePageController_ae7d620e0d251d06407cfe960cafe3d57}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Logout@{load\+Page\+Logout}}
+\index{load\+Page\+Logout@{load\+Page\+Logout}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{load\+Page\+Logout}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Logout (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_ae7d620e0d251d06407cfe960cafe3d57}
+Lets a user log out. \hypertarget{classBasePageController_affa5617be55ed9bf233fd7bd1b2e19c9}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Profile@{load\+Page\+Profile}}
 \index{load\+Page\+Profile@{load\+Page\+Profile}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{load\+Page\+Profile}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Profile (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_affa5617be55ed9bf233fd7bd1b2e19c9}
-Handles the profile page. \hypertarget{classBasePageController_aae6760084899d261e8f19f8dc2cbfd30}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Signup@{load\+Page\+Signup}}
+Handles the profile page and the admin panel to remove the shops. The user is not logged.
+
+The user is logged and is an admin.
+
+\hyperlink{classUser}{User} data have been collected and can be displayed
+
+The user data could not be loaded.
+
+The user is not admin.
+
+\hyperlink{classUser}{User} data have been collected and can be displayed
+
+The user data could not be loaded. \hypertarget{classBasePageController_ad63921678e571dbd0a37d3afd6b55f5a}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Remove\+Shop@{load\+Page\+Remove\+Shop}}
+\index{load\+Page\+Remove\+Shop@{load\+Page\+Remove\+Shop}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{load\+Page\+Remove\+Shop}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Remove\+Shop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classBasePageController_ad63921678e571dbd0a37d3afd6b55f5a}
+Asks a confirmation before deleting a shop definitely. The user is not logged in.
+
+The user tried cheating and won't receive gifts for Christmas.
+
+The admin is ready to delete the shop.
+
+The admin is asked for confirmation before deleting the shop. \hypertarget{classBasePageController_aae6760084899d261e8f19f8dc2cbfd30}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Signup@{load\+Page\+Signup}}
 \index{load\+Page\+Signup@{load\+Page\+Signup}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{load\+Page\+Signup}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Signup (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_aae6760084899d261e8f19f8dc2cbfd30}
-Handles the signup process. \hypertarget{classBasePageController_ad065341a301057b6b0dfc3b1e56ed56a}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!logout@{logout}}
-\index{logout@{logout}!Base\+Page\+Controller@{Base\+Page\+Controller}}
-\subsubsection[{logout}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::logout (
+Handles the signup process. \hypertarget{classBasePageController_a179555764b7f9269d724522d4c32a59b}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!load\+Page\+Tests@{load\+Page\+Tests}}
+\index{load\+Page\+Tests@{load\+Page\+Tests}!Base\+Page\+Controller@{Base\+Page\+Controller}}
+\subsubsection[{load\+Page\+Tests}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::load\+Page\+Tests (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}\label{classBasePageController_ad065341a301057b6b0dfc3b1e56ed56a}
-Lets a user log out. \hypertarget{classBasePageController_a153a1dcf2e23be9499f8083828671c26}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!set\+Addshop\+Data@{set\+Addshop\+Data}}
+)}}\label{classBasePageController_a179555764b7f9269d724522d4c32a59b}
+Runs a set of tests to check if the website runs correctly. The user is not logged in.
+
+The user tried to access a reserved area. \hypertarget{classBasePageController_a153a1dcf2e23be9499f8083828671c26}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!set\+Addshop\+Data@{set\+Addshop\+Data}}
 \index{set\+Addshop\+Data@{set\+Addshop\+Data}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{set\+Addshop\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::set\+Addshop\+Data (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_a153a1dcf2e23be9499f8083828671c26}
-Returns an associative array of strings containing data if it has been passed.
+Returns an associative array of strings containing the data sent found in the request array.
 
 \begin{DoxyReturn}{Returns}
-string\mbox{[}\mbox{]} 
+array 
 \end{DoxyReturn}
 \hypertarget{classBasePageController_a877c4f32b7d39e566f7832aef94c2f11}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!set\+Signup\+Fields@{set\+Signup\+Fields}}
 \index{set\+Signup\+Fields@{set\+Signup\+Fields}!Base\+Page\+Controller@{Base\+Page\+Controller}}
@@ -305,14 +480,24 @@ string\mbox{[}\mbox{]}
 {}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_a877c4f32b7d39e566f7832aef94c2f11}
-Setup the user variable feeding it with the form fields. Additonal control to obtain the birthdate \hypertarget{classBasePageController_a777f34065716ce7f7706ea745fbdd254}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!set\+Warning@{set\+Warning}}
+Setup the \hyperlink{classUser}{User} object feeding its properties with the form fields. Additonal control to obtain the birthdate. \hypertarget{classBasePageController_a777f34065716ce7f7706ea745fbdd254}{\index{Base\+Page\+Controller@{Base\+Page\+Controller}!set\+Warning@{set\+Warning}}
 \index{set\+Warning@{set\+Warning}!Base\+Page\+Controller@{Base\+Page\+Controller}}
 \subsubsection[{set\+Warning}]{\setlength{\rightskip}{0pt plus 5cm}Base\+Page\+Controller\+::set\+Warning (
 \begin{DoxyParamCaption}
 \item[{}]{\$field}
 \end{DoxyParamCaption}
 )}}\label{classBasePageController_a777f34065716ce7f7706ea745fbdd254}
-Marks the fields wich require attention. 
+Marks a field which require attention.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the field to mark. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string field with class warning. 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

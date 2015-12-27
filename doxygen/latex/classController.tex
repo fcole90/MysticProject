@@ -19,7 +19,7 @@ Inheritance diagram for Controller\+:\nopagebreak
 \item 
 \hyperlink{classController_a555247a38f8b4ea98a85bed7c6798e0a}{page\+Title} (\$page)
 \item 
-\hyperlink{classController_ae560b1221cb9f3891c432c3dd0292922}{set\+Title} (\$title)
+\hyperlink{classController_a99e010083a94a876c218d6fe16f70ed5}{set\+Title} (\$page)
 \item 
 \hyperlink{classController_af3f91509e2fbae1fd863df1577fcc4e7}{set\+Custom\+Title} (\$title)
 \item 
@@ -61,10 +61,10 @@ Inheritance diagram for Controller\+:\nopagebreak
 
 
 \subsection{Detailed Description}
-All controllers should inherit from here
+All controllers should inherit from it.
 
 \begin{DoxyAuthor}{Author}
-fabio 
+Fabio Colella. 
 \end{DoxyAuthor}
 
 
@@ -76,9 +76,11 @@ fabio
 \item[{}]{\$request}
 \end{DoxyParamCaption}
 )}}\label{classController_ab91faf91a99b21a429324499f9ec9f70}
+The constructor.
 
-\begin{DoxyParams}[1]{Parameters}
-array & {\em \$request} & \\
+
+\begin{DoxyParams}{Parameters}
+{\em mixed\mbox{[}$\,$\mbox{]}} & \$request the \$\+\_\+\+R\+E\+Q\+U\+E\+S\+T array. \\
 \hline
 \end{DoxyParams}
 
@@ -91,8 +93,10 @@ array & {\em \$request} & \\
 {}
 \end{DoxyParamCaption}
 )}}\label{classController_a3057228d46eddceb352a1537ef05e8b7}
+Getter method for the basetitle.
+
 \begin{DoxyReturn}{Returns}
-string 
+string the basetitle. 
 \end{DoxyReturn}
 \hypertarget{classController_a67beb590eef4f36b07e6c9ef04fc8337}{\index{Controller@{Controller}!close\+Session@{close\+Session}}
 \index{close\+Session@{close\+Session}!Controller@{Controller}}
@@ -101,22 +105,31 @@ string
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}}\label{classController_a67beb590eef4f36b07e6c9ef04fc8337}
-Destroys the session. \hypertarget{classController_a50e4138bea238a7bba318fffb948eeb1}{\index{Controller@{Controller}!get\+Links@{get\+Links}}
+Destroys the active session. \hypertarget{classController_a50e4138bea238a7bba318fffb948eeb1}{\index{Controller@{Controller}!get\+Links@{get\+Links}}
 \index{get\+Links@{get\+Links}!Controller@{Controller}}
 \subsubsection[{get\+Links}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Links (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}\label{classController_a50e4138bea238a7bba318fffb948eeb1}
-Returns a list of links. \hypertarget{classController_aa844281accdd5aa2ca1ab1d890332b76}{\index{Controller@{Controller}!get\+Page@{get\+Page}}
+Returns a list of links.
+
+The links are in the form (page name, page link).
+
+\begin{DoxyReturn}{Returns}
+array\mbox{[}\mbox{]} list of links. 
+\end{DoxyReturn}
+\hypertarget{classController_aa844281accdd5aa2ca1ab1d890332b76}{\index{Controller@{Controller}!get\+Page@{get\+Page}}
 \index{get\+Page@{get\+Page}!Controller@{Controller}}
 \subsubsection[{get\+Page}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::get\+Page (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}\label{classController_aa844281accdd5aa2ca1ab1d890332b76}
+Getter method for the page.
+
 \begin{DoxyReturn}{Returns}
-string 
+string. 
 \end{DoxyReturn}
 \hypertarget{classController_ac85206dce558e214f72fc3ca56f8cc31}{\index{Controller@{Controller}!get\+Session\+Username@{get\+Session\+Username}}
 \index{get\+Session\+Username@{get\+Session\+Username}!Controller@{Controller}}
@@ -125,10 +138,10 @@ string
 {}
 \end{DoxyParamCaption}
 )}}\label{classController_ac85206dce558e214f72fc3ca56f8cc31}
-Get the username saved in the session.
+Getter method for the username.
 
 \begin{DoxyReturn}{Returns}
-string 
+string username. 
 \end{DoxyReturn}
 \hypertarget{classController_ae8b4904843b2d665164620160b3c7157}{\index{Controller@{Controller}!get\+Title@{get\+Title}}
 \index{get\+Title@{get\+Title}!Controller@{Controller}}
@@ -137,6 +150,8 @@ string
 {}
 \end{DoxyParamCaption}
 )}}\label{classController_ae8b4904843b2d665164620160b3c7157}
+Getter method for the title.
+
 \begin{DoxyReturn}{Returns}
 string 
 \end{DoxyReturn}
@@ -150,7 +165,7 @@ string
 Returns true if there's an active login session.
 
 \begin{DoxyReturn}{Returns}
-boolean 
+boolean true if is logged in. 
 \end{DoxyReturn}
 \hypertarget{classController_a555247a38f8b4ea98a85bed7c6798e0a}{\index{Controller@{Controller}!page\+Title@{page\+Title}}
 \index{page\+Title@{page\+Title}!Controller@{Controller}}
@@ -159,13 +174,15 @@ boolean
 \item[{}]{\$page}
 \end{DoxyParamCaption}
 )}}\label{classController_a555247a38f8b4ea98a85bed7c6798e0a}
+Composes the page title.
+
 
 \begin{DoxyParams}[1]{Parameters}
-array & {\em \$page} & \\
+string & {\em \$page} & the page name. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string 
+string the complete page title. 
 \end{DoxyReturn}
 \hypertarget{classController_a90590c2cd8c1a89cc6eada64f0f24361}{\index{Controller@{Controller}!safe\+Input@{safe\+Input}}
 \index{safe\+Input@{safe\+Input}!Controller@{Controller}}
@@ -174,7 +191,9 @@ string
 \item[{}]{\$input}
 \end{DoxyParamCaption}
 )}}\label{classController_a90590c2cd8c1a89cc6eada64f0f24361}
-Makes the input safe. 
+Makes the input safe.
+
+
 \begin{DoxyParams}{Parameters}
 {\em \$input} & string \\
 \hline
@@ -189,21 +208,25 @@ string
 \item[{}]{\$title}
 \end{DoxyParamCaption}
 )}}\label{classController_af3f91509e2fbae1fd863df1577fcc4e7}
+Sets a custom title.
+
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$title} & \\
+string & {\em \$title} & the title to use. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classController_ae560b1221cb9f3891c432c3dd0292922}{\index{Controller@{Controller}!set\+Title@{set\+Title}}
+\hypertarget{classController_a99e010083a94a876c218d6fe16f70ed5}{\index{Controller@{Controller}!set\+Title@{set\+Title}}
 \index{set\+Title@{set\+Title}!Controller@{Controller}}
 \subsubsection[{set\+Title}]{\setlength{\rightskip}{0pt plus 5cm}Controller\+::set\+Title (
 \begin{DoxyParamCaption}
-\item[{}]{\$title}
+\item[{}]{\$page}
 \end{DoxyParamCaption}
-)}}\label{classController_ae560b1221cb9f3891c432c3dd0292922}
+)}}\label{classController_a99e010083a94a876c218d6fe16f70ed5}
+Set the title of the page.
+
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$title} & \\
+string & {\em \$page} & the page name. \\
 \hline
 \end{DoxyParams}
 

@@ -8,19 +8,18 @@
 \item 
 \hyperlink{classGenericView_a9152f4f4f98de0728a14ec3742ad8c3b}{get\+Admin\+View} (\$user, \$shoplist)
 \item 
-\hypertarget{classGenericView_a0901126944127bdad1bdea93f37bfb1b}{{\bfseries get\+Home\+Content} (\$data)}\label{classGenericView_a0901126944127bdad1bdea93f37bfb1b}
-
+\hyperlink{classGenericView_a0901126944127bdad1bdea93f37bfb1b}{get\+Home\+Content} (\$data)
 \item 
-\hypertarget{classGenericView_afa13307b6c5eb803fe1d682fc01e919b}{{\bfseries get\+Remove\+Shop\+Confirmation} (\$shop\+\_\+name)}\label{classGenericView_afa13307b6c5eb803fe1d682fc01e919b}
-
+\hyperlink{classGenericView_afa13307b6c5eb803fe1d682fc01e919b}{get\+Remove\+Shop\+Confirmation} (\$shop\+\_\+name)
 \item 
-\hypertarget{classGenericView_ad274980ef83921cf8f5440fea88e3b6b}{{\bfseries get\+Remove\+Shop\+Certainty} (\$shop\+\_\+name, \$id)}\label{classGenericView_ad274980ef83921cf8f5440fea88e3b6b}
-
+\hyperlink{classGenericView_ad274980ef83921cf8f5440fea88e3b6b}{get\+Remove\+Shop\+Certainty} (\$shop\+\_\+name, \$id)
 \item 
-\hypertarget{classGenericView_a19312793a751a9d8afadd6425f5f47e5}{{\bfseries get\+Info} ()}\label{classGenericView_a19312793a751a9d8afadd6425f5f47e5}
-
+\hyperlink{classGenericView_a19312793a751a9d8afadd6425f5f47e5}{get\+Info} ()
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Some generic content views. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classGenericView_a9152f4f4f98de0728a14ec3742ad8c3b}{\index{Generic\+View@{Generic\+View}!get\+Admin\+View@{get\+Admin\+View}}
@@ -34,12 +33,43 @@
 Get the H\+T\+M\+L to render the profile and admin panel.
 
 
-\begin{DoxyParams}{Parameters}
-{\em profile} & string\mbox{[}\mbox{]} \\
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classUser}{User} & {\em \$user} & user object. \\
+\hline
+array & {\em \$shoplist} & a list of shops and their data. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string H\+T\+M\+L view 
+string H\+T\+M\+L view. 
+\end{DoxyReturn}
+\hypertarget{classGenericView_a0901126944127bdad1bdea93f37bfb1b}{\index{Generic\+View@{Generic\+View}!get\+Home\+Content@{get\+Home\+Content}}
+\index{get\+Home\+Content@{get\+Home\+Content}!Generic\+View@{Generic\+View}}
+\subsubsection[{get\+Home\+Content}]{\setlength{\rightskip}{0pt plus 5cm}Generic\+View\+::get\+Home\+Content (
+\begin{DoxyParamCaption}
+\item[{}]{\$data}
+\end{DoxyParamCaption}
+)}}\label{classGenericView_a0901126944127bdad1bdea93f37bfb1b}
+Get the H\+T\+M\+L to render the home and the search.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$data} & associative array where the key is the field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L. 
+\end{DoxyReturn}
+\hypertarget{classGenericView_a19312793a751a9d8afadd6425f5f47e5}{\index{Generic\+View@{Generic\+View}!get\+Info@{get\+Info}}
+\index{get\+Info@{get\+Info}!Generic\+View@{Generic\+View}}
+\subsubsection[{get\+Info}]{\setlength{\rightskip}{0pt plus 5cm}Generic\+View\+::get\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classGenericView_a19312793a751a9d8afadd6425f5f47e5}
+Returns an informational message.
+
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L 
 \end{DoxyReturn}
 \hypertarget{classGenericView_af4707380a714031af8a721909dcc588f}{\index{Generic\+View@{Generic\+View}!get\+Profile\+View@{get\+Profile\+View}}
 \index{get\+Profile\+View@{get\+Profile\+View}!Generic\+View@{Generic\+View}}
@@ -51,12 +81,49 @@ string H\+T\+M\+L view
 Get the H\+T\+M\+L to render the profile.
 
 
-\begin{DoxyParams}{Parameters}
-{\em profile} & string\mbox{[}\mbox{]} \\
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classUser}{User} & {\em \$user} & user object. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 string H\+T\+M\+L view 
+\end{DoxyReturn}
+\hypertarget{classGenericView_ad274980ef83921cf8f5440fea88e3b6b}{\index{Generic\+View@{Generic\+View}!get\+Remove\+Shop\+Certainty@{get\+Remove\+Shop\+Certainty}}
+\index{get\+Remove\+Shop\+Certainty@{get\+Remove\+Shop\+Certainty}!Generic\+View@{Generic\+View}}
+\subsubsection[{get\+Remove\+Shop\+Certainty}]{\setlength{\rightskip}{0pt plus 5cm}Generic\+View\+::get\+Remove\+Shop\+Certainty (
+\begin{DoxyParamCaption}
+\item[{}]{\$shop\+\_\+name, }
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)}}\label{classGenericView_ad274980ef83921cf8f5440fea88e3b6b}
+Get the H\+T\+M\+L where asking for confirmation before removal.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$shop\+\_\+name} & the name of the shop \\
+\hline
+int & {\em \$id} & the id of the shop \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L 
+\end{DoxyReturn}
+\hypertarget{classGenericView_afa13307b6c5eb803fe1d682fc01e919b}{\index{Generic\+View@{Generic\+View}!get\+Remove\+Shop\+Confirmation@{get\+Remove\+Shop\+Confirmation}}
+\index{get\+Remove\+Shop\+Confirmation@{get\+Remove\+Shop\+Confirmation}!Generic\+View@{Generic\+View}}
+\subsubsection[{get\+Remove\+Shop\+Confirmation}]{\setlength{\rightskip}{0pt plus 5cm}Generic\+View\+::get\+Remove\+Shop\+Confirmation (
+\begin{DoxyParamCaption}
+\item[{}]{\$shop\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{classGenericView_afa13307b6c5eb803fe1d682fc01e919b}
+Get the H\+T\+M\+L of the confirmation.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$shop\+\_\+name} & the name of the shop \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L 
 \end{DoxyReturn}
 
 

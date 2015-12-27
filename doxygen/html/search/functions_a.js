@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['removeshop',['removeShop',['../classShopModel.html#ae035aa872e97c08247d203f90e228fe2',1,'ShopModel']]],
-  ['render',['render',['../classPresenter.html#a2194a46cf6c23dd4e483f1ee63bc2236',1,'Presenter']]]
+  ['pagetitle',['pageTitle',['../classController.html#a555247a38f8b4ea98a85bed7c6798e0a',1,'Controller']]],
+  ['printcontent',['printContent',['../classPresenter.html#a327ab1b725813be28114753935b42cd4',1,'Presenter']]],
+  ['printerrorlist',['printErrorList',['../classPresenter.html#a5e4fe61038c5535719c6d7bc3b557019',1,'Presenter']]],
+  ['printredir',['printRedir',['../classPresenter.html#ace2a8a72ee53e6be953614d00e29f741',1,'Presenter']]]
 ];

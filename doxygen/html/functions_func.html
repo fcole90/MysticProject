@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Fisherman Locator
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.9</span>
    </div>
   </td>
  </tr>
@@ -82,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_f"><span>f</span></a></li>
       <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_j"><span>j</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
@@ -109,9 +110,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index__"></a>- _ -</h3><ul>
 <li>__construct()
 : <a class="el" href="classController.html#ab91faf91a99b21a429324499f9ec9f70">Controller</a>
-, <a class="el" href="classLink.html#a8bc1aab9dbc0c31d23aa657fb73ecc36">Link</a>
+, <a class="el" href="classDBModel.html#a2c73c9e833b304628088149c76aad6c1">DBModel</a>
 , <a class="el" href="classModel.html#a655d64396144aad24a62132fa11b92ea">Model</a>
+, <a class="el" href="classNav.html#a7259952c17df9af4f7fef4bfce0c47a3">Nav</a>
 , <a class="el" href="classPresenter.html#a364fc50678030d816f515223be72b23a">Presenter</a>
+, <a class="el" href="classShopModel.html#abdc933b979dc53048b3ba5be1331acf1">ShopModel</a>
+, <a class="el" href="classUser.html#a3e0d1d6040692cac64fa423f21d50fa9">User</a>
+, <a class="el" href="classUserAccessModel.html#a4ff78b6bca940216de17457d8ec7f76d">UserAccessModel</a>
 </li>
 </ul>
 
@@ -141,7 +146,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classBasePageController.html#ade6dad738c6fce22cf8b44028628090d">BasePageController</a>
 </li>
 <li>checkCharSpaces()
-: <a class="el" href="classBasePageController.html#a82b064f99d35b69e42a6a267e28ed04b">BasePageController</a>
+: <a class="el" href="classBasePageController.html#ab4d71880bb1227a04df998de6cfc0f34">BasePageController</a>
+</li>
+<li>checkComposedStrings()
+: <a class="el" href="classBasePageController.html#aaf4afedf5bb714c46c29e007eb095e55">BasePageController</a>
 </li>
 <li>checkDate()
 : <a class="el" href="classBasePageController.html#a6f1a0a900ee8f95b6b6f12c52272a9a7">BasePageController</a>
@@ -154,6 +162,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>checkFieldNotExists()
 : <a class="el" href="classUserAccessModel.html#a7ed6ab03bbd86466f0864996390254af">UserAccessModel</a>
+</li>
+<li>checkFieldsAddshop()
+: <a class="el" href="classBasePageController.html#aa71c4d8a5aa7b90d2074e511fe4ddcc2">BasePageController</a>
 </li>
 <li>checkFieldsSignUp()
 : <a class="el" href="classBasePageController.html#a56e85dfb915144831cf39435b88774f5">BasePageController</a>
@@ -209,11 +220,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>generateYearsOptions()
 : <a class="el" href="classForm.html#a5bcd8bfb0770d2ca9e6874b329ab7f58">Form</a>
 </li>
+<li>get()
+: <a class="el" href="classUser.html#ac3880c17324e5d182bae56655365df85">User</a>
+</li>
 <li>getAddshopConfirmation()
 : <a class="el" href="classForm.html#a00d84099c9d0a8fd6cdc77983b2dac93">Form</a>
 </li>
 <li>getAddshopForm()
-: <a class="el" href="classForm.html#a9fe8a5c4812f4cbe0ff7daa05ea40cbf">Form</a>
+: <a class="el" href="classForm.html#ac423ca7790207dbef532ae8141b4238f">Form</a>
 </li>
 <li>getAdminView()
 : <a class="el" href="classGenericView.html#a9152f4f4f98de0728a14ec3742ad8c3b">GenericView</a>
@@ -231,6 +245,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getError()
 : <a class="el" href="classModel.html#a0372eec1043cef6e9b6a50220cb0b031">Model</a>
 </li>
+<li>getHomeContent()
+: <a class="el" href="classGenericView.html#a0901126944127bdad1bdea93f37bfb1b">GenericView</a>
+</li>
+<li>getInfo()
+: <a class="el" href="classGenericView.html#a19312793a751a9d8afadd6425f5f47e5">GenericView</a>
+</li>
 <li>getLinks()
 : <a class="el" href="classController.html#a50e4138bea238a7bba318fffb948eeb1">Controller</a>
 </li>
@@ -238,7 +258,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classForm.html#a61045a8ccfd7f300a729027a70a00700">Form</a>
 </li>
 <li>getLoginForm()
-: <a class="el" href="classForm.html#aa3ff4d216868165f1f8c442ae7ea7c95">Form</a>
+: <a class="el" href="classForm.html#a9336ceae0d84d10b3c14f7542c05d0cd">Form</a>
 </li>
 <li>getLogout()
 : <a class="el" href="classForm.html#a08c23069323910390d5fc8d4ede9690d">Form</a>
@@ -249,11 +269,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getProfileView()
 : <a class="el" href="classGenericView.html#af4707380a714031af8a721909dcc588f">GenericView</a>
 </li>
+<li>getRemoveShopCertainty()
+: <a class="el" href="classGenericView.html#ad274980ef83921cf8f5440fea88e3b6b">GenericView</a>
+</li>
+<li>getRemoveShopConfirmation()
+: <a class="el" href="classGenericView.html#afa13307b6c5eb803fe1d682fc01e919b">GenericView</a>
+</li>
 <li>getSessionUsername()
 : <a class="el" href="classController.html#ac85206dce558e214f72fc3ca56f8cc31">Controller</a>
 </li>
+<li>getSignupConfirmation()
+: <a class="el" href="classForm.html#a6a05f450eb73a3524602817c34da17be">Form</a>
+</li>
+<li>getSignupErrorDatabase()
+: <a class="el" href="classForm.html#a11a02f548641b39c9c7c04436c95befa">Form</a>
+</li>
 <li>getSignupForm()
-: <a class="el" href="classForm.html#a3e3459dffd7067e2e707e0a622945a66">Form</a>
+: <a class="el" href="classForm.html#af81406d5a0e7a81734e472af1758200a">Form</a>
 </li>
 <li>getTitle()
 : <a class="el" href="classController.html#ae8b4904843b2d665164620160b3c7157">Controller</a>
@@ -271,9 +303,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 
 
+<h3><a class="anchor" id="index_j"></a>- j -</h3><ul>
+<li>json()
+: <a class="el" href="classPresenter.html#a02088a50a3134097a1b785b0315937b6">Presenter</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
 <li>loadPageAddshop()
 : <a class="el" href="classBasePageController.html#aecf3ccde53aaa9b780feb5e12f2904ea">BasePageController</a>
+</li>
+<li>loadPageAjaxSearchShop()
+: <a class="el" href="classBasePageController.html#a96ace79928e80d29e6560b1fb965e859">BasePageController</a>
 </li>
 <li>loadPageErr403()
 : <a class="el" href="classBasePageController.html#a9ecd03fb676ab32ee9c2cb4e412757cc">BasePageController</a>
@@ -281,17 +323,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>loadPageErr404()
 : <a class="el" href="classBasePageController.html#a07d3e03b8e2ec5cc698f057a3496c14b">BasePageController</a>
 </li>
+<li>loadPageHelp()
+: <a class="el" href="classBasePageController.html#ae7ecc6f491f580059698d1a1a8e8d9ac">BasePageController</a>
+</li>
 <li>loadPageHome()
 : <a class="el" href="classBasePageController.html#a66084d1db3fcc8a5cb1f44cd82b7948a">BasePageController</a>
+</li>
+<li>loadPageLogin()
+: <a class="el" href="classBasePageController.html#a36cdd7c6a038c2664b333fbf8de6383a">BasePageController</a>
+</li>
+<li>loadPageLogout()
+: <a class="el" href="classBasePageController.html#ae7d620e0d251d06407cfe960cafe3d57">BasePageController</a>
 </li>
 <li>loadPageProfile()
 : <a class="el" href="classBasePageController.html#affa5617be55ed9bf233fd7bd1b2e19c9">BasePageController</a>
 </li>
+<li>loadPageRemoveShop()
+: <a class="el" href="classBasePageController.html#ad63921678e571dbd0a37d3afd6b55f5a">BasePageController</a>
+</li>
 <li>loadPageSignup()
 : <a class="el" href="classBasePageController.html#aae6760084899d261e8f19f8dc2cbfd30">BasePageController</a>
 </li>
-<li>logout()
-: <a class="el" href="classBasePageController.html#ad065341a301057b6b0dfc3b1e56ed56a">BasePageController</a>
+<li>loadPageTests()
+: <a class="el" href="classBasePageController.html#a179555764b7f9269d724522d4c32a59b">BasePageController</a>
 </li>
 </ul>
 
@@ -306,6 +360,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>printErrorList()
 : <a class="el" href="classPresenter.html#a5e4fe61038c5535719c6d7bc3b557019">Presenter</a>
 </li>
+<li>printRedir()
+: <a class="el" href="classPresenter.html#ace2a8a72ee53e6be953614d00e29f741">Presenter</a>
+</li>
 </ul>
 
 
@@ -314,7 +371,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classShopModel.html#ae035aa872e97c08247d203f90e228fe2">ShopModel</a>
 </li>
 <li>render()
-: <a class="el" href="classPresenter.html#a2194a46cf6c23dd4e483f1ee63bc2236">Presenter</a>
+: <a class="el" href="classNav.html#a3e7c5d2f40a243aa27bcef340cf2ec9d">Nav</a>
+, <a class="el" href="classPresenter.html#a2194a46cf6c23dd4e483f1ee63bc2236">Presenter</a>
 </li>
 </ul>
 
@@ -323,11 +381,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>safeInput()
 : <a class="el" href="classController.html#a90590c2cd8c1a89cc6eada64f0f24361">Controller</a>
 </li>
+<li>set()
+: <a class="el" href="classUser.html#af9023f37771e314acc0707060a449bb8">User</a>
+</li>
 <li>setAddshopData()
 : <a class="el" href="classBasePageController.html#a153a1dcf2e23be9499f8083828671c26">BasePageController</a>
 </li>
 <li>setContent()
 : <a class="el" href="classPresenter.html#a9a7d0d294934548d13620baca0657087">Presenter</a>
+</li>
+<li>setCustomHeader()
+: <a class="el" href="classPresenter.html#a299e31916fc252227e369fc5efad77f9">Presenter</a>
 </li>
 <li>setCustomTitle()
 : <a class="el" href="classController.html#af3f91509e2fbae1fd863df1577fcc4e7">Controller</a>
@@ -342,7 +406,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classBasePageController.html#a877c4f32b7d39e566f7832aef94c2f11">BasePageController</a>
 </li>
 <li>setTitle()
-: <a class="el" href="classController.html#ae560b1221cb9f3891c432c3dd0292922">Controller</a>
+: <a class="el" href="classController.html#a99e010083a94a876c218d6fe16f70ed5">Controller</a>
 , <a class="el" href="classPresenter.html#a80cf6f790c8705d20632f7e3a73947fe">Presenter</a>
 </li>
 <li>setUser()
@@ -361,7 +425,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 27 2015 10:39:18 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Dec 27 2015 18:58:56 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

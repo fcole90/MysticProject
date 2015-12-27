@@ -1,7 +1,6 @@
 <?php
-relRequire("model/Link.php");
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,9 +18,9 @@ relRequire("model/Link.php");
  */
 
 /**
- * Description of Nav
+ * The Nav and the links.
  *
- * @author fabio
+ * @author Fabio Colella
  */
 class Nav 
 {
@@ -36,6 +35,11 @@ class Nav
      */
     private $loggedIn;
     
+    /**
+     * The constructor.
+     * 
+     * @param array $otherLinks a list of links.
+     */
     public function __construct($otherLinks = null)
     {
         if (isset($otherLinks)) {
@@ -47,6 +51,9 @@ class Nav
         }
     }
     
+    /**
+     * Renders the Nav.
+     */
     public function render()
     {
         $first_link = array_shift($this->otherLinks);

@@ -1,6 +1,15 @@
 var searchData=
 [
-  ['pagetitle',['pageTitle',['../classController.html#a555247a38f8b4ea98a85bed7c6798e0a',1,'Controller']]],
-  ['printcontent',['printContent',['../classPresenter.html#a327ab1b725813be28114753935b42cd4',1,'Presenter']]],
-  ['printerrorlist',['printErrorList',['../classPresenter.html#a5e4fe61038c5535719c6d7bc3b557019',1,'Presenter']]]
+  ['loadpageaddshop',['loadPageAddshop',['../classBasePageController.html#aecf3ccde53aaa9b780feb5e12f2904ea',1,'BasePageController']]],
+  ['loadpageajaxsearchshop',['loadPageAjaxSearchShop',['../classBasePageController.html#a96ace79928e80d29e6560b1fb965e859',1,'BasePageController']]],
+  ['loadpageerr403',['loadPageErr403',['../classBasePageController.html#a9ecd03fb676ab32ee9c2cb4e412757cc',1,'BasePageController']]],
+  ['loadpageerr404',['loadPageErr404',['../classBasePageController.html#a07d3e03b8e2ec5cc698f057a3496c14b',1,'BasePageController']]],
+  ['loadpagehelp',['loadPageHelp',['../classBasePageController.html#ae7ecc6f491f580059698d1a1a8e8d9ac',1,'BasePageController']]],
+  ['loadpagehome',['loadPageHome',['../classBasePageController.html#a66084d1db3fcc8a5cb1f44cd82b7948a',1,'BasePageController']]],
+  ['loadpagelogin',['loadPageLogin',['../classBasePageController.html#a36cdd7c6a038c2664b333fbf8de6383a',1,'BasePageController']]],
+  ['loadpagelogout',['loadPageLogout',['../classBasePageController.html#ae7d620e0d251d06407cfe960cafe3d57',1,'BasePageController']]],
+  ['loadpageprofile',['loadPageProfile',['../classBasePageController.html#affa5617be55ed9bf233fd7bd1b2e19c9',1,'BasePageController']]],
+  ['loadpageremoveshop',['loadPageRemoveShop',['../classBasePageController.html#ad63921678e571dbd0a37d3afd6b55f5a',1,'BasePageController']]],
+  ['loadpagesignup',['loadPageSignup',['../classBasePageController.html#aae6760084899d261e8f19f8dc2cbfd30',1,'BasePageController']]],
+  ['loadpagetests',['loadPageTests',['../classBasePageController.html#a179555764b7f9269d724522d4c32a59b',1,'BasePageController']]]
 ];

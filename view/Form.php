@@ -1,7 +1,7 @@
 <?php
 relRequire("model/User.php");
 /* 
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -17,27 +17,25 @@ relRequire("model/User.php");
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
+
 /**
- * Form to sign up to the website.
+ * Views for many kinds of forms.
  */
 class Form
 {   
-    
-    /************************************
-     * Form functions                   *
-     ************************************/
-    
-    /** Signup **/
-    
-    public function getSignupForm(User $user, &$error)
+    /**
+     * Returns a form for the signup process.
+     * 
+     * @param User $user the user object holding the data of the fields.
+     * @return string HTML of the form.
+     */
+    public function getSignupForm(User $user)
     {
         
         foreach ($user->fieldList() as $field)
         {
             $$field = $user->get($field); //Get the variable of the variable
         }
-        
-        
         
         /** Set the latest choices for the date fields */
         if (isset($birthdate) && $birthdate !="")
@@ -53,19 +51,9 @@ class Form
             $month = $this->generateMonthsOptions();
             $year = $this->generateYearsOptions();
         }
-        
-        $warning = "";
-        if (isset($error))
-        {
-            $warning = "\n";
-            foreach ($error as $message)
-            {
-                $warning .= "<h3 class=\"warning\">$message</h3>\n";
-            }
-        }
-        
+
         $form = <<<HTML
-<h2>Fill in your data:</h2>$warning
+<h2>Fill in your data:</h2>
 <form action="" method="post">
     <p>First name:</p>
     <input type="text" name="firstname" value="$firstname" required="true">
@@ -94,6 +82,12 @@ HTML;
         return $form;
     }
     
+    /**
+     * Returns the HTML code of the confirmation.
+     * 
+     * @param User $user the user object containing the data.
+     * @return string HTML code.
+     */
     public function getSignupConfirmation(User $user)
     {
         foreach ($user->fieldList() as $field)
@@ -116,6 +110,9 @@ HTML;
         return $confirm;
     }
     
+    /**
+     * Get the HTML code of the error.
+     */
     public function getSignupErrorDatabase()
     {
         $error = "<h2>Sorry, an error occurred in the signup process.</h2>\n";
@@ -127,8 +124,8 @@ HTML;
     /**
      * Returns a login form.
      * 
-     * @param string $username
-     * @return string HTML
+     * @param string $username the username.
+     * @return string HTML.
      */
     public function getLoginForm($username)
     {
@@ -152,8 +149,8 @@ HTML;
     /**
      * Returns a login confirmation.
      * 
-     * @param string $username
-     * @return string
+     * @param string $username the username.
+     * @return string HTML code.
      */
     public function getLoginConfirmation($username)
     {
@@ -166,12 +163,17 @@ HTML;
         return $form;
     }
     
-    /** Logout **/
     
+    /**
+     * Get the code to say goodbye.
+     * 
+     * @param string $username the username
+     * @return string HTML code.
+     */
     public function getLogout($username)
     {
         $form = <<<HTML
-<h2>Goodbie, $username</h2>
+<h2>Goodbye, $username</h2>
 <p>You're being redirected to <a href="home">the homepage</a>.
    Please <a href="home">click here</a> if you're not automatically redirected.</p>
           
@@ -182,8 +184,8 @@ HTML;
     /**
      * Returns a shop form.
      * 
-     * @param string[][] $data
-     * @return string
+     * @param array[] $data associative array where the field name is the key.
+     * @return string HTML code.
      */
     public function getAddshopForm($data)
     {
@@ -218,8 +220,8 @@ HTML;
     /**
      * Create a login confirmation.
      * 
-     * @param string $username
-     * @return string
+     * @param string $username the username.
+     * @return string HTML code.
      */
     public function getAddshopConfirmation()
     {
@@ -232,15 +234,15 @@ HTML;
         return $form;
     }
     
-    /************************************
-     * Helper functions                 *
-     ************************************/
     
+    /************************************
+     * Helper view functions            *
+     ************************************/  
     
     /**
      * Generates a months dropdown menu.
-     * @param a default option
-     * @return string monthOptions
+     * @param $selected (optional) a default option to set.
+     * @return string the HTML code of the dropdown.
      */
     public function generateMonthsOptions($selected = "") 
     {
@@ -272,8 +274,8 @@ HTML;
     
    /**
      * Generates a days dropdown menu.
-     * @param a default option
-     * @return string daysOptions
+      * @param $selected (optional) a default option to set.
+     * @return string the HTML code of the dropdown.
      */
     public function generateDaysOptions($selected = "") 
     {
@@ -291,8 +293,8 @@ HTML;
     
     /**
      * Generates a years dropdown menu.
-     * @param a default option
-     * @return string yearsOptions
+     * @param $selected (optional) a default option to set.
+     * @return string the HTML code of the dropdown.
      */
     public function generateYearsOptions($selected = "") 
     {

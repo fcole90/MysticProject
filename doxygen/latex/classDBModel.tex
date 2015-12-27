@@ -19,6 +19,11 @@ Collaboration diagram for D\+B\+Model\+:\nopagebreak
 \includegraphics[width=136pt]{classDBModel__coll__graph}
 \end{center}
 \end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDBModel_a2c73c9e833b304628088149c76aad6c1}{\+\_\+\+\_\+construct} ()
+\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -36,14 +41,24 @@ Collaboration diagram for D\+B\+Model\+:\nopagebreak
 
 
 \subsection{Detailed Description}
-Description of \hyperlink{classDBModel}{D\+B\+Model}.
+Defines the connection parameters of the database.
 
-\$dbhost = \char`\"{}localhost\char`\"{}; \$dbname = \char`\"{}amm15\+\_\+colella\+Fabio\char`\"{}; \$dbuser = \char`\"{}colella\+Fabio\char`\"{}; \$dbpass = \char`\"{}nutria8058\char`\"{};
+To allow the parameters to be visible only to children classes, they are hardcoded as return values of some methods. This choice has been done as a tradeoff between clean code and security, as the constants in P\+H\+P are public.
 
 \begin{DoxyAuthor}{Author}
-fabio 
+Fabio Colella 
 \end{DoxyAuthor}
 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDBModel_a2c73c9e833b304628088149c76aad6c1}{\index{D\+B\+Model@{D\+B\+Model}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!D\+B\+Model@{D\+B\+Model}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}D\+B\+Model\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDBModel_a2c73c9e833b304628088149c76aad6c1}
+The constructor. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classDBModel_ad54a4dc85f41f25cbf7675b712d5d5ff}{\index{D\+B\+Model@{D\+B\+Model}!connect@{connect}}
@@ -53,9 +68,9 @@ fabio
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDBModel_ad54a4dc85f41f25cbf7675b712d5d5ff}
-Create a connection.
+Creates a connection.
 
-If it fails connecting thrown an exception.
+If it fails connecting throws an exception.
 
 \begin{DoxyReturn}{Returns}
 mysqli mysqli 
@@ -67,6 +82,8 @@ mysqli mysqli
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDBModel_a8114bdda6fb2b260ce3c56710d0f9d1c}
+The database name.
+
 \begin{DoxyReturn}{Returns}
 string database 
 \end{DoxyReturn}
@@ -77,6 +94,8 @@ string database
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDBModel_af39102ef1235d8f2993208bc320ad0ce}
+The hostname.
+
 \begin{DoxyReturn}{Returns}
 string hostname 
 \end{DoxyReturn}
@@ -87,6 +106,8 @@ string hostname
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDBModel_a8596b488008a8b12a6dce706490fb68b}
+The password.
+
 \begin{DoxyReturn}{Returns}
 string password 
 \end{DoxyReturn}
@@ -97,6 +118,8 @@ string password
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDBModel_a17aab9a5c0364118192c892e8dbd55f0}
+The username.
+
 \begin{DoxyReturn}{Returns}
 string username 
 \end{DoxyReturn}

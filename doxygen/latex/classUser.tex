@@ -6,23 +6,58 @@
 \item 
 \hyperlink{classUser_a06c940ee40777907844d9bd01ed20e2f}{field\+List} ()
 \item 
-\hypertarget{classUser_a3e0d1d6040692cac64fa423f21d50fa9}{{\bfseries \+\_\+\+\_\+construct} (\$firstname=\char`\"{}\char`\"{}, \$secondname=\char`\"{}\char`\"{}, \$email=\char`\"{}\char`\"{}, \$username=\char`\"{}\char`\"{}, \$password=\char`\"{}\char`\"{}, \$birthdate=\char`\"{}\char`\"{}, \$is\+Admin=false, \$confirmed=false)}\label{classUser_a3e0d1d6040692cac64fa423f21d50fa9}
-
+\hyperlink{classUser_a3e0d1d6040692cac64fa423f21d50fa9}{\+\_\+\+\_\+construct} (\$firstname=\char`\"{}\char`\"{}, \$secondname=\char`\"{}\char`\"{}, \$email=\char`\"{}\char`\"{}, \$username=\char`\"{}\char`\"{}, \$password=\char`\"{}\char`\"{}, \$birthdate=\char`\"{}\char`\"{}, \$is\+Admin=false, \$confirmed=false)
 \item 
-\hypertarget{classUser_ac3880c17324e5d182bae56655365df85}{{\bfseries get} (\$field)}\label{classUser_ac3880c17324e5d182bae56655365df85}
-
+\hyperlink{classUser_ac3880c17324e5d182bae56655365df85}{get} (\$field)
 \item 
-\hypertarget{classUser_af9023f37771e314acc0707060a449bb8}{{\bfseries set} (\$field, \$value)}\label{classUser_af9023f37771e314acc0707060a449bb8}
-
+\hyperlink{classUser_af9023f37771e314acc0707060a449bb8}{set} (\$field, \$value)
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Description of \hyperlink{classUser}{User}
+This class defines an object used to represent a user and its properties.
 
 \begin{DoxyAuthor}{Author}
-fabio 
+Fabio Colella 
 \end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classUser_a3e0d1d6040692cac64fa423f21d50fa9}{\index{User@{User}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!User@{User}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}User\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$firstname = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$secondname = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$email = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$username = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$password = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$birthdate = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{}]{\$is\+Admin = {\ttfamily false}, }
+\item[{}]{\$confirmed = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classUser_a3e0d1d6040692cac64fa423f21d50fa9}
+The constructor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$firstname} & the firstname. \\
+\hline
+string & {\em \$secondname} & the secondname. \\
+\hline
+string & {\em \$email} & the email. \\
+\hline
+string & {\em \$username} & the username. \\
+\hline
+string & {\em \$password} & the password. \\
+\hline
+string & {\em \$birthdate} & the birthday in format Y\+Y\+Y\+Y-\/\+M\+M-\/\+D\+D. \\
+\hline
+boolean & {\em \$is\+Admin} & true if is admin. \\
+\hline
+boolean & {\em \$confirmed} & true if is a confirmed user. \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
@@ -33,7 +68,46 @@ fabio
 {}
 \end{DoxyParamCaption}
 )}}\label{classUser_a06c940ee40777907844d9bd01ed20e2f}
-array 
+Returns a list of the fields.
+
+\begin{DoxyReturn}{Returns}
+array list of field names. 
+\end{DoxyReturn}
+\hypertarget{classUser_ac3880c17324e5d182bae56655365df85}{\index{User@{User}!get@{get}}
+\index{get@{get}!User@{User}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}User\+::get (
+\begin{DoxyParamCaption}
+\item[{}]{\$field}
+\end{DoxyParamCaption}
+)}}\label{classUser_ac3880c17324e5d182bae56655365df85}
+Get a field value.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the field name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed the value of the field. 
+\end{DoxyReturn}
+\hypertarget{classUser_af9023f37771e314acc0707060a449bb8}{\index{User@{User}!set@{set}}
+\index{set@{set}!User@{User}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}User\+::set (
+\begin{DoxyParamCaption}
+\item[{}]{\$field, }
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}}\label{classUser_af9023f37771e314acc0707060a449bb8}
+Sets a value for a field.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$field} & the field name. \\
+\hline
+mixed & {\em \$value} & the value to set. \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

@@ -2,7 +2,7 @@
 relRequire("model/DBModel.php");
 relRequire("model/User.php");
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -22,7 +22,7 @@ relRequire("model/User.php");
 /**
  * Model class to handle the data about the users.
  *
- * @author fabio
+ * @author Fabio Colella
  */
 class UserAccessModel extends DBModel
 {
@@ -183,8 +183,6 @@ class UserAccessModel extends DBModel
         {
             $stmt->close();
             $mysqli->close();
-            $this->error[] = "This $fieldname already exists, please "
-              . "use a different one.";
             return false;
         }
         $stmt->close();

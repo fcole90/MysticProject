@@ -4,21 +4,19 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classForm_a3e3459dffd7067e2e707e0a622945a66}{get\+Signup\+Form} (\hyperlink{classUser}{User} \$user, \&\$error)
+\hyperlink{classForm_af81406d5a0e7a81734e472af1758200a}{get\+Signup\+Form} (\hyperlink{classUser}{User} \$user)
 \item 
-\hypertarget{classForm_a6a05f450eb73a3524602817c34da17be}{{\bfseries get\+Signup\+Confirmation} (\hyperlink{classUser}{User} \$user)}\label{classForm_a6a05f450eb73a3524602817c34da17be}
-
+\hyperlink{classForm_a6a05f450eb73a3524602817c34da17be}{get\+Signup\+Confirmation} (\hyperlink{classUser}{User} \$user)
 \item 
-\hypertarget{classForm_a11a02f548641b39c9c7c04436c95befa}{{\bfseries get\+Signup\+Error\+Database} ()}\label{classForm_a11a02f548641b39c9c7c04436c95befa}
-
+\hyperlink{classForm_a11a02f548641b39c9c7c04436c95befa}{get\+Signup\+Error\+Database} ()
 \item 
-\hyperlink{classForm_aa3ff4d216868165f1f8c442ae7ea7c95}{get\+Login\+Form} (\$username, \&\$error)
+\hyperlink{classForm_a9336ceae0d84d10b3c14f7542c05d0cd}{get\+Login\+Form} (\$username)
 \item 
 \hyperlink{classForm_a61045a8ccfd7f300a729027a70a00700}{get\+Login\+Confirmation} (\$username)
 \item 
 \hyperlink{classForm_a08c23069323910390d5fc8d4ede9690d}{get\+Logout} (\$username)
 \item 
-\hyperlink{classForm_a9fe8a5c4812f4cbe0ff7daa05ea40cbf}{get\+Addshop\+Form} (\$data, \&\$error)
+\hyperlink{classForm_ac423ca7790207dbef532ae8141b4238f}{get\+Addshop\+Form} (\$data)
 \item 
 \hyperlink{classForm_a00d84099c9d0a8fd6cdc77983b2dac93}{get\+Addshop\+Confirmation} ()
 \item 
@@ -31,7 +29,7 @@
 
 
 \subsection{Detailed Description}
-\hyperlink{classForm}{Form} to sign up to the website. 
+Views for many kinds of forms. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classForm_ae79e7e1de18f9f611d1e405349828104}{\index{Form@{Form}!generate\+Days\+Options@{generate\+Days\+Options}}
@@ -43,11 +41,11 @@
 )}}\label{classForm_ae79e7e1de18f9f611d1e405349828104}
 Generates a days dropdown menu. 
 \begin{DoxyParams}{Parameters}
-{\em a} & default option \\
+{\em \$selected} & (optional) a default option to set. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string days\+Options 
+string the H\+T\+M\+L code of the dropdown. 
 \end{DoxyReturn}
 \hypertarget{classForm_a12b1a6bb3a44baa1b311e8cc42759f9c}{\index{Form@{Form}!generate\+Months\+Options@{generate\+Months\+Options}}
 \index{generate\+Months\+Options@{generate\+Months\+Options}!Form@{Form}}
@@ -58,11 +56,11 @@ string days\+Options
 )}}\label{classForm_a12b1a6bb3a44baa1b311e8cc42759f9c}
 Generates a months dropdown menu. 
 \begin{DoxyParams}{Parameters}
-{\em a} & default option \\
+{\em \$selected} & (optional) a default option to set. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string month\+Options 
+string the H\+T\+M\+L code of the dropdown. 
 \end{DoxyReturn}
 \hypertarget{classForm_a5bcd8bfb0770d2ca9e6874b329ab7f58}{\index{Form@{Form}!generate\+Years\+Options@{generate\+Years\+Options}}
 \index{generate\+Years\+Options@{generate\+Years\+Options}!Form@{Form}}
@@ -73,11 +71,11 @@ string month\+Options
 )}}\label{classForm_a5bcd8bfb0770d2ca9e6874b329ab7f58}
 Generates a years dropdown menu. 
 \begin{DoxyParams}{Parameters}
-{\em a} & default option \\
+{\em \$selected} & (optional) a default option to set. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string years\+Options 
+string the H\+T\+M\+L code of the dropdown. 
 \end{DoxyReturn}
 \hypertarget{classForm_a00d84099c9d0a8fd6cdc77983b2dac93}{\index{Form@{Form}!get\+Addshop\+Confirmation@{get\+Addshop\+Confirmation}}
 \index{get\+Addshop\+Confirmation@{get\+Addshop\+Confirmation}!Form@{Form}}
@@ -90,31 +88,28 @@ Create a login confirmation.
 
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$username} & \\
+string & {\em \$username} & the username. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string 
+string H\+T\+M\+L code. 
 \end{DoxyReturn}
-\hypertarget{classForm_a9fe8a5c4812f4cbe0ff7daa05ea40cbf}{\index{Form@{Form}!get\+Addshop\+Form@{get\+Addshop\+Form}}
+\hypertarget{classForm_ac423ca7790207dbef532ae8141b4238f}{\index{Form@{Form}!get\+Addshop\+Form@{get\+Addshop\+Form}}
 \index{get\+Addshop\+Form@{get\+Addshop\+Form}!Form@{Form}}
 \subsubsection[{get\+Addshop\+Form}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Addshop\+Form (
 \begin{DoxyParamCaption}
-\item[{}]{\$data, }
-\item[{\&}]{\$error}
+\item[{}]{\$data}
 \end{DoxyParamCaption}
-)}}\label{classForm_a9fe8a5c4812f4cbe0ff7daa05ea40cbf}
-Return a shop form.
+)}}\label{classForm_ac423ca7790207dbef532ae8141b4238f}
+Returns a shop form.
 
 
 \begin{DoxyParams}{Parameters}
-{\em string\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}} & \$data \\
-\hline
-{\em string\mbox{[}$\,$\mbox{]}} & \$error \\
+{\em array\mbox{[}$\,$\mbox{]}} & \$data associative array where the field name is the key. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string 
+string H\+T\+M\+L code. 
 \end{DoxyReturn}
 \hypertarget{classForm_a61045a8ccfd7f300a729027a70a00700}{\index{Form@{Form}!get\+Login\+Confirmation@{get\+Login\+Confirmation}}
 \index{get\+Login\+Confirmation@{get\+Login\+Confirmation}!Form@{Form}}
@@ -123,40 +118,92 @@ string
 \item[{}]{\$username}
 \end{DoxyParamCaption}
 )}}\label{classForm_a61045a8ccfd7f300a729027a70a00700}
-Create a login confirmation.
+Returns a login confirmation.
 
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$username} & \\
+string & {\em \$username} & the username. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string 
+string H\+T\+M\+L code. 
 \end{DoxyReturn}
-\hypertarget{classForm_aa3ff4d216868165f1f8c442ae7ea7c95}{\index{Form@{Form}!get\+Login\+Form@{get\+Login\+Form}}
+\hypertarget{classForm_a9336ceae0d84d10b3c14f7542c05d0cd}{\index{Form@{Form}!get\+Login\+Form@{get\+Login\+Form}}
 \index{get\+Login\+Form@{get\+Login\+Form}!Form@{Form}}
 \subsubsection[{get\+Login\+Form}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Login\+Form (
 \begin{DoxyParamCaption}
-\item[{}]{\$username, }
-\item[{\&}]{\$error}
+\item[{}]{\$username}
 \end{DoxyParamCaption}
-)}}\label{classForm_aa3ff4d216868165f1f8c442ae7ea7c95}
-Login \hypertarget{classForm_a08c23069323910390d5fc8d4ede9690d}{\index{Form@{Form}!get\+Logout@{get\+Logout}}
+)}}\label{classForm_a9336ceae0d84d10b3c14f7542c05d0cd}
+Returns a login form.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & the username. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L. 
+\end{DoxyReturn}
+\hypertarget{classForm_a08c23069323910390d5fc8d4ede9690d}{\index{Form@{Form}!get\+Logout@{get\+Logout}}
 \index{get\+Logout@{get\+Logout}!Form@{Form}}
 \subsubsection[{get\+Logout}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Logout (
 \begin{DoxyParamCaption}
 \item[{}]{\$username}
 \end{DoxyParamCaption}
 )}}\label{classForm_a08c23069323910390d5fc8d4ede9690d}
-Logout \hypertarget{classForm_a3e3459dffd7067e2e707e0a622945a66}{\index{Form@{Form}!get\+Signup\+Form@{get\+Signup\+Form}}
+Get the code to say goodbye.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & the username \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L code. 
+\end{DoxyReturn}
+\hypertarget{classForm_a6a05f450eb73a3524602817c34da17be}{\index{Form@{Form}!get\+Signup\+Confirmation@{get\+Signup\+Confirmation}}
+\index{get\+Signup\+Confirmation@{get\+Signup\+Confirmation}!Form@{Form}}
+\subsubsection[{get\+Signup\+Confirmation}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Signup\+Confirmation (
+\begin{DoxyParamCaption}
+\item[{{\bf User}}]{\$user}
+\end{DoxyParamCaption}
+)}}\label{classForm_a6a05f450eb73a3524602817c34da17be}
+Returns the H\+T\+M\+L code of the confirmation.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classUser}{User} & {\em \$user} & the user object containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L code. 
+\end{DoxyReturn}
+\hypertarget{classForm_a11a02f548641b39c9c7c04436c95befa}{\index{Form@{Form}!get\+Signup\+Error\+Database@{get\+Signup\+Error\+Database}}
+\index{get\+Signup\+Error\+Database@{get\+Signup\+Error\+Database}!Form@{Form}}
+\subsubsection[{get\+Signup\+Error\+Database}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Signup\+Error\+Database (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classForm_a11a02f548641b39c9c7c04436c95befa}
+Get the H\+T\+M\+L code of the error. \hypertarget{classForm_af81406d5a0e7a81734e472af1758200a}{\index{Form@{Form}!get\+Signup\+Form@{get\+Signup\+Form}}
 \index{get\+Signup\+Form@{get\+Signup\+Form}!Form@{Form}}
 \subsubsection[{get\+Signup\+Form}]{\setlength{\rightskip}{0pt plus 5cm}Form\+::get\+Signup\+Form (
 \begin{DoxyParamCaption}
-\item[{{\bf User}}]{\$user, }
-\item[{\&}]{\$error}
+\item[{{\bf User}}]{\$user}
 \end{DoxyParamCaption}
-)}}\label{classForm_a3e3459dffd7067e2e707e0a622945a66}
-Signup Set the latest choices for the date fields 
+)}}\label{classForm_af81406d5a0e7a81734e472af1758200a}
+Returns a form for the signup process.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classUser}{User} & {\em \$user} & the user object holding the data of the fields. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L of the form. 
+\end{DoxyReturn}
+Set the latest choices for the date fields 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

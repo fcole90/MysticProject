@@ -4,7 +4,7 @@ relRequire('view/Presenter.php');
 
 
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -24,7 +24,7 @@ relRequire('view/Presenter.php');
 /**
  * Description of HomeModel
  *
- * @author fabio
+ * @author Fabio Colella
  */
 class HomeModel extends Model
 {

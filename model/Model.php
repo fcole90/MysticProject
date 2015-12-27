@@ -1,7 +1,7 @@
 <?php
 relRequire("view/Presenter.php");
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,29 +19,25 @@ relRequire("view/Presenter.php");
  */
 
 /**
- *
- * @author fabio
+ * Collects methods and properties useful in every model.
+ * 
+ * @author Fabio Colella
  */
 abstract class Model 
 {
     
     /**
-     * Data to be sent back to the controller.
-     * 
-     * @var mixed[]
+     * @var mixed[] data to be sent back to the controller.
      */
     protected $data;
     
     /**
-     * Error messages for the controller.
-     * 
-     * @var string[]
+     * @var array error messages of the database.
      */
     protected $error;
 
     /**
-     * 
-     * @param array $request
+     * The constructor.
      */
     public function __construct() 
     {
@@ -70,7 +66,6 @@ abstract class Model
     }
     
     /**
-     * 
      * Retrieve data from the associative array.
      * 
      * @param string $name
@@ -91,7 +86,7 @@ abstract class Model
     /**
      * Returns the error array.
      * 
-     * @return string[]
+     * @return array
      */
     public function getError()
     {

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['link',['Link',['../classLink.html',1,'']]]
+  ['nav',['Nav',['../classNav.html',1,'']]]
 ];

@@ -9,7 +9,6 @@ relRequire('model/HomeModel.php');
 relRequire('model/ShopModel.php');
 relRequire("model/User.php");
 relRequire('model/UserAccessModel.php');
-relRequire("model/ErrorModel.php");
 relRequire("model/GenericModel.php");
 /*
  * Copyright (C) 2015 Fabio Colella
@@ -43,11 +42,12 @@ class BasePageController extends Controller
      */
     const PASSWORD_MIN_LEN = 6;
     const USER_MIN_LEN = 5;
+    const FIELD_MIN_LEN = 1;
     
     /**
      * Array of errors to be reported.
      * 
-     * @var string[]
+     * @var array
      */
     private $error;
     
@@ -115,24 +115,25 @@ class BasePageController extends Controller
         /* Check if the fields follow the necessary rules */
         if (!$this->checkFieldsSignUp($model))
         {
-            /* Add the errors of the model to the errors of the controller */
-            $this->error = array_merge($this->error, $model->getError());
-            $this->presenter->setContent((new Form())->getSignupForm($this->user, $this->error));
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
+            $this->presenter->setContent((new Form())->getSignupForm($this->user));
+            $this->presenter->setError($this->error);
         }
         else if($model->addUserToDatabase($this->user))
         {
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
             $this->presenter->setContent((new Form())->getSignupConfirmation($this->user));
+            $this->presenter->setError($this->error);
             $this->presenter->setRedir();
         }
         else
         {
-            /* Add the errors of the model to the errors of the controller */
-            $this->error = array_merge($this->error, $model->getError());
-            $this->presenter->setContent((new Form())->getSignupForm($this->user, $this->error));
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
+            $this->presenter->setContent((new Form())->getSignupForm($this->user));
+            $this->presenter->setError($this->error);
         }
                 
         $this->presenter->render();
-        
     }
     
     /**
@@ -461,6 +462,25 @@ class BasePageController extends Controller
         $this->presenter->render();
     }
     
+    
+    /**
+     * Runs a set of tests to check if the website runs correctly.
+     */
+    public function loadPageTests()
+    {
+        /** The user is not logged in. **/
+        if (!$this->isLoggedIn())
+        {
+            $this->error[] = "You're not logged in!";
+            $this->loadPageLogin();
+        }
+        /** The user tried to access a reserved area. **/
+        else if(!$this->isAdmin())
+        {
+            $this->loadPageErr403();
+        }
+    }
+    
     /***********************************
      * Helper functions.               *
      ***********************************/
@@ -540,6 +560,8 @@ class BasePageController extends Controller
           !$model->checkFieldNotExists($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $this->error[] = "This $fieldname already exists, please "
+              . "use a different one.";
             $isValid = false;
         }
         
@@ -569,6 +591,8 @@ class BasePageController extends Controller
           !$model->checkFieldNotExists($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
+            $this->error[] = "This $fieldname already exists, please "
+              . "use a different one.";
             $isValid = false;
         }
 
@@ -628,14 +652,21 @@ class BasePageController extends Controller
      * Helper function to check if strings contain only chars and spaces.
      * @param string $field the name of the field.
      * @param string $value the value of the field.
+     * @param int $length (optional) checks also the lenghts of the value.
      * @return boolean true if the test is passed.
      */
-    public function checkCharSpaces($field, $value)
+    public function checkCharSpaces($field, $value, $length = -1)
     {
         if (!preg_match("/^[a-zA-Z][a-zA-Z0-9 ]*$/",$value)) 
         {
             $this->error[] = "Only letters and spaces are allowed in $field.";
             return false;
+        }
+        
+        if ($length != -1 && !(strlen($value) >= $length))
+        {
+            $this->error[] = "The $field field should be longer than $length.";
+            $flag = false;
         }
         return true;
     }
@@ -646,14 +677,21 @@ class BasePageController extends Controller
      * @param string $field the name of the field.
      * @param string $value the value of the field.
      * @param string $symbols A list of symbols allowed, default: "a-zA-Z0-9 ',.-°".
+     * @param int $length (optional) checks also the lenghts of the value.
      * @return boolean true if the test is passed.
      */
-    public function checkComposedStrings($field, $value, $symbols = "a-zA-Z0-9 ',.-°")
+    public function checkComposedStrings($field, $value, $symbols = "a-zA-Z0-9 ',.-°", $length = -1)
     {
         if (!preg_match("/[$symbols]*$/",$value)) 
         {
             $this->error[] = "Only the symbols '$symbols' are allowed in $field.";
             return false;
+        }
+        
+        if ($length != -1 && !(strlen($value) >= $length))
+        {
+            $this->error[] = "The $field field should be longer than $length.";
+            $flag = false;
         }
         return true;
     }
@@ -739,7 +777,7 @@ class BasePageController extends Controller
     /**
      * Merges the passed error array with the current error array.
      * 
-     * @param string[] $error
+     * @param array $error
      */
     public function concatErrorArray($error)
     {
@@ -751,7 +789,7 @@ class BasePageController extends Controller
      * Returns an associative array of strings containing the data sent 
      * found in the request array.
      * 
-     * @return string[]
+     * @return array
      */
     public function setAddshopData() 
     {
@@ -781,7 +819,7 @@ class BasePageController extends Controller
      * 
      * If adding new fields this class needs to be edited.
      * 
-     * @param string[] $data associative array where the name of the field is the key.
+     * @param array $data associative array where the name of the field is the key.
      * @return boolean true if the test is passed.
      */
     public function checkFieldsAddshop($data)

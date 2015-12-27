@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['errormodel',['ErrorModel',['../classErrorModel.html',1,'']]]
+  ['footer',['Footer',['../classFooter.html',1,'']]],
+  ['form',['Form',['../classForm.html',1,'']]]
 ];

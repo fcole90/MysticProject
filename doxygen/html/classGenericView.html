@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Fisherman Locator
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.9</span>
    </div>
   </td>
  </tr>
@@ -96,20 +96,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:af4707380a714031af8a721909dcc588f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9152f4f4f98de0728a14ec3742ad8c3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenericView.html#a9152f4f4f98de0728a14ec3742ad8c3b">getAdminView</a> ($user, $shoplist)</td></tr>
 <tr class="separator:a9152f4f4f98de0728a14ec3742ad8c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0901126944127bdad1bdea93f37bfb1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0901126944127bdad1bdea93f37bfb1b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>getHomeContent</b> ($data)</td></tr>
+<tr class="memitem:a0901126944127bdad1bdea93f37bfb1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenericView.html#a0901126944127bdad1bdea93f37bfb1b">getHomeContent</a> ($data)</td></tr>
 <tr class="separator:a0901126944127bdad1bdea93f37bfb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa13307b6c5eb803fe1d682fc01e919b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa13307b6c5eb803fe1d682fc01e919b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>getRemoveShopConfirmation</b> ($shop_name)</td></tr>
+<tr class="memitem:afa13307b6c5eb803fe1d682fc01e919b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenericView.html#afa13307b6c5eb803fe1d682fc01e919b">getRemoveShopConfirmation</a> ($shop_name)</td></tr>
 <tr class="separator:afa13307b6c5eb803fe1d682fc01e919b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad274980ef83921cf8f5440fea88e3b6b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad274980ef83921cf8f5440fea88e3b6b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>getRemoveShopCertainty</b> ($shop_name, $id)</td></tr>
+<tr class="memitem:ad274980ef83921cf8f5440fea88e3b6b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenericView.html#ad274980ef83921cf8f5440fea88e3b6b">getRemoveShopCertainty</a> ($shop_name, $id)</td></tr>
 <tr class="separator:ad274980ef83921cf8f5440fea88e3b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19312793a751a9d8afadd6425f5f47e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19312793a751a9d8afadd6425f5f47e5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>getInfo</b> ()</td></tr>
+<tr class="memitem:a19312793a751a9d8afadd6425f5f47e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGenericView.html#a19312793a751a9d8afadd6425f5f47e5">getInfo</a> ()</td></tr>
 <tr class="separator:a19312793a751a9d8afadd6425f5f47e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Some generic content views. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a9152f4f4f98de0728a14ec3742ad8c3b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -136,11 +134,53 @@ Public Member Functions</h2></td></tr>
 <p>Get the HTML to render the profile and admin panel.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">profile</td><td>string[] </td></tr>
+    <tr><td class="paramtype"><a class="el" href="classUser.html">User</a></td><td class="paramname">$user</td><td>user object. </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$shoplist</td><td>a list of shops and their data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>string HTML view </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>string HTML view. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0901126944127bdad1bdea93f37bfb1b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenericView::getHomeContent </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the HTML to render the home and the search.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$data</td><td>associative array where the key is the field. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string HTML. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a19312793a751a9d8afadd6425f5f47e5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenericView::getInfo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns an informational message.</p>
+<dl class="section return"><dt>Returns</dt><dd>string HTML </dd></dl>
 
 </div>
 </div>
@@ -160,11 +200,70 @@ Public Member Functions</h2></td></tr>
 <p>Get the HTML to render the profile.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">profile</td><td>string[] </td></tr>
+    <tr><td class="paramtype"><a class="el" href="classUser.html">User</a></td><td class="paramname">$user</td><td>user object. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>string HTML view </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad274980ef83921cf8f5440fea88e3b6b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenericView::getRemoveShopCertainty </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$shop_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the HTML where asking for confirmation before removal.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$shop_name</td><td>the name of the shop </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$id</td><td>the id of the shop </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string HTML </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afa13307b6c5eb803fe1d682fc01e919b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GenericView::getRemoveShopConfirmation </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$shop_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the HTML of the confirmation.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$shop_name</td><td>the name of the shop </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string HTML </dd></dl>
 
 </div>
 </div>
@@ -174,7 +273,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 27 2015 10:39:18 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Dec 27 2015 18:58:56 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

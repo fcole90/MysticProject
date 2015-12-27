@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -204,7 +204,7 @@ abstract class Controller
      * 
      * The links are in the form (page name, page link).
      * 
-     * @return string[][] list of links.
+     * @return array[] list of links.
      */
     public function getLinks()
     {

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,9 +19,9 @@
  */
 
 /**
- * Description of Header
+ * The Header.
  *
- * @author fabio
+ * @author Fabio Colella
  */
 class Header {
     public function __construct() 

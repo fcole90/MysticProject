@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -18,13 +18,16 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+/**
+ * Some generic content views.
+ */
 class GenericView
 {
     
     /**
      * Get the HTML to render the profile.
      * 
-     * @param profile string[]
+     * @param User $user user object.
      * @return string HTML view
      */
     public function getProfileView($user)
@@ -47,8 +50,9 @@ class GenericView
     /**
      * Get the HTML to render the profile and admin panel.
      * 
-     * @param profile string[]
-     * @return string HTML view
+     * @param User $user user object.
+     * @param array $shoplist a list of shops and their data.
+     * @return string HTML view.
      */
     public function getAdminView($user, $shoplist)
     {
@@ -85,6 +89,12 @@ class GenericView
         return $text;
     }
     
+    /**
+     * Get the HTML to render the home and the search.
+     * 
+     * @param array $data associative array where the key is the field.
+     * @return string HTML.
+     */
     public function getHomeContent($data)
     {
         $text = "<form class='search' action='javascript:actionsearch();' id='searchform'>"
@@ -112,11 +122,24 @@ class GenericView
         return $text;
     }
     
+    /**
+     * Get the HTML of the confirmation.
+     * 
+     * @param string $shop_name the name of the shop
+     * @return string HTML
+     */
     public function getRemoveShopConfirmation($shop_name)
     {
         return "<h3>Congratulation, the shop $shop_name has been removed!</h3>";
     }
     
+    /**
+     * Get the HTML where asking for confirmation before removal.
+     * 
+     * @param string $shop_name the name of the shop
+     * @param int $id the id of the shop
+     * @return string HTML
+     */
     public function getRemoveShopCertainty($shop_name, $id)
     {
         $text = "<h3>Are you sure to remove the following shop?</h3>"

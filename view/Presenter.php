@@ -6,7 +6,7 @@ relRequire('view/Nav.php');
 relRequire('view/Footer.php');
 
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,54 +26,43 @@ relRequire('view/Footer.php');
 /**
  * Describes the whole view and renders the page.
  *
- * @author fabio
+ * @author Fabio Colella
  */
 class Presenter {
     
     /**
-     * @var string
+     * @var string title of the page.
      */
     private $title;
     
     /**
-     * Redirect link.
-     * 
-     * @var string
+     * @var string redirect link.
      */
     private $redir;
     
     /**
-     * Time before redirect.
-     * 
-     * @var int
+     * @var int time before redirect.
      */
     private $redir_time;
     
     /**
-     *
-     * @var string[]
+     * @var array list of error messages.
      */
     private $error;
 
     /**
-     * HTML for the content.
-     * 
-     * @var string
+     * @var string HTML for the content.
      */
     private $content;
     
     /**
-     * Custom header HTML.
-     *
-     * @var string
+     * @var string custom HTML header.
      */
     private $header;
     
     
     /**
-     * Links to display. (title, link)
-     * 
-     * @var string[][]
+     * @var array[] links to display in the form (title, link).
      */
     private $links;
 
@@ -82,7 +71,7 @@ class Presenter {
      * View constructor.
      * 
      * @param string $title of the page
-     * @param string[][] $links (title, link)
+     * @param array[] $links in the form (title, link)
      * @param string $content of the page
      */
     public function __construct($title, $links, $content = "") 
@@ -92,6 +81,11 @@ class Presenter {
         $this->links = $links;
     }
     
+    /**
+     * Sets a custom header for the page.
+     * 
+     * @param string $header HTML header
+     */
     public function setCustomHeader($header)
     {
         $this->header = $header;
@@ -101,8 +95,8 @@ class Presenter {
     /**
      * Prints the HTML indented correctly.
      * 
-     * @param string $content multiline
-     * @param string $indentation spaces indentation
+     * @param string $content multiline HTML content.
+     * @param string $indentation a string containing spaces for the indentation.
      */
     public function printContent($content, $indentation = '      ')
     {
@@ -135,9 +129,8 @@ class Presenter {
     }
 
     /**
-     * Render the page
-     */
-    
+     * Render the page.
+     */    
     public function render()
     {
         if (isset($this->header))
@@ -177,19 +170,20 @@ class Presenter {
         echo "</html>"; /////// End render
     }
     
-    //Render a json formatted content
+    /**
+     * Render a json formatted content
+     */
     public function json()
     {
         header('Cache-Control: no-cache, must-revalidate');
         header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-        //header('Content-type: application/json');
-        
+
         echo $this->content;
     }
     
     /**
      * Sets the error list.
-     * @param string[] $errorArray
+     * @param array $errorArray a list of error messages.
      */
     public function setError($errorArray = array()) 
     {
@@ -198,7 +192,7 @@ class Presenter {
     
     /**
      * Returns the HTML code of the error list.
-     * @return string
+     * @return string HTML list of error messages.
      */
     public function printErrorList() 
     {
@@ -215,8 +209,10 @@ class Presenter {
     }
     
     /**
+     * Sets a redirect in the page.
      * 
-     * @param type $link
+     * @param string $link the link to which redirect.
+     * @param type $sec (optional) the time to wait before redirect.
      */
     public function setRedir($link = "index", $sec = 6) 
     {
@@ -224,6 +220,11 @@ class Presenter {
         $this->redir_time = $sec;
     }
     
+    /**
+     * Returns the HTML code for the redirect.
+     * 
+     * @return string HTML of the redirect.
+     */
     public function printRedir()
     {
         if (isset($this->redir))
@@ -245,14 +246,12 @@ HTML;
     }
     
     /**
+     * Set the title of the page.
      * 
      * @param string $title
      */
     public function setTitle($title) 
     {
         $this->title = $title;
-    }
-    
-    
-    
+    }    
 }

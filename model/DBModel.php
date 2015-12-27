@@ -3,7 +3,7 @@
 relRequire('model/Model.php');
 
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -21,22 +21,26 @@ relRequire('model/Model.php');
  */
 
 /**
- * Description of DBModel.
+ * Defines the connection parameters of the database.
  * 
- * $dbhost = "localhost";
- * $dbname = "amm15_colellaFabio";
- * $dbuser = "colellaFabio";
- * $dbpass = "nutria8058";
+ * To allow the parameters to be visible only to children classes, they are 
+ * hardcoded as return values of some methods. This choice has been done as 
+ * a tradeoff between clean code and security, as the constants in PHP are
+ * public.
  *
- * @author fabio
+ * @author Fabio Colella
  */
 abstract class DBModel extends Model
 {
-    
+    /**
+     * The constructor.
+     */
     public function __construct() {
         parent::__construct();
     }
+    
     /**
+     * The hostname.
      * 
      * @return string hostname
      */
@@ -46,6 +50,7 @@ abstract class DBModel extends Model
     }
     
     /**
+     * The database name.
      * 
      * @return string database
      */
@@ -55,6 +60,7 @@ abstract class DBModel extends Model
     }
     
     /**
+     * The username.
      * 
      * @return string username
      */
@@ -64,6 +70,7 @@ abstract class DBModel extends Model
     }
     
     /**
+     * The password.
      * 
      * @return string password
      */
@@ -74,14 +81,12 @@ abstract class DBModel extends Model
 
 
     /**
-     * Create a connection.
+     * Creates a connection.
      * 
-     * If it fails connecting thrown an exception.
+     * If it fails connecting throws an exception.
      * 
-     * @return mysqli mysqli
-     * 
-     */
-    
+     * @return mysqli mysqli 
+     */    
     protected function connect()
     {
         $mysqli = new mysqli($this->dbHostname(), $this->dbUsername(), $this->dbPassword(), $this->DBdatabase());

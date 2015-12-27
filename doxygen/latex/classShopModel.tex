@@ -22,6 +22,8 @@ Collaboration diagram for Shop\+Model\+:\nopagebreak
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classShopModel_abdc933b979dc53048b3ba5be1331acf1}{\+\_\+\+\_\+construct} ()
+\item 
 \hyperlink{classShopModel_a67653f592dcfd15e7c3e8a0262fb824b}{add\+Shop\+To\+Database} (\$data)
 \item 
 \hyperlink{classShopModel_a5c5c4b2e0ea0e4adb98e6e6dea5011b6}{get\+Data} (\$search=\char`\"{}\char`\"{})
@@ -32,12 +34,22 @@ Collaboration diagram for Shop\+Model\+:\nopagebreak
 
 
 \subsection{Detailed Description}
-Description of shop\+Model
+Class to interact with the shop table in the database.
 
 \begin{DoxyAuthor}{Author}
-fabio 
+Fabio Colella 
 \end{DoxyAuthor}
 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classShopModel_abdc933b979dc53048b3ba5be1331acf1}{\index{Shop\+Model@{Shop\+Model}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Shop\+Model@{Shop\+Model}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Shop\+Model\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classShopModel_abdc933b979dc53048b3ba5be1331acf1}
+The constructor. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classShopModel_a67653f592dcfd15e7c3e8a0262fb824b}{\index{Shop\+Model@{Shop\+Model}!add\+Shop\+To\+Database@{add\+Shop\+To\+Database}}
@@ -47,24 +59,46 @@ fabio
 \item[{}]{\$data}
 \end{DoxyParamCaption}
 )}}\label{classShopModel_a67653f592dcfd15e7c3e8a0262fb824b}
-Remove unsetted values from submission \hypertarget{classShopModel_a5c5c4b2e0ea0e4adb98e6e6dea5011b6}{\index{Shop\+Model@{Shop\+Model}!get\+Data@{get\+Data}}
+Adds a shop to the database.
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$data} & associative array where each key is a field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if the operation succedeed. 
+\end{DoxyReturn}
+Remove unsetted values from submission
+
+Used to bind params in ssss asstrings
+
+Dynamically create the query statement
+
+Associate the fields
+
+Remove last comma
+
+Associate the values
+
+Query statement completed \hypertarget{classShopModel_a5c5c4b2e0ea0e4adb98e6e6dea5011b6}{\index{Shop\+Model@{Shop\+Model}!get\+Data@{get\+Data}}
 \index{get\+Data@{get\+Data}!Shop\+Model@{Shop\+Model}}
 \subsubsection[{get\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Shop\+Model\+::get\+Data (
 \begin{DoxyParamCaption}
 \item[{}]{\$search = {\ttfamily \char`\"{}\char`\"{}}}
 \end{DoxyParamCaption}
 )}}\label{classShopModel_a5c5c4b2e0ea0e4adb98e6e6dea5011b6}
-Retrieve the shop data from the database.
+Retrieve a list of shop data for the shops that match the searched criteria.
 
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$search} & \\
+string & {\em \$search} & the searched term. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string\mbox{[}\mbox{]}\mbox{[}\mbox{]} 
+array\mbox{[}\mbox{]} the data list of the shops. 
 \end{DoxyReturn}
-\hypertarget{classShopModel_ae035aa872e97c08247d203f90e228fe2}{\index{Shop\+Model@{Shop\+Model}!remove\+Shop@{remove\+Shop}}
+Create the data array \hypertarget{classShopModel_ae035aa872e97c08247d203f90e228fe2}{\index{Shop\+Model@{Shop\+Model}!remove\+Shop@{remove\+Shop}}
 \index{remove\+Shop@{remove\+Shop}!Shop\+Model@{Shop\+Model}}
 \subsubsection[{remove\+Shop}]{\setlength{\rightskip}{0pt plus 5cm}Shop\+Model\+::remove\+Shop (
 \begin{DoxyParamCaption}
@@ -72,15 +106,19 @@ string\mbox{[}\mbox{]}\mbox{[}\mbox{]}
 \item[{}]{\$id}
 \end{DoxyParamCaption}
 )}}\label{classShopModel_ae035aa872e97c08247d203f90e228fe2}
-Delete a shop data from the database.
+Delete a shop from the database.
+
+This function uses S\+Q\+L transactions.
 
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$search} & \\
+string & {\em \$shop\+\_\+name} & the name of shop to remove. \\
+\hline
+integer & {\em \$id} & the id of the shop to remove. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-string\mbox{[}\mbox{]}\mbox{[}\mbox{]} 
+boolean true if the operation succeeded. 
 \end{DoxyReturn}
 
 

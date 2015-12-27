@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['genericmodel',['GenericModel',['../classGenericModel.html',1,'']]],
-  ['genericview',['GenericView',['../classGenericView.html',1,'']]]
+  ['head',['Head',['../classHead.html',1,'']]],
+  ['header',['Header',['../classHeader.html',1,'']]],
+  ['homemodel',['HomeModel',['../classHomeModel.html',1,'']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['footer',['Footer',['../classFooter.html',1,'']]],
-  ['form',['Form',['../classForm.html',1,'']]]
+  ['genericmodel',['GenericModel',['../classGenericModel.html',1,'']]],
+  ['genericview',['GenericView',['../classGenericView.html',1,'']]]
 ];

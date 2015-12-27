@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,22 +19,56 @@
  */
 
 /**
- * Description of User
+ * This class defines an object used to represent a user and its properties.
  *
- * @author fabio
+ * @author Fabio Colella
  */
-class User {
+class User 
+{
+    /**
+     * @var string the firstname.
+     */
     private $firstname;
+    
+    /**
+     * @var string the secondname.
+     */
     private $secondname;
+    
+    /**
+     * @var string the username.
+     */
     private $username;
+    
+    /**
+     * @var string the password.
+     */
     private $password;
+    
+    /**
+     * @var string the email.
+     */
     private $email;
+    
+    /**
+     * @var string the birthday in format YYYY-MM-DD.
+     */
     private $birthdate;
+    
+    /**
+     * @var bool true if is admin.
+     */
     private $isAdmin;
+    
+    /**
+     * @var bool true if is a confirmed user.
+     */
     private $confirmed;
     
     /**
-     * array
+     * Returns a list of the fields.
+     * 
+     * @return array list of field names.
      */
     public function fieldList()
     {
@@ -42,6 +76,18 @@ class User {
       "email", "birthdate", "isAdmin", "confirmed"];
     }
     
+    /**
+     * The constructor.
+     * 
+     * @param string $firstname the firstname.
+     * @param string $secondname the secondname.
+     * @param string $email the email.
+     * @param string $username the username.
+     * @param string $password the password.
+     * @param string $birthdate the birthday in format YYYY-MM-DD.
+     * @param boolean $isAdmin true if is admin.
+     * @param boolean $confirmed true if is a confirmed user.
+     */
     public function __construct($firstname = "",
                             $secondname = "",
                             $email = "",
@@ -57,11 +103,23 @@ class User {
         }
     }
     
+    /**
+     * Get a field value.
+     * 
+     * @param string $field the field name.
+     * @return mixed the value of the field.
+     */
     public function get($field)
     {
         return $this->$field;
     }
     
+    /**
+     * Sets a value for a field.
+     * 
+     * @param string $field the field name.
+     * @param mixed $value the value to set.
+     */
     public function set($field, $value)
     {
         $this->$field = $value;

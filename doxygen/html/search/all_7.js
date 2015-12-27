@@ -1,25 +1,6 @@
 var searchData=
 [
-  ['generatedaysoptions',['generateDaysOptions',['../classForm.html#ae79e7e1de18f9f611d1e405349828104',1,'Form']]],
-  ['generatemonthsoptions',['generateMonthsOptions',['../classForm.html#a12b1a6bb3a44baa1b311e8cc42759f9c',1,'Form']]],
-  ['generateyearsoptions',['generateYearsOptions',['../classForm.html#a5bcd8bfb0770d2ca9e6874b329ab7f58',1,'Form']]],
-  ['genericmodel',['GenericModel',['../classGenericModel.html',1,'']]],
-  ['genericview',['GenericView',['../classGenericView.html',1,'']]],
-  ['getaddshopconfirmation',['getAddshopConfirmation',['../classForm.html#a00d84099c9d0a8fd6cdc77983b2dac93',1,'Form']]],
-  ['getaddshopform',['getAddshopForm',['../classForm.html#a9fe8a5c4812f4cbe0ff7daa05ea40cbf',1,'Form']]],
-  ['getadminview',['getAdminView',['../classGenericView.html#a9152f4f4f98de0728a14ec3742ad8c3b',1,'GenericView']]],
-  ['getcontent',['getContent',['../classPresenter.html#a8a9d11db6633e0ebb898abd4580f8988',1,'Presenter']]],
-  ['getdata',['getData',['../classModel.html#a8e1cba2731a082294561ce1b499f3402',1,'Model\getData()'],['../classShopModel.html#a5c5c4b2e0ea0e4adb98e6e6dea5011b6',1,'ShopModel\getData()']]],
-  ['getdate',['getDate',['../classBasePageController.html#a2aaad6f0fa836c9d7e6d9df5974cb4a7',1,'BasePageController']]],
-  ['geterror',['getError',['../classModel.html#a0372eec1043cef6e9b6a50220cb0b031',1,'Model']]],
-  ['getlinks',['getLinks',['../classController.html#a50e4138bea238a7bba318fffb948eeb1',1,'Controller']]],
-  ['getloginconfirmation',['getLoginConfirmation',['../classForm.html#a61045a8ccfd7f300a729027a70a00700',1,'Form']]],
-  ['getloginform',['getLoginForm',['../classForm.html#aa3ff4d216868165f1f8c442ae7ea7c95',1,'Form']]],
-  ['getlogout',['getLogout',['../classForm.html#a08c23069323910390d5fc8d4ede9690d',1,'Form']]],
-  ['getpage',['getPage',['../classController.html#aa844281accdd5aa2ca1ab1d890332b76',1,'Controller']]],
-  ['getprofileview',['getProfileView',['../classGenericView.html#af4707380a714031af8a721909dcc588f',1,'GenericView']]],
-  ['getsessionusername',['getSessionUsername',['../classController.html#ac85206dce558e214f72fc3ca56f8cc31',1,'Controller']]],
-  ['getsignupform',['getSignupForm',['../classForm.html#a3e3459dffd7067e2e707e0a622945a66',1,'Form']]],
-  ['gettitle',['getTitle',['../classController.html#ae8b4904843b2d665164620160b3c7157',1,'Controller']]],
-  ['getuser',['getUser',['../classUserAccessModel.html#a81acfe08b082369c72f78c5e8327ea72',1,'UserAccessModel']]]
+  ['head',['Head',['../classHead.html',1,'']]],
+  ['header',['Header',['../classHeader.html',1,'']]],
+  ['homemodel',['HomeModel',['../classHomeModel.html',1,'']]]
 ];

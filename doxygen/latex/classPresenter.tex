@@ -6,8 +6,7 @@
 \item 
 \hyperlink{classPresenter_a364fc50678030d816f515223be72b23a}{\+\_\+\+\_\+construct} (\$title, \$links, \$content=\char`\"{}\char`\"{})
 \item 
-\hypertarget{classPresenter_a299e31916fc252227e369fc5efad77f9}{{\bfseries set\+Custom\+Header} (\$header)}\label{classPresenter_a299e31916fc252227e369fc5efad77f9}
-
+\hyperlink{classPresenter_a299e31916fc252227e369fc5efad77f9}{set\+Custom\+Header} (\$header)
 \item 
 \hyperlink{classPresenter_a327ab1b725813be28114753935b42cd4}{print\+Content} (\$content, \$indentation= ' ')
 \item 
@@ -17,8 +16,7 @@
 \item 
 \hyperlink{classPresenter_a2194a46cf6c23dd4e483f1ee63bc2236}{render} ()
 \item 
-\hypertarget{classPresenter_a02088a50a3134097a1b785b0315937b6}{{\bfseries json} ()}\label{classPresenter_a02088a50a3134097a1b785b0315937b6}
-
+\hyperlink{classPresenter_a02088a50a3134097a1b785b0315937b6}{json} ()
 \item 
 \hyperlink{classPresenter_a1d66815ed950c7362a9c87bbcc6d9b7b}{set\+Error} (\$error\+Array=array())
 \item 
@@ -26,8 +24,7 @@
 \item 
 \hyperlink{classPresenter_a7dffb86806a017ebd3e13ca331c6f15a}{set\+Redir} (\$link=\char`\"{}index\char`\"{}, \$sec=6)
 \item 
-\hypertarget{classPresenter_ace2a8a72ee53e6be953614d00e29f741}{{\bfseries print\+Redir} ()}\label{classPresenter_ace2a8a72ee53e6be953614d00e29f741}
-
+\hyperlink{classPresenter_ace2a8a72ee53e6be953614d00e29f741}{print\+Redir} ()
 \item 
 \hyperlink{classPresenter_a80cf6f790c8705d20632f7e3a73947fe}{set\+Title} (\$title)
 \end{DoxyCompactItemize}
@@ -37,7 +34,7 @@
 Describes the whole view and renders the page.
 
 \begin{DoxyAuthor}{Author}
-fabio 
+Fabio Colella 
 \end{DoxyAuthor}
 
 
@@ -57,7 +54,7 @@ View constructor.
 \begin{DoxyParams}[1]{Parameters}
 string & {\em \$title} & of the page \\
 \hline
- & {\em string\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}} & \$links (title, link) \\
+ & {\em array\mbox{[}$\,$\mbox{]}} & \$links in the form (title, link) \\
 \hline
 string & {\em \$content} & of the page \\
 \hline
@@ -77,7 +74,14 @@ Return some content to render.
 \begin{DoxyReturn}{Returns}
 string H\+T\+M\+L content. 
 \end{DoxyReturn}
-\hypertarget{classPresenter_a327ab1b725813be28114753935b42cd4}{\index{Presenter@{Presenter}!print\+Content@{print\+Content}}
+\hypertarget{classPresenter_a02088a50a3134097a1b785b0315937b6}{\index{Presenter@{Presenter}!json@{json}}
+\index{json@{json}!Presenter@{Presenter}}
+\subsubsection[{json}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::json (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPresenter_a02088a50a3134097a1b785b0315937b6}
+Render a json formatted content \hypertarget{classPresenter_a327ab1b725813be28114753935b42cd4}{\index{Presenter@{Presenter}!print\+Content@{print\+Content}}
 \index{print\+Content@{print\+Content}!Presenter@{Presenter}}
 \subsubsection[{print\+Content}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::print\+Content (
 \begin{DoxyParamCaption}
@@ -89,9 +93,9 @@ Prints the H\+T\+M\+L indented correctly.
 
 
 \begin{DoxyParams}[1]{Parameters}
-string & {\em \$content} & multiline \\
+string & {\em \$content} & multiline H\+T\+M\+L content. \\
 \hline
-string & {\em \$indentation} & spaces indentation \\
+string & {\em \$indentation} & a string containing spaces for the indentation. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classPresenter_a5e4fe61038c5535719c6d7bc3b557019}{\index{Presenter@{Presenter}!print\+Error\+List@{print\+Error\+List}}
@@ -102,7 +106,19 @@ string & {\em \$indentation} & spaces indentation \\
 \end{DoxyParamCaption}
 )}}\label{classPresenter_a5e4fe61038c5535719c6d7bc3b557019}
 Returns the H\+T\+M\+L code of the error list. \begin{DoxyReturn}{Returns}
-string 
+string H\+T\+M\+L list of error messages. 
+\end{DoxyReturn}
+\hypertarget{classPresenter_ace2a8a72ee53e6be953614d00e29f741}{\index{Presenter@{Presenter}!print\+Redir@{print\+Redir}}
+\index{print\+Redir@{print\+Redir}!Presenter@{Presenter}}
+\subsubsection[{print\+Redir}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::print\+Redir (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classPresenter_ace2a8a72ee53e6be953614d00e29f741}
+Returns the H\+T\+M\+L code for the redirect.
+
+\begin{DoxyReturn}{Returns}
+string H\+T\+M\+L of the redirect. 
 \end{DoxyReturn}
 \hypertarget{classPresenter_a2194a46cf6c23dd4e483f1ee63bc2236}{\index{Presenter@{Presenter}!render@{render}}
 \index{render@{render}!Presenter@{Presenter}}
@@ -111,7 +127,7 @@ string
 {}
 \end{DoxyParamCaption}
 )}}\label{classPresenter_a2194a46cf6c23dd4e483f1ee63bc2236}
-Render the page \hypertarget{classPresenter_a9a7d0d294934548d13620baca0657087}{\index{Presenter@{Presenter}!set\+Content@{set\+Content}}
+Render the page. \hypertarget{classPresenter_a9a7d0d294934548d13620baca0657087}{\index{Presenter@{Presenter}!set\+Content@{set\+Content}}
 \index{set\+Content@{set\+Content}!Presenter@{Presenter}}
 \subsubsection[{set\+Content}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::set\+Content (
 \begin{DoxyParamCaption}
@@ -125,6 +141,20 @@ Receive some content to render.
 string & {\em \$content} & H\+T\+M\+L content. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classPresenter_a299e31916fc252227e369fc5efad77f9}{\index{Presenter@{Presenter}!set\+Custom\+Header@{set\+Custom\+Header}}
+\index{set\+Custom\+Header@{set\+Custom\+Header}!Presenter@{Presenter}}
+\subsubsection[{set\+Custom\+Header}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::set\+Custom\+Header (
+\begin{DoxyParamCaption}
+\item[{}]{\$header}
+\end{DoxyParamCaption}
+)}}\label{classPresenter_a299e31916fc252227e369fc5efad77f9}
+Sets a custom header for the page.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$header} & H\+T\+M\+L header \\
+\hline
+\end{DoxyParams}
 \hypertarget{classPresenter_a1d66815ed950c7362a9c87bbcc6d9b7b}{\index{Presenter@{Presenter}!set\+Error@{set\+Error}}
 \index{set\+Error@{set\+Error}!Presenter@{Presenter}}
 \subsubsection[{set\+Error}]{\setlength{\rightskip}{0pt plus 5cm}Presenter\+::set\+Error (
@@ -133,8 +163,8 @@ string & {\em \$content} & H\+T\+M\+L content. \\
 \end{DoxyParamCaption}
 )}}\label{classPresenter_a1d66815ed950c7362a9c87bbcc6d9b7b}
 Sets the error list. 
-\begin{DoxyParams}{Parameters}
-{\em string\mbox{[}$\,$\mbox{]}} & \$error\+Array \\
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$error\+Array} & a list of error messages. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classPresenter_a7dffb86806a017ebd3e13ca331c6f15a}{\index{Presenter@{Presenter}!set\+Redir@{set\+Redir}}
@@ -145,9 +175,13 @@ Sets the error list.
 \item[{}]{\$sec = {\ttfamily 6}}
 \end{DoxyParamCaption}
 )}}\label{classPresenter_a7dffb86806a017ebd3e13ca331c6f15a}
+Sets a redirect in the page.
+
 
 \begin{DoxyParams}[1]{Parameters}
-type & {\em \$link} & \\
+string & {\em \$link} & the link to which redirect. \\
+\hline
+type & {\em \$sec} & (optional) the time to wait before redirect. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classPresenter_a80cf6f790c8705d20632f7e3a73947fe}{\index{Presenter@{Presenter}!set\+Title@{set\+Title}}
@@ -157,6 +191,8 @@ type & {\em \$link} & \\
 \item[{}]{\$title}
 \end{DoxyParamCaption}
 )}}\label{classPresenter_a80cf6f790c8705d20632f7e3a73947fe}
+Set the title of the page.
+
 
 \begin{DoxyParams}[1]{Parameters}
 string & {\em \$title} & \\
