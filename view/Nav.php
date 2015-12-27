@@ -38,11 +38,13 @@ class Nav
     
     public function __construct($otherLinks = null)
     {
-        if (isset($otherLinks))
-        {
+        if (isset($otherLinks)) {
             $this->otherLinks = $otherLinks;
+        } 
+        else 
+        {
+            $this->otherLinks = array();
         }
-        else $this->otherLinks = array();
     }
     
     public function render()
@@ -65,7 +67,7 @@ class Nav
         <li class="$this->linkClass">
           <a href="help">
             <img id="help" src="assets/help.png" alt="help"/>
-            <p>HELP</p>
+            <p>INFO</p>
           </a>
         </li>
         <li id="showlinks" class="$this->linkClass">

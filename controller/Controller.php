@@ -94,7 +94,7 @@ abstract class Controller
     
     /**
      * 
-     * @param array $request
+     * @param array $page
      * @return string
      */
     public function pageTitle($page) 
@@ -147,6 +147,11 @@ abstract class Controller
         return isset($_SESSION) && array_key_exists("username", $_SESSION);
     }
     
+    protected function isAdmin()
+    {
+        return isset($_SESSION) && array_key_exists("isAdmin", $_SESSION) && $_SESSION["isAdmin"];
+    }
+
     /**
      * Destroys the session.
      */
@@ -200,6 +205,7 @@ abstract class Controller
         {
             //Links when logged 
             //array(title, link)
+            
             $linklist[] = array("PROFILE", "profile");
             $linklist[] = array("logout","logout");
             $linklist[] = array("add a shop", "addshop");

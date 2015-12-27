@@ -147,7 +147,6 @@ class ShopModel extends DBModel
             if (!$stmt = $mysqli->prepare($text))
             {
                 $this->error[] = "Error: could not prepare statement: $mysqli->error";
-                print_r("Errors: ");
 
                 return false;
             }
@@ -200,5 +199,73 @@ class ShopModel extends DBModel
         $stmt->close();
         $mysqli->close();
         return false;
+    }
+    
+    /**
+     * Delete a shop data from the database.
+     * 
+     * @param string $search
+     * @return string[][]
+     */
+    public function removeShop($shop_name, $id)
+    {        
+        try
+        {
+            $mysqli = $this->connect();
+        } 
+        catch (Exception $e) 
+        {
+            $this->error[] = $e->getMessage();
+        }
+        
+        $text = "DELETE FROM shop WHERE shop_name = ? AND id = ?";
+        
+
+        if (!$stmt = $mysqli->prepare($text))
+        {
+            $this->error[] = "Error: could not prepare statement: $mysqli->error";
+
+            return false;
+        }
+        if (!$stmt->bind_param("si", $shop_name, $id))
+        {
+            $this->error[] = "DB Error: could not bind parameters.";
+            return false;
+        }
+                
+        
+        if (!$stmt->bind_param("s", $username))
+        {
+            $this->error[] = "DB Error: could not bind parameters.";
+            return false;
+        }
+        
+        //Start transaction
+        $mysqli->autocommit(false);
+     
+        if (!$stmt->execute())
+        {
+            $this->error[] = "DB Error: could not execute the statement.";
+            $mysqli->autocommit(true);
+            return false;
+        }
+        
+        if($stmt->affected_rows != 1)
+        {
+            $this->error[] = "Exactly one row should be affected, $stmt->affected_rows intead!";
+            $this->error[] = "The system has been rollbacked due to this error, no data has been lost.";
+            $mysqli->rollback();
+            $mysqli->autocommit(true);
+            return false;
+        }
+        
+        $mysqli->commit();
+        $mysqli->autocommit(true);
+        //End of transaction
+        
+        $stmt->close();
+        $mysqli->close();
+        
+        return true;
     }
 }

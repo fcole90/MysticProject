@@ -175,13 +175,21 @@ class BasePageController extends Controller
         if(!$model->checkLoginData($username, $password))
         {
             $this->concatErrorArray($model->getError());
+            $this->presenter->setError($this->error);
             $this->presenter->setContent((new Form())->getLoginForm($username, $this->error));
             $this->presenter->render();
         }
         else /* The user logged correctly and a session gets opened. */
         {
             $_SESSION["username"] = $username;
+            $user = $model->getUser($username);
+            $this->concatErrorArray($model->getError());
+            if($user->get("isAdmin"))
+            {
+                $_SESSION["isAdmin"] = true;
+            }
             $this->presenter->setContent((new Form())->getLoginConfirmation($username));
+            $this->presenter->setError($this->error);
             $this->presenter->setRedir();
             $this->presenter->render();
         }        
@@ -255,7 +263,9 @@ class BasePageController extends Controller
     
     public function loadPageHelp() 
     {    
-        phpinfo();
+        $this->presenter->getContent((new GenericView)->getInfo());
+        $this->presenter->setError($this->error);
+        $this->presenter->render();
     }
     
     /**
@@ -268,13 +278,31 @@ class BasePageController extends Controller
             $this->error[] = "You're not logged in!";
             $this->loadPageLogin();
         }
+        else if($this->isAdmin())
+        {
+            $model = new UserAccessModel;
+            $user = $model->getUser($this->username);
+            $this->concatErrorArray($model->getError());
+            
+            if ($user)
+            {
+                $shopModel = new ShopModel();
+                $data = $shopModel->getData();
+                $this->concatErrorArray($shopModel->getError());
+                $this->presenter->setContent((new GenericView)->getAdminView($user, $data));
+            }
+            else
+            {
+                $this->error[] = "Something naughty happened retrieving the data!";
+            }
+        }
         else
         {
             $model = new UserAccessModel;
             $user = $model->getUser($this->username);
             $this->concatErrorArray($model->getError());
             
-            if($user)
+            if ($user)
             {
                 $this->presenter->setContent((new GenericView)->getProfileView($user));
             }
@@ -282,10 +310,63 @@ class BasePageController extends Controller
             {
                 $this->error[] = "Something naughty happened retrieving the data!";
             }
-            
-            $this->presenter->setError($this->error);
-            $this->presenter->render();            
+                       
         }
+        
+        $this->presenter->setError($this->error);
+        $this->presenter->render(); 
+    }
+    
+    public function loadPageRemoveShop()
+    {
+        if (!$this->isLoggedIn())
+        {
+            $this->error[] = "You're not logged in!";
+            $this->loadPageLogin();
+        }
+        else if(!$this->isAdmin())
+        {
+            $this->error[] = "You're now on the Santa's naugthy list.";
+            $this->loadPageErr403();
+        }
+        else if(isset ($this->request["shop_name"]) && isset ($this->request["id"]) && isset ($this->request["isSure"]))
+        {
+            $shop_name = $this->safeInput($this->request["shop_name"]);
+            $id = $this->safeInput($this->request["id"]);
+            $isSure = $this->safeInput($this->request["isSure"]);
+            $model = new ShopModel();
+            if ($isSure == "true")
+            {
+                $result = $model->removeShop($shop_name, $id);
+            }
+            else
+            {
+                $result = false;
+            }
+            
+            if ($result)
+            {
+                $this->presenter->setContent((new GenericView)->getRemoveShopConfirmation($shop_name));
+            }
+            else
+            {
+                $this->error[] = "Sorry, could not find the shop. Please, contact the administrator.";
+            }
+            
+            $this->presenter->setRedir("index", 10);
+            $this->concatErrorArray($model->getError());
+            $this->presenter->setError($this->error);
+
+            $this->presenter->render();
+        }
+        else if(isset ($this->request["shop_name"]) && isset ($this->request["id"]))
+        {
+            $shop_name = $this->safeInput($this->request["shop_name"]);
+            $id = $this->safeInput($this->request["id"]);
+            $this->presenter->setContent((new GenericView)->getRemoveShopCertainty($shop_name, $id));
+            $this->presenter->render();
+        }
+   
     }
     
     
@@ -313,9 +394,9 @@ class BasePageController extends Controller
     public function loadPageErr404()
     {
         $title = "Error 404 - Page not found";
-        $message = "Sorry, the page you're looking for "
+        $this->error[] = "Sorry, the page you're looking for "
           . "does not exist or has been moved.";
-        $this->presenter->setError(array($message));
+        $this->presenter->setError($this->error);
         $this->presenter->setCustomHeader("HTTP/1.0 404 Not Found");
         $this->presenter->setContent("<img id='err404'src='https://media3.giphy.com/media/tj2MwoqitZLtm/giphy.gif'>");
         $this->presenter->setRedir("index", 10);
@@ -329,10 +410,10 @@ class BasePageController extends Controller
     public function loadPageErr403()
     {
         $title = "Error 403 - Forbidden";
-        $message = "You're attempting to access an unauthorized "
+        $this->error[] = "You're attempting to access an unauthorized "
           . "area. If you think you should be able to access this area "
           . "contact your administrator.";
-        $this->presenter->setError(array($message));
+        $this->presenter->setError($this->error);
         $this->presenter->setCustomHeader("HTTP/1.0 403 Forbidden");
         $this->presenter->render();
     }

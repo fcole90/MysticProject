@@ -252,8 +252,6 @@ class UserAccessModel extends DBModel
         $stmt->close();
         $mysqli->close();
         return false;
-        
-        
     }
     
     /**

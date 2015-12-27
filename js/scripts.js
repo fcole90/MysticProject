@@ -29,36 +29,52 @@ function showlinks()
 }
 
 
-function populateSearchTable(json)
+function populateSearchTable(json, rem_button)
 {
     var data = JSON.parse(json);
     list = "";
     //Reset the content of the table and repopulate it
     for	(index = 0; index < data.length; index++) 
     {
-        list += ("<tr><td class='field'>" 
+        list += "<tr><td class='field'>" 
               + data[index]['shop_name'] + "</td>"
-              + "<td>in " + data[index]["address"] 
-              + " a " + data[index]["city"] + "</td></tr>");
+              + "<td>" + data[index]["address"] 
+              + ", " + data[index]["city"] + "</td>";
+        if (rem_button)
+        {
+            list += "<td><input type='button' value='remove' id='removeShop'</td>";
+        }
+        list += "</tr>";
+    }
+    if (data.length === 0)
+    {
+        list += "<tr><td class='field'>"
+              + "<h3 class='warning'>Sorry, no result found</h3>"
+              + "</td></tr>";
     }
     $('#search-table').html(list);
 }
 
-function search(searchtext)
+function search(searchtext, rem_button)
 {
     $.ajax({url: "ajaxSearchShop", 
             data: {
                 searchstring: searchtext,
                 format: 'json'
             },
-            success: function(data) {populateSearchTable(data);},
+            success: function(data) {populateSearchTable(data, rem_button);},
             error: function() {alert("Ajax error!");}
         });
 }
 
 function actionsearch()
 {
-    search($("#search-box").val());
+    search($("#search-box").val(), false);
+}
+
+function actionsearchAdmin()
+{
+    search($("#search-box-admin").val(), true);
 }
 
 
@@ -74,16 +90,29 @@ $(document).ready(function(){
     {
         if (!timer_search_lock)
         {
-            setTimeout(function() {timer_search_lock = true;}, 500);                
+            setTimeout(function() {timer_search_lock = true;}, 50);                
         }
     }
       
-    //do not reload the page when clicking enter
     $( "#search-box" ).keypress(function() {
           
         if(timer_search_lock)
         {
-            search($("#search-box").val());
+            search($("#search-box").val(), false);
+            timer_search_lock = false;
+        }
+        else
+        {
+            unlock();
+        }
+         
+    });
+    
+    $( "#search-box-admin" ).keypress(function() {
+          
+        if(timer_search_lock)
+        {
+            search($("#search-box-admin").val(), true);
             timer_search_lock = false;
         }
         else
@@ -95,16 +124,12 @@ $(document).ready(function(){
       
     $( "#search-box" ).on('search', function (e) {
             e.preventDefault();
-            search($("#search-box").val());
-    });
-      
-    $("#search-button").click(function () {
-            search($("#search-box").val());
+            actionsearch();
     });
     
-    $("#searchform").submit(function() {
-        search($("#search-box").val());
-        return false;
+    $( "#search-box-admin" ).on('search', function (e) {
+            e.preventDefault();
+            actionsearchAdmin();
     });
 
 });

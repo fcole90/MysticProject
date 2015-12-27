@@ -44,22 +44,112 @@ class GenericView
         return $text;
     }
     
+    /**
+     * Get the HTML to render the profile and admin panel.
+     * 
+     * @param profile string[]
+     * @return string HTML view
+     */
+    public function getAdminView($user, $shoplist)
+    {
+        $text = $this->getProfileView($user); //Show the admin profile
+        
+        $text .= "<h3>List of shops</h3>";
+        
+        $text .= "<form class='search' action='javascript:actionsearchAdmin()' id='searchform'>"
+          . "<input type='search' id='search-box-admin' autocomplete='off'>\n"
+          . "\t<input type='submit' value='Search' id='search-button'>\n"
+          . "</form>\n";
+        $text .= "<table id='search-table'>\n\t";
+        
+        foreach ($shoplist as $item)
+        {
+            $text .= "<tr><td class='field'>". $item['shop_name'] . "</td>"
+              . "<td>" . $item["address"] . ", " . $item["city"] . "</td>"
+              . "<td><form action='removeShop'>"
+              . "<input type='hidden' name='shop_name' value='" . $item['shop_name'] . "'>"
+              . "<input type='hidden' name='id' value='" . $item['id'] . "'>"
+              . "<input type='submit' value='Remove'></form></td></tr>";
+        }        
+
+        $text .= "\n</table>";
+        
+        /*This is implemented here for coherence with the js equivalent*/
+        if (!$shoplist)
+        {
+            $text .= "<tr><td class='field'>"
+                  . "<h3 class='warning'>Sorry, no result found</h3>"
+                  . "</td></tr>";
+        }  
+        
+        return $text;
+    }
+    
     public function getHomeContent($data)
     {
-        $text = "<form class='search' action='actionsearch' id='searchform'><input type='search' id='search-box'>\n"
-          . "\t<input type='submit' value='Search' id='search-button'>\n"
+        $text = "<form class='search' action='javascript:actionsearch();' id='searchform'>"
+          . "<input type='search' id='search-box' autocomplete='off'>\n"
+          . "\t<input type='submit' value='Search' id='search-button' onclick='javascript:actionsearch()'>\n"
           . "</form>\n";
         $text .= "<table id='search-table'>\n\t";
         
         foreach ($data as $item)
         {
             $text .= "<tr><td class='field'>". $item['shop_name'] . "</td>"
-              . "<td>in " . $item["address"] . " a " . $item["city"] . "</td></tr>";
-        }        
+              . "<td>" . $item["address"] . ", " . $item["city"] . "</td></tr>";
+        } 
+        
+        /*This is implemented here for coherence with the js equivalent*/
+        if (!$data)
+        {
+            $text .= "<tr><td class='field'>"
+                  . "<h3 class='warning'>Sorry, no result found</h3>"
+                  . "</td></tr>";
+        }   
 
         $text .= "\n</table>";
         
         return $text;
+    }
+    
+    public function getRemoveShopConfirmation($shop_name)
+    {
+        return "<h3>Congratulation, the shop $shop_name has been removed!</h3>";
+    }
+    
+    public function getRemoveShopCertainty($shop_name, $id)
+    {
+        $text = "<h3>Are you sure to remove the following shop?</h3>"
+              . "<form action='removeShop'>"
+              . "<input type='text' name='shop_name' value='" . $shop_name . "' readonly>"
+              . "<input type='hidden' name='id' value='" . $id . "'>"
+              . "<input type='hidden' name='isSure' value='true'>"
+              . "<input type='submit' value='Yes'>"
+              . "</form>";
+        $text .= "<form action='profile'><input type='submit' value='Cancel'></form>";
+        
+        return $text;
+    }
+    
+    public function getInfo()
+    {
+        $doxygen_link = __ROOT__ . "/doxygen/html/index.html";
+        $readme_link = "https://github.com/fcole90/fisherman-locator";
+        return "<h3>Aim of the website</h3>\n"
+        . "<p>This website has been developed in the scope of an achademic project"
+          . "and has the aim of helping Fisherman Friend's enthusiasts"
+          . "finding the equipped resellers. This is done trough a search function"
+          . "and a reporting function.</p>"
+          . "<h3>Current state</h3>"
+          . "<p>The current state has a minimum level of functionality that aims"
+          . "to satisfy the project requirement but does not claim to be"
+          . "a finished production ready product in any way.</p>"
+          . "<h3>More infomations</h3>"
+          . "<p>More informations can be found in the "
+          . "<a href='$readme_link' target='_blank'>"
+          . "readme</a> of the project and in the "
+          . "<a href='$doxygen_link'>Doxygen documentation</a>."
+          . "</p>";
     }
 }
 

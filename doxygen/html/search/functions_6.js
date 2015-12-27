@@ -5,6 +5,7 @@ var searchData=
   ['generateyearsoptions',['generateYearsOptions',['../classForm.html#a5bcd8bfb0770d2ca9e6874b329ab7f58',1,'Form']]],
   ['getaddshopconfirmation',['getAddshopConfirmation',['../classForm.html#a00d84099c9d0a8fd6cdc77983b2dac93',1,'Form']]],
   ['getaddshopform',['getAddshopForm',['../classForm.html#a9fe8a5c4812f4cbe0ff7daa05ea40cbf',1,'Form']]],
+  ['getadminview',['getAdminView',['../classGenericView.html#a9152f4f4f98de0728a14ec3742ad8c3b',1,'GenericView']]],
   ['getcontent',['getContent',['../classPresenter.html#a8a9d11db6633e0ebb898abd4580f8988',1,'Presenter']]],
   ['getdata',['getData',['../classModel.html#a8e1cba2731a082294561ce1b499f3402',1,'Model\getData()'],['../classShopModel.html#a5c5c4b2e0ea0e4adb98e6e6dea5011b6',1,'ShopModel\getData()']]],
   ['getdate',['getDate',['../classBasePageController.html#a2aaad6f0fa836c9d7e6d9df5974cb4a7',1,'BasePageController']]],
