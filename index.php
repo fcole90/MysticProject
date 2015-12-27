@@ -5,10 +5,12 @@ require_once __ROOT__ . '/controller/BasePageController.php';
 session_start();
                 
 /** Enable error reporting **/
+/** Enable debug mode **/
+define('DBGMODE', true);
+/** Comment the followign lines to disable error reporting **/
 ini_set('display_startup_errors',1);
 ini_set('display_errors',1);
 error_reporting(-1);
-
 /**/
 
 /**
@@ -29,8 +31,8 @@ class FrontController extends Controller
     /**
      * Select the correct controller function according to the page.
      * 
-     * As a security feature the function have their name starting with
-     * "loadPage" to avoid the user exploiting that to call potentially 
+     * As a security feature the functions have their name starting with
+     * "loadPagePAGENAME" to avoid the user exploiting them to call potentially 
      * dangerous functions.
      */
     public static function page(&$request)

@@ -12,7 +12,7 @@ relRequire('model/UserAccessModel.php');
 relRequire("model/ErrorModel.php");
 relRequire("model/GenericModel.php");
 /*
- * Copyright (C) 2015 fabio
+ * Copyright (C) 2015 Fabio Colella
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,9 +30,9 @@ relRequire("model/GenericModel.php");
  */
 
 /**
- * Handles the pages.
+ * Handles the pages, the checks, sanitizes the input and more.
  *
- * @author fabio
+ * @author Fabio Colella.
  */
 class BasePageController extends Controller
 {
@@ -66,9 +66,7 @@ class BasePageController extends Controller
     
     /***********************************************
      * Page handling functions.                    *
-     ***********************************************/
-    
-    
+     ***********************************************/   
     /**
      * Renders the home page.
      * 
@@ -85,10 +83,10 @@ class BasePageController extends Controller
         }
         else
         {
-            $this->error[] = "There has been an error retrieving data.";
+            $this->error[] = "There has been an error retrieving the data.";
         }
         
-        $this->concatErrorArray($model->getError());
+        if (DBGMODE) {$this->concatErrorArray($model->getError());}
         $this->presenter->setError($this->error);
         $this->presenter->render();
     }
@@ -137,6 +135,10 @@ class BasePageController extends Controller
         
     }
     
+    /**
+     * 
+     * Handles the login process.
+     */
     public function loadPageLogin()
     {
                 
@@ -150,7 +152,7 @@ class BasePageController extends Controller
             return;
         }
         
-        /* No field is set, probably coming here from for first time */
+        /* No field is set, probably coming here for first time */
         if(!isset($this->request["username"]) && !isset($this->request["password"]))
         {
             $this->presenter->setContent((new Form())->getLoginForm("", $this->error));
@@ -174,7 +176,8 @@ class BasePageController extends Controller
         /* The user filled the fields but either the username or the password is wrong */
         if(!$model->checkLoginData($username, $password))
         {
-            $this->concatErrorArray($model->getError());
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
+            $this->error[] = "Sorry, username or password are wrong.";
             $this->presenter->setError($this->error);
             $this->presenter->setContent((new Form())->getLoginForm($username, $this->error));
             $this->presenter->render();
@@ -183,7 +186,7 @@ class BasePageController extends Controller
         {
             $_SESSION["username"] = $username;
             $user = $model->getUser($username);
-            $this->concatErrorArray($model->getError());
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
             if($user->get("isAdmin"))
             {
                 $_SESSION["isAdmin"] = true;
@@ -198,7 +201,7 @@ class BasePageController extends Controller
     /**
      * Lets a user log out.
      */
-    public function logout() 
+    public function loadPageLogout() 
     {
          
         if($this->isLoggedIn())
@@ -211,7 +214,8 @@ class BasePageController extends Controller
         }
         else
         {
-            $this->error[] = "You're not logged in yet.";
+            $this->error[] = "You're not logged in yet. You're now redirected to"
+              . "the login page.";
             $this->loadPageLogin();
         }
     }
@@ -233,79 +237,108 @@ class BasePageController extends Controller
         
         $data = $this->setAddshopData();
 
-        
+        /** A field is set, we can assume the user already filled the form. **/
         if(isset($this->request["address"]))
         {
             $model = new ShopModel();
-            if($this->checkFieldsAddshop($data) && $model->addShopToDatabase($data))
+            $fieldsAreOk = $this->checkFieldsAddshop($data);
+            /** Case everything went well. **/
+            if($fieldsAreOk && $model->addShopToDatabase($data))
             {
+                if (DBGMODE) {$this->concatErrorArray($model->getError());}
+                $this->presenter->setError();
                 $this->presenter->setContent((new Form)->getAddshopConfirmation($data));
                 $this->presenter->setRedir();
                 $this->presenter->render();
                 return;
             }
+            /** There's been a database error. **/
+            else if($fieldsAreOk && !$model->addShopToDatabase($data))
+            {
+                if (DBGMODE) {$this->concatErrorArray($model->getError());}
+                $this->error[] = "Sorry, something went wrong and the process could not be completed.";
+                $this->presenter->setError();
+                $this->presenter->setContent((new Form)->getAddshopConfirmation($data));
+                $this->presenter->setRedir();
+                $this->presenter->render();
+                return;
+            }
+            /** The user filled the fields disrespecting some rule. **/
             else
             {
-                $this->concatErrorArray($model->getError());
-                $this->presenter->setError(array("Something went wrong.."));
-                $this->presenter->setContent((new Form)->getAddshopForm($data, $this->error));
+                if (DBGMODE) {$this->concatErrorArray($model->getError());}
+                $this->presenter->setError($this->error);
+                $this->presenter->setContent((new Form)->getAddshopForm($data));
                 $this->presenter->render();
                 return;
             }
             
         }
+        /** No field is set, we can assume the user is coming there for the first time. **/
         else
         {
-            $this->presenter->setContent((new Form)->getAddshopForm($data, $this->error));
+            $this->presenter->setContent((new Form)->getAddshopForm($data));
+            $this->presenter->setError($this->error);
             $this->presenter->render();
         }
     }
     
+    /**
+     * Creates an informative page.
+     */
     public function loadPageHelp() 
     {    
-        $this->presenter->getContent((new GenericView)->getInfo());
+        $this->presenter->setContent((new GenericView)->getInfo());
+        
         $this->presenter->setError($this->error);
         $this->presenter->render();
     }
     
     /**
-     * Handles the profile page.
+     * Handles the profile page and the admin panel to remove the shops.
      */
     public function loadPageProfile()
     {
+        /** The user is not logged. **/
         if (!$this->isLoggedIn())
         {
             $this->error[] = "You're not logged in!";
             $this->loadPageLogin();
         }
+        /** The user is logged and is an admin. **/
         else if($this->isAdmin())
         {
             $model = new UserAccessModel;
             $user = $model->getUser($this->username);
-            $this->concatErrorArray($model->getError());
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
             
+            /** User data have been collected and can be displayed **/
             if ($user)
             {
                 $shopModel = new ShopModel();
                 $data = $shopModel->getData();
-                $this->concatErrorArray($shopModel->getError());
+                if (DBGMODE) {$this->concatErrorArray($shopModel->getError());}
                 $this->presenter->setContent((new GenericView)->getAdminView($user, $data));
             }
+            /** The user data could not be loaded. **/
             else
             {
                 $this->error[] = "Something naughty happened retrieving the data!";
             }
         }
+        /** The user is not admin. **/
         else
         {
             $model = new UserAccessModel;
             $user = $model->getUser($this->username);
-            $this->concatErrorArray($model->getError());
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
             
+            /** User data have been collected and can be displayed **/
             if ($user)
             {
                 $this->presenter->setContent((new GenericView)->getProfileView($user));
             }
+            /** The user data could not be loaded. **/
             else
             {
                 $this->error[] = "Something naughty happened retrieving the data!";
@@ -317,18 +350,24 @@ class BasePageController extends Controller
         $this->presenter->render(); 
     }
     
+    /** 
+     * Asks a confirmation before deleting a shop definitely.
+     */
     public function loadPageRemoveShop()
     {
+        /** The user is not logged in. **/
         if (!$this->isLoggedIn())
         {
             $this->error[] = "You're not logged in!";
             $this->loadPageLogin();
         }
+        /** The user tried cheating and won't receive gifts for Christmas. **/
         else if(!$this->isAdmin())
         {
-            $this->error[] = "You're now on the Santa's naugthy list.";
+            $this->error[] = "You're now on Santa's naugthy list.";
             $this->loadPageErr403();
         }
+        /** The admin is ready to delete the shop. **/
         else if(isset ($this->request["shop_name"]) && isset ($this->request["id"]) && isset ($this->request["isSure"]))
         {
             $shop_name = $this->safeInput($this->request["shop_name"]);
@@ -354,11 +393,12 @@ class BasePageController extends Controller
             }
             
             $this->presenter->setRedir("index", 10);
-            $this->concatErrorArray($model->getError());
+            if (DBGMODE) {$this->concatErrorArray($model->getError());}
             $this->presenter->setError($this->error);
 
             $this->presenter->render();
         }
+        /** The admin is asked for confirmation before deleting the shop. **/
         else if(isset ($this->request["shop_name"]) && isset ($this->request["id"]))
         {
             $shop_name = $this->safeInput($this->request["shop_name"]);
@@ -369,7 +409,9 @@ class BasePageController extends Controller
    
     }
     
-    
+    /**
+     * Handles an Ajax request to search a shop.
+     */
     public function loadPageAjaxSearchShop()
     {
         $model = new ShopModel();
@@ -388,7 +430,7 @@ class BasePageController extends Controller
     }
     
     /**
-     * Handles the 404 error
+     * Handles the 404 error.
      * @param request $request
      */
     public function loadPageErr404()
@@ -398,6 +440,7 @@ class BasePageController extends Controller
           . "does not exist or has been moved.";
         $this->presenter->setError($this->error);
         $this->presenter->setCustomHeader("HTTP/1.0 404 Not Found");
+        /** Let's make a laugh of that. **/
         $this->presenter->setContent("<img id='err404'src='https://media3.giphy.com/media/tj2MwoqitZLtm/giphy.gif'>");
         $this->presenter->setRedir("index", 10);
         $this->presenter->render();
@@ -423,7 +466,7 @@ class BasePageController extends Controller
      ***********************************/
 
     /**
-     * Setup the user variable feeding it with the form fields.
+     * Setup the User object feeding its properties with the form fields.
      */
     public function setSignupFields()
     {
@@ -440,7 +483,7 @@ class BasePageController extends Controller
             }
         }
         
-        /** Additonal control to obtain the birthdate **/
+        /** Additonal control to obtain the birthdate. **/
         if(isset($this->request["year"]) && isset($this->request["month"]) && isset($this->request["day"]))
         {
             $birthdate = $this->getDate($this->safeInput($this->request["year"]), 
@@ -455,7 +498,10 @@ class BasePageController extends Controller
     }
     
     /**
-     * Marks the fields wich require attention.
+     * Marks a field which require attention.
+     * 
+     * @param string $field the field to mark.
+     * @return string field with class warning.
      */
     public function setWarning($field)
     {
@@ -463,11 +509,12 @@ class BasePageController extends Controller
     }
     
     /**
-     * Checks the fields one by one.
+     * Checks the fields one by one for the sign up process.
      * 
      * If adding new fields this class needs to be edited.
-     * @param Model $model
-     * @return boolean checkPassed
+     * 
+     * @param UserAccessModel $model a model to access the user table on the DB.
+     * @return boolean true if the test is passed.
      */
     public function checkFieldsSignUp(UserAccessModel $model)
     {
@@ -495,8 +542,6 @@ class BasePageController extends Controller
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
         }
-        
-        
         
         $current = "firstname";
         if (!$this->checkCharSpaces($current, $this->user->get($current)))
@@ -526,9 +571,7 @@ class BasePageController extends Controller
             $this->user->set($current, $this->setWarning($this->user->get($current)));
             $isValid = false;
         }
-        
-        
-        
+
         $current = "birthdate";
         if (!$this->checkDate($current, $this->user->get($current)))
         {
@@ -543,10 +586,10 @@ class BasePageController extends Controller
     /**
      * Returns a standard date in the YYYY-MM-DD format.
      * 
-     * @param type $year
-     * @param type $month
-     * @param type $day
-     * @return string
+     * @param type $year the year
+     * @param type $month the month
+     * @param type $day the day
+     * @return string date in the YYYY-MM-DD format.
      */
     function getDate($year="", $month="", $day="")
     {
@@ -555,6 +598,11 @@ class BasePageController extends Controller
     
     /**
      * Helper function to check if strings contain only chars and digits.
+     *
+     * @param string $field the name of the field.
+     * @param string $value the value of the field.
+     * @param int $length (optional) checks also the lenghts of the value.
+     * @return boolean true if the test is passed.
      */
     public function checkCharDigit($field, $value, $length = -1)
     {
@@ -578,6 +626,9 @@ class BasePageController extends Controller
         
     /**
      * Helper function to check if strings contain only chars and spaces.
+     * @param string $field the name of the field.
+     * @param string $value the value of the field.
+     * @return boolean true if the test is passed.
      */
     public function checkCharSpaces($field, $value)
     {
@@ -590,7 +641,29 @@ class BasePageController extends Controller
     }
     
     /**
-     * Helper function to check if strings contain only decimal digits.
+     * Helper function to check if strings contain only certain symbols.
+     * 
+     * @param string $field the name of the field.
+     * @param string $value the value of the field.
+     * @param string $symbols A list of symbols allowed, default: "a-zA-Z0-9 ',.-°".
+     * @return boolean true if the test is passed.
+     */
+    public function checkComposedStrings($field, $value, $symbols = "a-zA-Z0-9 ',.-°")
+    {
+        if (!preg_match("/[$symbols]*$/",$value)) 
+        {
+            $this->error[] = "Only the symbols '$symbols' are allowed in $field.";
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Helper function to check if strings contain only decimal numbers.
+     * 
+     * @param string $field the name of the field.
+     * @param string $value the value of the field.
+     * @return boolean true if the test is passed.
      */
     public function checkDecimal($field, $value)
     {
@@ -604,6 +677,10 @@ class BasePageController extends Controller
     
     /**
      * Helper function to check if the string is strong enough to be used as a password.
+     * 
+     * @param string $field the name of the field.
+     * @param string $value the value of the field.
+     * @return boolean true if the test is passed.
      */
     public function checkPassword($field, $value)
     {
@@ -622,6 +699,10 @@ class BasePageController extends Controller
     
     /**
      * Helper function to check if the string is a valid email address.
+     * 
+     * @param string $field the name of the field.
+     * @param string $value the value of the field.
+     * @return boolean true if the test is passed.
      */
     public function checkEmail($field, $value)
     {
@@ -636,9 +717,9 @@ class BasePageController extends Controller
     /**
      * Checks that the date is in an appropriate format (YYYY-MM-DD).
      * 
-     * @param string $field
-     * @param string $value
-     * @return boolean
+     * @param string $field the name of the field.
+     * @param string $value the value of the field.
+     * @return boolean true if the test is passed.
      */
     public function checkDate($field, $value)
     {
@@ -667,8 +748,8 @@ class BasePageController extends Controller
     
     
     /**
-     * Returns an associative array of strings containing 
-     * data if it has been passed.
+     * Returns an associative array of strings containing the data sent 
+     * found in the request array.
      * 
      * @return string[]
      */
@@ -695,6 +776,14 @@ class BasePageController extends Controller
         return $data;
     }
     
+    /**
+     * Checks the fields one by one to add a shop.
+     * 
+     * If adding new fields this class needs to be edited.
+     * 
+     * @param string[] $data associative array where the name of the field is the key.
+     * @return boolean true if the test is passed.
+     */
     public function checkFieldsAddshop($data)
     {
         $isValid = true;
@@ -706,7 +795,7 @@ class BasePageController extends Controller
            $data[$current] = $this->setWarning($data[$current]);
            $isValid = false;
         }
-        else if (!$this->checkCharSpaces($current, $data[$current]))
+        else if (!$this->checkComposedStrings($current, $data[$current]))
         {
            $data[$current] = $this->setWarning($data[$current]);
            $isValid = false;
@@ -719,7 +808,7 @@ class BasePageController extends Controller
            $data[$current] = $this->setWarning($data[$current]);
            $isValid = false;
         }
-        else if (!$this->checkCharSpaces($current, $data[$current]))
+        else if (!$this->checkComposedStrings($current, $data[$current]))
         {
            $data[$current] = $this->setWarning($data[$current]);
            $isValid = false;

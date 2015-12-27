@@ -123,24 +123,18 @@ HTML;
           . " contact the administrator.</p>";
     }
     
-    /** Login **/
     
-    public function getLoginForm($username, &$error)
+    /**
+     * Returns a login form.
+     * 
+     * @param string $username
+     * @return string HTML
+     */
+    public function getLoginForm($username)
     {
-        $warning = "";
-        if (isset($error))
-        {
-            $warning = "\n";
-            foreach ($error as $message)
-            {
-                $warning .= "<h3 class=\"warning\">$message</h3>\n";
-            }
-        }
-        
-        
         
         $form = <<<HTML
-<h2>Please, insert your username and password:</h2>$warning
+<h2>Please, insert your username and password:</h2>
 <form action="" method="post">
     <p>Username: </p>
     <input type="text" name="username" value="$username" required="true">
@@ -156,7 +150,7 @@ HTML;
     }
     
     /**
-     * Create a login confirmation.
+     * Returns a login confirmation.
      * 
      * @param string $username
      * @return string
@@ -186,13 +180,12 @@ HTML;
     }
     
     /**
-     * Return a shop form.
+     * Returns a shop form.
      * 
      * @param string[][] $data
-     * @param string[] $error
      * @return string
      */
-    public function getAddshopForm($data, &$error)
+    public function getAddshopForm($data)
     {
         
         foreach ($data as $key => $value)
@@ -200,26 +193,8 @@ HTML;
             $$key = $value; //Get the variable of the variable
         }
                 
-        $warning = "";
-        if (isset($error))
-        {
-            $warning = "\n";
-            foreach ($error as $message)
-            {
-                $warning .= "<h3 class=\"warning\">$message</h3>\n";
-            }
-        }
-        /*
-        $data["address"] = "";
-        //$data["shop_name"] = "";
-        //$data["typeOfShop"] = "";
-        $data["VATNumber"] = "";
-        $data["latitude"] = "";
-        $data["longitude"] = "";
-        $data["owner"] = "";
-         */
         $form = <<<HTML
-<h2>Fill in your data:</h2>$warning
+<h2>Fill in your data:</h2>
 <form action="" method="post">
     <p>Shop Name:</p>
     <input type="text" name="shop_name" value="$shop_name" required="true">

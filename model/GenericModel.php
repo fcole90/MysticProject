@@ -1,5 +1,4 @@
 <?php
-relRequire("parsedown/Parsedown.php");
 
 /* 
  * Copyright (C) 2015 fabio

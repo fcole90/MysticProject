@@ -17,6 +17,7 @@
  */
 
 /**
+ * Enables a menu to display additional links.
  * 
  * @returns {void}
  */
@@ -28,7 +29,13 @@ function showlinks()
     }
 }
 
-
+/**
+ * Populates the table to display the results from the json data.
+ * 
+ * @param {type} json json data.
+ * @param {type} rem_button switch to add an additional column of buttons.
+ * @returns {undefined}
+ */
 function populateSearchTable(json, rem_button)
 {
     var data = JSON.parse(json);
@@ -55,6 +62,15 @@ function populateSearchTable(json, rem_button)
     $('#search-table').html(list);
 }
 
+/**
+ * Uses ajax to retrieve data from the search text.
+ * 
+ * On error it alerts the user with a popup, otherwise it loads the data.
+ * 
+ * @param {type} searchtext the text to search.
+ * @param {type} rem_button switch to add an additional column of buttons in the called function.
+ * @returns {undefined}
+ */
 function search(searchtext, rem_button)
 {
     $.ajax({url: "ajaxSearchShop", 
@@ -63,29 +79,49 @@ function search(searchtext, rem_button)
                 format: 'json'
             },
             success: function(data) {populateSearchTable(data, rem_button);},
-            error: function() {alert("Ajax error!");}
+            error: function() {alert("Sorry, something didn't work and we couldn't make the search.");}
         });
 }
 
+/**
+ * Shortcut to trigger the search.
+ * @returns {undefined}
+ */
 function actionsearch()
 {
     search($("#search-box").val(), false);
 }
 
+/**
+ * Shortcut to trigger the admin search.
+ * @returns {undefined}
+ */
 function actionsearchAdmin()
 {
     search($("#search-box-admin").val(), true);
 }
 
-
+/**
+ * The main function that get's called when the page is ready.
+ */
 $(document).ready(function(){
     
-    //var map = L.map('map').setView([51.505, -0.09], 13);
+    /**
+     * Event to make a funny 404 page.
+     */
     $("#err404").animate({left: '+=50000px'}, 75000, "swing");
-      
+    
+    /**
+     * @type Boolean mutex for the searches when typing.
+     */
     var timer_search_lock = true;
     
-    //unlocks the time lock
+    /**
+     * Unlocks the mutex after 50ms to prevent sending too many requests to the 
+     * database while typing.
+     * 
+     * @returns {undefined}
+     */
     function unlock()
     {
         if (!timer_search_lock)
@@ -93,7 +129,10 @@ $(document).ready(function(){
             setTimeout(function() {timer_search_lock = true;}, 50);                
         }
     }
-      
+    
+    /**
+     * Event to trigger a search while typing in the search box.
+     */
     $( "#search-box" ).keypress(function() {
           
         if(timer_search_lock)
@@ -104,10 +143,12 @@ $(document).ready(function(){
         else
         {
             unlock();
-        }
-         
+        }     
     });
     
+    /**
+     * Event to trigger a search while typing in the search box of an admin.
+     */
     $( "#search-box-admin" ).keypress(function() {
           
         if(timer_search_lock)
@@ -121,12 +162,18 @@ $(document).ready(function(){
         }
          
     });
-      
+    
+    /**
+     * Prevents reloading the page and triggers the search.
+     */
     $( "#search-box" ).on('search', function (e) {
             e.preventDefault();
             actionsearch();
     });
     
+    /**
+     * Prevents reloading the page and triggers the search of an admin.
+     */
     $( "#search-box-admin" ).on('search', function (e) {
             e.preventDefault();
             actionsearchAdmin();

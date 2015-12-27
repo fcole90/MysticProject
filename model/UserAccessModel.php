@@ -20,7 +20,7 @@ relRequire("model/User.php");
  */
 
 /**
- * Model class to handle the data for the signup process and add a new user.
+ * Model class to handle the data about the users.
  *
  * @author fabio
  */
@@ -29,6 +29,9 @@ class UserAccessModel extends DBModel
     private $user;
     private $passwordMinLength = 6;
     
+    /**
+     * The constructor.
+     */
     public function __construct() 
     {
         parent::__construct();
@@ -57,7 +60,7 @@ class UserAccessModel extends DBModel
         catch (Exception $e) 
         {
             $this->error[] = $e->getMessage();
-            $this->error[] = "Could not connect to database.";
+            $this->error[] = "Sorry, could not connect to the database.";
             return false;
         }
         
@@ -244,11 +247,9 @@ class UserAccessModel extends DBModel
         {
             $stmt->close();
             $mysqli->close();
-            $this->error[] = "Welcome, $user!";
             return true;
         }
         /* else */
-        $this->error[] = "Sorry, username or password are incorrect.";
         $stmt->close();
         $mysqli->close();
         return false;

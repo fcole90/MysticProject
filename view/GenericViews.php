@@ -131,24 +131,29 @@ class GenericView
         return $text;
     }
     
+    /**
+     * Returns an informational message.
+     * 
+     * @return string HTML
+     */
     public function getInfo()
     {
-        $doxygen_link = __ROOT__ . "/doxygen/html/index.html";
+        $doxygen_link = "doxygen/html/index.html";
         $readme_link = "https://github.com/fcole90/fisherman-locator";
         return "<h3>Aim of the website</h3>\n"
-        . "<p>This website has been developed in the scope of an achademic project"
-          . "and has the aim of helping Fisherman Friend's enthusiasts"
-          . "finding the equipped resellers. This is done trough a search function"
+        . "<p>This website has been developed in the scope of an achademic project "
+          . "and has the aim of helping Fisherman Friend's enthusiasts "
+          . "finding the best equipped resellers. This is done trough a search function "
           . "and a reporting function.</p>"
           . "<h3>Current state</h3>"
-          . "<p>The current state has a minimum level of functionality that aims"
-          . "to satisfy the project requirement but does not claim to be"
+          . "<p>The current state has a minimum level of functionality that aims "
+          . "to satisfy the project requirement but does not claim to be "
           . "a finished production ready product in any way.</p>"
           . "<h3>More infomations</h3>"
           . "<p>More informations can be found in the "
           . "<a href='$readme_link' target='_blank'>"
           . "readme</a> of the project and in the "
-          . "<a href='$doxygen_link'>Doxygen documentation</a>."
+          . "<a href='$doxygen_link' target='_blank'>Doxygen documentation</a>."
           . "</p>";
     }
 }

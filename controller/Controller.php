@@ -19,46 +19,42 @@
  */
 
 /**
- * All controllers should inherit from here
+ * All controllers should inherit from it.
  * 
- * @author fabio
+ * @author Fabio Colella.
  */
 abstract class Controller 
 {
     /**
-     * 
-     * @var string $title
+     * @var string the title of the page
      */
     private $title;
     
     /**
-     *
-     * @var string
+     * @var string the base of the title
      */
     private $baseTitle = "Fisherman's Friend Locator";
     
     /**
-     *
-     * @var array
+     * @var array the $_REQUEST array.
      */
     public $request;
     
     /**
-     *
-     * @var string
+     * @var string the username of the logged user.
      */
     protected $username;
     
     /**
-     *
-     * @var string
+     * @var string the name of the current page.
      */
     protected $page;
     
     
     /**
+     * The constructor.
      * 
-     * @param array $request
+     * @param mixed[] $request the $_REQUEST array.
      */
     public function __construct($request) 
     {
@@ -84,8 +80,9 @@ abstract class Controller
     }
     
     /**
+     * Getter method for the basetitle.
      * 
-     * @return string
+     * @return string the basetitle.
      */
     public function baseTitle()
     {
@@ -93,9 +90,10 @@ abstract class Controller
     }
     
     /**
+     * Composes the page title.
      * 
-     * @param array $page
-     * @return string
+     * @param string $page the page name.
+     * @return string the complete page title.
      */
     public function pageTitle($page) 
     {
@@ -103,15 +101,19 @@ abstract class Controller
     }
     
     /**
-     * @param string $title
+     * Set the title of the page.
+     * 
+     * @param string $page the page name.
      */
-    public function setTitle($title)
+    public function setTitle($page)
     {
-        $this->title = $this->pageTitle($title);
+        $this->title = $this->pageTitle($page);
     }
     
     /**
-     * @param string $title
+     * Sets a custom title.
+     * 
+     * @param string $title the title to use.
      */
     public function setCustomTitle($title)
      {
@@ -120,6 +122,7 @@ abstract class Controller
      }
     
     /**
+     * Getter method for the title.
      * 
      * @return string
      */
@@ -129,8 +132,9 @@ abstract class Controller
     }
     
     /**
+     * Getter method for the page.
      * 
-     * @return string
+     * @return string.
      */
     public function getPage()
     {
@@ -140,7 +144,7 @@ abstract class Controller
     /**
      * Returns true if there's an active login session.
      * 
-     * @return boolean
+     * @return boolean true if is logged in.
      */
     protected function isLoggedIn() 
     {
@@ -153,7 +157,7 @@ abstract class Controller
     }
 
     /**
-     * Destroys the session.
+     * Destroys the active session.
      */
     protected function closeSession()
     {
@@ -169,6 +173,7 @@ abstract class Controller
     
     /**
      * Makes the input safe.
+     * 
      * @param $input string
      * @return string
      */
@@ -185,9 +190,9 @@ abstract class Controller
     }
     
     /**
-     *  Get the username saved in the session. 
+     *  Getter method for the username.
      * 
-     * @return string
+     * @return string username.
      */
     public function getSessionUsername() 
     {
@@ -196,6 +201,10 @@ abstract class Controller
     
     /**
      * Returns a list of links.
+     * 
+     * The links are in the form (page name, page link).
+     * 
+     * @return string[][] list of links.
      */
     public function getLinks()
     {
@@ -203,10 +212,15 @@ abstract class Controller
         
         if ($this->isLoggedIn())
         {
-            //Links when logged 
-            //array(title, link)
-            
-            $linklist[] = array("PROFILE", "profile");
+            if ($this->isAdmin())
+            {
+                $linklist[] = array("ADMIN", "profile");
+            }
+            else
+            {
+                $linklist[] = array("PROFILE", "profile");
+            }
+
             $linklist[] = array("logout","logout");
             $linklist[] = array("add a shop", "addshop");
         }
