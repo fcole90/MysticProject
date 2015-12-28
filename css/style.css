@@ -166,7 +166,8 @@ input.warning
     background-color: white;
     box-shadow: 1px 5px 10px darkgray;
     margin-bottom: 4%;
-    margin-top: 0
+    margin-top: 0;
+    margin-right: 0;     
 }
 
 .morelinks:first-of-type
@@ -374,11 +375,6 @@ footer p
         display: none;
     }
     
-    .morelinks:first-of-type
-    {
-        margin: 0;
-    }
-    
     .morelinks
     {
         float: right;
@@ -387,13 +383,18 @@ footer p
         box-shadow: none;
         width: auto;
     }
+    
+    .morelinks:first-of-type
+    {
+        margin: 0;
+    }
    
     .morelinks p
     {
         font-size: 2em;
         padding: 0;
-        padding-left: 0.15em;
-        padding-right: 0.15em;
+        padding-left: 0.20em;
+        padding-right: 0.20em;
     }
     
     /*Hide the dropdown menu*/

@@ -228,6 +228,7 @@ abstract class Controller
         {
             $linklist[] = array("LOGIN", "login");
             $linklist[] = array("signup", "signup");
+            
         }
                 
         return $linklist;
