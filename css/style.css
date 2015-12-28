@@ -172,7 +172,7 @@ input.warning
 
 .morelinks:first-of-type
 {
-    margin-top: 2vh;    
+    margin-top: 0.8vh;    
 }
 
 .morelinks a
@@ -312,8 +312,18 @@ footer p
     min-height: 40vh;
 }
 
+@media screen and (-webkit-min-device-pixel-ratio:0) 
+{ 
+    .morelinks:first-of-type
+    {
+        margin-right: 0.1px;
+        padding-right: 1.5vh;
+        padding-left: 1.5vh;
+    }
+}
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 800px) 
+{
     /* For desktop: */
     
     #logo {display: none;}
