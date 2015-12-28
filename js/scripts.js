@@ -49,7 +49,7 @@ function populateSearchTable(json, rem_button)
               + ", " + data[index]["city"] + "</td></tr>";
         if (rem_button)
         {
-            list += "<tr class='tr-removal'><td><form action='removeShop'>"
+            list += "<tr class='tr-removal'><td></td><td><form action='removeShop'>"
               + "<input type='hidden' name='shop_name' value='" + data[index]['shop_name'] + "'>"
               + "<input type='hidden' name='id' value='" + data[index]['id'] + "'>"
               + "<input type='submit' value='Remove'></form></td></tr>";

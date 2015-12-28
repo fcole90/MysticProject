@@ -35,10 +35,18 @@ h1, h2, h3, h4, h5, h6, input[type="submit"], input[type="button"]
 /** Use a special font for paragraphs **/
 p, td
 {
-	  font-family: Walkway;
+	font-family: Walkway, "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+th, td 
+{
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    padding-top: 2vw;
+    padding-bottom: 2vw;        
 }
 
 .field 
@@ -49,6 +57,11 @@ p, td
 }
 
 table {width: auto}
+
+tr
+{
+    margin-bottom: 5vh;
+}
 
 
 input, select
