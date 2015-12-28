@@ -24,7 +24,8 @@ In the current state (version 0.9) the website has the following capabilities:
 
 ### Project requirements
 
-|---------------------|:------------------------------------------------------|
+| Requirement | Details |
+|---------------------|:-----------------------------------------------------:|
 | HTML | *YES* |
 | CSS | *YES* |
 | PHP | *YES* |
