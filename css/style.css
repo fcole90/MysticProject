@@ -56,7 +56,7 @@ th, td
     padding-right: 1em;
 }
 
-table {width: auto}
+table {width: 100%;}
 
 tr
 {
@@ -438,6 +438,8 @@ footer p
     {
        width: 70%;
     }
+    
+    table {width: 80%;}
     
     form.search
     {

@@ -151,7 +151,7 @@ class ShopModel extends DBModel
         
         if ($search == "")
         {
-            $text = "SELECT * FROM shop;";
+            $text = "SELECT * FROM shop LIMIT 100;";
             if (!$stmt = $mysqli->prepare($text))
             {
             $this->error[] = "Error: could not prepare statement: $mysqli->error";
@@ -160,7 +160,7 @@ class ShopModel extends DBModel
         }
         else
         {
-            $text = "SELECT * FROM shop WHERE city like ? OR shop_name like ? OR address like ?;";
+            $text = "SELECT * FROM shop WHERE city like ? OR shop_name like ? OR address like ? LIMIT 100;";
             $search .= "%";
             if (!$stmt = $mysqli->prepare($text))
             {
