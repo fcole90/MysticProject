@@ -29,7 +29,7 @@ body
 /** Use the special font for titles **/
 h1, h2, h3, h4, h5, h6, input[type="submit"], input[type="button"]
 {
-	  font-family: BebasNeue;
+	  font-family: BebasNeue, "Arial Black", Gadget, sans-serif;
 }
 
 /** Use a special font for paragraphs **/
@@ -200,7 +200,7 @@ input.warning
     padding-bottom: 0.1em;
     padding-left: 5%;
     padding-right: 5%;
-    font-family: BebasNeue;
+    font-family: BebasNeue, "Arial Black", Gadget, sans-serif;
     font-size: 5.5vw;
     text-align: center;
     color: #ed2000;
