@@ -79,11 +79,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><em>Find your lozenges around the globe.</em></p>
-<p>This website helps you fo find the famous Fisherman's Friends (R) Lozenges. </p>
+<p>This website helps you fo find the famous Fisherman's Friends (R) Lozenges.</p>
+<h3>Aim of the project</h3>
+<p>The final Aim of the project is to develop a website that allows its users to get informed about which shops sell the Fisherman's Friends (R) Lozenges, which are the best equipped and allow them to rate the shops and add new ones. While this is the final aim, in this scope the requisite where far less ambitious, so the website presents some bare minimum functionalities and should be considered a proof a concept.</p>
+<h3>Structure of the website</h3>
+<p>The website implements a classic MVC as asked in the requirements. The structure can be seen in the doxygen documentation attached in the project itself.</p>
+<h3>Current level of functionality</h3>
+<p>In the current state (version 0.9) the website has the following capabilities:</p>
+<ul>
+<li>Signup system: a user can sign up;</li>
+<li>Login system: a registered user can log in;</li>
+<li>Shops reporting: a logged user can add a new shop to the database;</li>
+<li>Shops research: a user can search shops (match by shop name or city);</li>
+<li>Profile view: a logged user can see its profile informatons;</li>
+<li>Shops removal: an admin can remove shops.</li>
+</ul>
+<h3>Project requirements</h3>
+<ul>
+<li>HTML <em>YES</em></li>
+<li>CSS <em>YES</em></li>
+<li>PHP <em>YES</em></li>
+<li>MySQL <em>YES</em></li>
+<li>min two roles: <em>Yes: admin, registered user and not registered user</em></li>
+<li>transactions: <em>Yes, <a class="el" href="classShopModel.html#ae035aa872e97c08247d203f90e228fe2">ShopModel::removeShop()</a></em></li>
+<li>Ajax <em>Yes: <a class="el" href="classBasePageController.html#a96ace79928e80d29e6560b1fb965e859">BasePageController::loadPageAjaxSearchShop()</a>, <a class="el" href="classPresenter.html#a02088a50a3134097a1b785b0315937b6">Presenter::json()</a></em></li>
+<li>Log in credentials: <em>Admin -&gt; username: admin, password: admin</em> </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 27 2015 18:58:56 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 28 2015 12:40:07 for Fisherman Locator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

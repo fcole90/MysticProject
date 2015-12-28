@@ -10,6 +10,5 @@ var searchData=
   ['loadpagelogout',['loadPageLogout',['../classBasePageController.html#ae7d620e0d251d06407cfe960cafe3d57',1,'BasePageController']]],
   ['loadpageprofile',['loadPageProfile',['../classBasePageController.html#affa5617be55ed9bf233fd7bd1b2e19c9',1,'BasePageController']]],
   ['loadpageremoveshop',['loadPageRemoveShop',['../classBasePageController.html#ad63921678e571dbd0a37d3afd6b55f5a',1,'BasePageController']]],
-  ['loadpagesignup',['loadPageSignup',['../classBasePageController.html#aae6760084899d261e8f19f8dc2cbfd30',1,'BasePageController']]],
-  ['loadpagetests',['loadPageTests',['../classBasePageController.html#a179555764b7f9269d724522d4c32a59b',1,'BasePageController']]]
+  ['loadpagesignup',['loadPageSignup',['../classBasePageController.html#aae6760084899d261e8f19f8dc2cbfd30',1,'BasePageController']]]
 ];
