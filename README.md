@@ -35,5 +35,6 @@ In the current state (version 0.9) the website has the following capabilities:
 | Ajax | *Yes: BasePageController::loadPageAjaxSearchShop(), Presenter::json()* |
 | Log in credentials | *Admin -> username: admin, password: 8Nca328PtW* |
 
-*Per un utente standard non sono fornite credenziali poiché è sufficiente registrarsi con i propri dati*
+*No credential is given for standard users as it's sufficient to sign up and then log in with the 
+submitted data.*
 
