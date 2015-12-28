@@ -463,24 +463,6 @@ class BasePageController extends Controller
     }
     
     
-    /**
-     * Runs a set of tests to check if the website runs correctly.
-     */
-    public function loadPageTests()
-    {
-        /** The user is not logged in. **/
-        if (!$this->isLoggedIn())
-        {
-            $this->error[] = "You're not logged in!";
-            $this->loadPageLogin();
-        }
-        /** The user tried to access a reserved area. **/
-        else if(!$this->isAdmin())
-        {
-            $this->loadPageErr403();
-        }
-    }
-    
     /***********************************
      * Helper functions.               *
      ***********************************/
@@ -560,7 +542,7 @@ class BasePageController extends Controller
           !$model->checkFieldNotExists($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $this->error[] = "This $fieldname already exists, please "
+            $this->error[] = "This $current already exists or is not valid, please "
               . "use a different one.";
             $isValid = false;
         }
@@ -591,7 +573,7 @@ class BasePageController extends Controller
           !$model->checkFieldNotExists($current, $this->user->get($current)))
         {
             $this->user->set($current, $this->setWarning($this->user->get($current)));
-            $this->error[] = "This $fieldname already exists, please "
+            $this->error[] = "This $current already exists or is not valid, please "
               . "use a different one.";
             $isValid = false;
         }
@@ -641,7 +623,7 @@ class BasePageController extends Controller
         
         if ($length != -1 && !(strlen($value) >= $length))
         {
-            $this->error[] = "The $field field should be longer than $length.";
+            $this->error[] = "The $field field should be long at least $length.";
             $flag = false;
         }
         
@@ -665,7 +647,7 @@ class BasePageController extends Controller
         
         if ($length != -1 && !(strlen($value) >= $length))
         {
-            $this->error[] = "The $field field should be longer than $length.";
+            $this->error[] = "The $field field should be long at least $length.";
             $flag = false;
         }
         return true;
@@ -690,7 +672,7 @@ class BasePageController extends Controller
         
         if ($length != -1 && !(strlen($value) >= $length))
         {
-            $this->error[] = "The $field field should be longer than $length.";
+            $this->error[] = "The $field field should be be long at least $length.";
             $flag = false;
         }
         return true;

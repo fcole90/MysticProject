@@ -46,12 +46,15 @@ function populateSearchTable(json, rem_button)
         list += "<tr><td class='field'>" 
               + data[index]['shop_name'] + "</td>"
               + "<td>" + data[index]["address"] 
-              + ", " + data[index]["city"] + "</td>";
+              + ", " + data[index]["city"] + "</td></tr>";
         if (rem_button)
         {
-            list += "<td><input type='button' value='remove' id='removeShop'</td>";
+            list += "<tr class='tr-removal'><td><form action='removeShop'>"
+              + "<input type='hidden' name='shop_name' value='" + data[index]['shop_name'] + "'>"
+              + "<input type='hidden' name='id' value='" + data[index]['id'] + "'>"
+              + "<input type='submit' value='Remove'></form></td></tr>";
         }
-        list += "</tr>";
+
     }
     if (data.length === 0)
     {

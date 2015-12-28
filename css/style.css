@@ -242,13 +242,14 @@ input[type="submit"], input[type="button"]
     border-color: darkgray;
     width: auto;
     float: right;
-    font-size: 9vw;
+    font-size: 8vw;
 }
 
 input[type="button"]
 {
     float: none;
 }
+
 
 #search-box
 {
@@ -307,7 +308,7 @@ footer p
 .clear
 {
     clear: both;
-    min-height: 90vh;
+    min-height: 40vh;
 }
 
 

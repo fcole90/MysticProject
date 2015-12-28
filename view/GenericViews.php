@@ -68,9 +68,9 @@ class GenericView
         
         foreach ($shoplist as $item)
         {
-            $text .= "<tr><td class='field'>". $item['shop_name'] . "</td>"
-              . "<td>" . $item["address"] . ", " . $item["city"] . "</td>"
-              . "<td><form action='removeShop'>"
+            $text .= "<tr><td class='field'>". $item['shop_name'] . "</td>\n"
+              . "<td>" . $item["address"] . ", " . $item["city"] . "</td>\n</tr>"
+              . "<tr class='tr-removal'><td></td><td><form action='removeShop'>"
               . "<input type='hidden' name='shop_name' value='" . $item['shop_name'] . "'>"
               . "<input type='hidden' name='id' value='" . $item['id'] . "'>"
               . "<input type='submit' value='Remove'></form></td></tr>";
