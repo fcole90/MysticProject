@@ -1,30 +1,28 @@
 # Apache configuration file (see httpd.apache.org/docs/2.2/mod/quickreference.html)
 
-# Questo file contiene la definizione della riscrittura delle url per
-# la nostra applicazione
+# This file contains URL rewriting rules for the application
 
-# attiva il rewrite engine per la nostra applicazione
+# Enable rewrite engine
 RewriteEngine  on
 
-# questa regola intercetta tutte le url del tipo 
-# http://mioserver/miapagina
-# trasformandole in http://mioserver/index.php?page=miapagina&subpage=home
-# dove mioserver e' il nome del server (che e' inserito in automatico, senza
-# la necessita' di specificare nulla nella regola)
-# e miapagina e' cio' che viene scritto immediatamente dopo il nome del server
-# La regola redireziona tutto il traffico alla pagina index.php, che smista
-# poi le richieste allo script php corretto.
-# La parte [QSA] appende il resto della query string alla riscrittura
+# Intercept rules like
+# http://myserver/mypage
+# and transform them into http://myserver/index.php?page=mypage&subpage=home
+# where 'myserver' is the name of the server (written automatically), without
+# the need of clarifying anything else.
+# 'mypage' is instead what gets written immediately after the server name.
+# The redirection rule redirects all traffic to index.php, which
+# handles all requests and send them to the proper scripts.
+# The [QSA] portion appends the remaining of the query to the rewriting
 RewriteRule    ^([a-zA-Z0-9_-]+)$  index.php?page=$1&subpage=home [QSA]
 
-# questa regola intercetta tutte le url del tipo
-# http://mioserver/miapagina/miasottopagina 
-# trasformandola in http://mioserver/index.php?page=miapagina&subpage=miasottopagina
-# Il motivo e' lo stesso della regola precedente
+# This rules intercepts all URLs like
+# http://myserver/mypage/mysubpage 
+# rewriting into http://myserver/index.php?page=mypage&subpage=mysubpage
 RewriteRule    ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$  index.php?page=$1&subpage=$2 [QSA]
 
 # Error reporting
-php_flag  display_errors        on
+# php_flag  display_errors        on
 php_value error_reporting       2039
 
 #Error pages
