@@ -23,8 +23,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 body
 {
     margin: 0;
-    overflow-x: hidden;
+    position: relative;
+    display: block;
     min-height: 100vh;
+    padding-bottom: 3rem;
 }
 
 /** Use the special font for titles **/
@@ -324,17 +326,19 @@ footer
 
 footer p
 {
-    margin: 0;
+    margin: 0.8em 1.2em;
     padding: 1%;
     color: whitesmoke;
+    line-height: 1.35;
+    font-size: 1em;
 }
 
 /*the clear div*/
 .clear
 {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    clear: both;
+    padding-bottom: 2.5rem;
+    height: 2rem;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:0) 
@@ -348,7 +352,7 @@ footer p
     }
 }
 
-@media only screen and (min-width: 800px) 
+@media only screen and (min-width: 830px) 
 {
     /* For desktop: */
     
@@ -364,15 +368,30 @@ footer p
     
     body
     {
-      margin: 0 5em 0 5em;    
+      /* margin: 0 5em 0 5em;     */
+    }
+
+    #logo-big-screen {
+        margin-left: 5em;
+    }
+
+    #mainnav {
+        margin-right: 5em;
+        width: 50vw;
+    }
+
+    .breakline {
+        margin: 0 5em;
     }
     
-    td {font-size: 1.8em}
-                
-    #mainnav
-    {
-        width: 60%;
+    td {
+        font-size: 1.8em
     }
+
+    main {
+        margin: 1em 5.2em 1em 5.2em;
+    }
+                
     
     #mainlist
     {
@@ -442,6 +461,10 @@ footer p
     input, input[type="submit"], input[type="search"], input[type="button"]
     {
         font-size: 1.8em
+    }
+
+    footer p {
+        font-size: 1.2em;
     }
     
     
