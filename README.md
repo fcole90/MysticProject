@@ -33,6 +33,4 @@ In the current state (version 0.9) the website has the following capabilities:
 | two roles at least | *Yes: admin, registered user and not registered user* |
 | transactions | *Yes, ShopModel::removeShop()* |
 | Ajax | *Yes: BasePageController::loadPageAjaxSearchShop(), Presenter::json()* |
-| Log in credentials | *Standard -> username: john04, password: Doe004* |
-| Log in credentials | *Admin -> username: admin, password: 8Nca328PtW* |
 
