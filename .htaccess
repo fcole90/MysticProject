@@ -22,9 +22,9 @@ RewriteRule    ^([a-zA-Z0-9_-]+)$  index.php?page=$1&subpage=home [QSA]
 RewriteRule    ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$  index.php?page=$1&subpage=$2 [QSA]
 
 # Error reporting
-# php_flag  display_errors        on
-# php_value error_reporting       2039
+php_flag  display_errors        on
+php_value error_reporting       2039
 
-#Error pages
+# Error pages
 ErrorDocument 403 /fisherman-locator-new/index.php?page=loadPageErr403
 ErrorDocument 404 /fisherman-locator-new/index.php?page=loadPageErr404

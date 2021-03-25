@@ -43,7 +43,14 @@ abstract class DBModel extends Model
      * Get ClearDB URL on Heroku
      */
     private function getDBData() {
-        return parse_url(getenv("CLEARDB_DATABASE_URL"));
+        $dbUrl = getenv("CLEARDB_DATABASE_URL");
+
+        // Use test server
+        if ($dbUrl == "") {
+            $dbUrl = "mysql://admin:admin@localhost/fisherman_test?reconnect=true";
+        }
+
+        return parse_url($dbUrl);
     }
     
     /**
@@ -79,17 +86,14 @@ abstract class DBModel extends Model
     /**
      * The password.
      * 
-     * @return string password
+     * @return string username
      */
     protected function dbPassword()
     {
         return $this->getDBData()["pass"];
     }
 
-
     /**
-     * Creates a connection.
-     * 
      * If it fails connecting throws an exception.
      * 
      * @return mysqli mysqli 
