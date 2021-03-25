@@ -63,7 +63,7 @@ abstract class DBModel extends Model
      */
     protected function dbDatabase()
     {
-        return substr($this->getDBData()["host"], 1);
+        return substr($this->getDBData()["path"], 1);
     }
     
     /**
