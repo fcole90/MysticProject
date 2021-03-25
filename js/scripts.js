@@ -39,14 +39,24 @@ function showlinks()
 function populateSearchTable(json, rem_button)
 {
     var data = JSON.parse(json);
-    list = "";
+    let list = "";
     //Reset the content of the table and repopulate it
-    for	(index = 0; index < data.length; index++) 
+    for	(let index = 0; index < data.length; index++) 
     {
-        list += "<tr><td class='field'>" 
-              + data[index]['shop_name'] + "</td>"
-              + "<td>" + data[index]["address"] 
-              + ", " + data[index]["city"] + "</td></tr>";
+        const query = `${data[index]['shop_name'].replace(" ", "+")}+`
+                     + `${data[index]['address'].replace(" ", "+")}+`
+                     + `${data[index]['city'].replace(" ", "+")}`
+        const mapsLink = `https://www.google.com/maps/search/${query}`
+        list += ""
+              + "<tr>"
+              + "  <td class='field'>"
+              + `    <a href='${mapsLink}' target='_blank' class='quiet_link table_link'>` + data[index]['shop_name'] + "</a>"
+              + "  </td>"
+              + "  <td>" 
+              + `    <a href='${mapsLink}' target='_blank' class='quiet_link table_link'>` + data[index]["address"] + ", " + data[index]["city"] + "</a>"
+              + "  </td>"
+              + "</tr></a>";
+        
         if (rem_button)
         {
             list += "<tr class='tr-removal'><td></td><td><form action='removeShop'>"

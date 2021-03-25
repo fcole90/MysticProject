@@ -24,6 +24,7 @@ body
 {
     margin: 0;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 /** Use the special font for titles **/
@@ -44,16 +45,12 @@ p, td
 th, td 
 {
     border: 0;
-    border-bottom: 1px solid #ddd;
-    padding-top: 2vw;
-    padding-bottom: 2vw;        
+    border-bottom: 1px solid #ddd;  
 }
 
 .field 
 {
     color: #ed2000;
-    padding: 0.2em;
-    padding-right: 1em;
 }
 
 table {width: 100%;}
@@ -79,6 +76,19 @@ a
 {
     color: #ed2000;
     text-decoration: none;
+}
+
+.quiet_link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.table_link {
+    display: block;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
 #logo
@@ -296,17 +306,18 @@ select
 }
 
 
-
-
 main
 {
     margin: 2vh 2vw 2vh 2vw;
 }
 
 
-
 footer
 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: black;
     margin: 0;
 }
@@ -321,8 +332,9 @@ footer p
 /*the clear div*/
 .clear
 {
-    clear: both;
-    min-height: 40vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:0) 

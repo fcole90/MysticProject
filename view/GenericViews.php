@@ -88,6 +88,7 @@ class GenericView
         
         return $text;
     }
+
     
     /**
      * Get the HTML to render the home and the search.
@@ -105,8 +106,21 @@ class GenericView
         
         foreach ($data as $item)
         {
-            $text .= "<tr><td class='field'>". $item['shop_name'] . "</td>"
-              . "<td>" . $item["address"] . ", " . $item["city"] . "</td></tr>";
+            $query = str_replace(" ", "+", $item['shop_name']) . "+" .
+                     str_replace(" ", "+", $item['city']) . "+" .
+                     str_replace(" ", "+", $item['address']);
+            
+            $maps_link = "https://www.google.com/maps/search/$query";
+
+            $text .= ""
+              . "<tr>"
+              . "  <td class='field'>"
+              . "    <a href='$maps_link' target='_blank' class='quiet_link table_link'>" . $item['shop_name'] . "</a>"
+              . "  </td>"
+              . "  <td>" 
+              . "    <a href='$maps_link' target='_blank' class='quiet_link table_link'>" . $item["address"] . ", " . $item["city"] . "</a>"
+              . "  </td>"
+              . "</tr></a>";
         } 
         
         /*This is implemented here for coherence with the js equivalent*/
