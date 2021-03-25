@@ -38,6 +38,13 @@ abstract class DBModel extends Model
     public function __construct() {
         parent::__construct();
     }
+
+    /**
+     * Get ClearDB URL on Heroku
+     */
+    private function getDBData() {
+        return parse_url(getenv("CLEARDB_DATABASE_URL"));
+    }
     
     /**
      * The hostname.
@@ -46,7 +53,7 @@ abstract class DBModel extends Model
      */
     protected function dbHostname()
     {
-       return  "localhost";
+       return  $this->getDBData()["host"];
     }
     
     /**
@@ -56,7 +63,7 @@ abstract class DBModel extends Model
      */
     protected function dbDatabase()
     {
-        return "amm15_colellaFabio";
+        return substr($this->getDBData()["host"], 1);
     }
     
     /**
@@ -66,7 +73,7 @@ abstract class DBModel extends Model
      */
     protected function dbUsername()
     {
-        return "colellaFabio";
+        return $this->getDBData()["user"];
     }
     
     /**
@@ -76,7 +83,7 @@ abstract class DBModel extends Model
      */
     protected function dbPassword()
     {
-        return "nutria8058";
+        return $this->getDBData()["pass"];
     }
 
 
