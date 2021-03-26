@@ -8,7 +8,8 @@ This website helps you fo find the famous Fisherman's Friends (R) Lozenges.
   <img 
    src="https://user-images.githubusercontent.com/1292230/112669045-e6ce7d80-8e67-11eb-8c53-c0410e1be527.png"
    alt="Screenshot of the website through an IPhone"
-   height="450" />
+   height="450"
+   />
 </a>
 
 ### Aim of the project
