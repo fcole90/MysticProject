@@ -26,7 +26,6 @@ body
     position: relative;
     display: block;
     min-height: 100vh;
-    padding-bottom: 3rem;
 }
 
 /** Use the special font for titles **/
@@ -108,7 +107,7 @@ hr
 {
     margin: 0;
     padding: 0;
-    margin-bottom: 2em;
+    margin-bottom: 4vw;
     border: 0;
     height: 0.35em;
     color: #ed2000;
@@ -243,6 +242,7 @@ iframe { width: 85vw; }
 form
 {
     width: 90%;
+    margin-left: 4vw;
 }
 
 form p
@@ -310,7 +310,7 @@ select
 
 main
 {
-    margin: 2vh 2vw 2vh 2vw;
+    margin: 3vw 2vw 2vw 2vw;
 }
 
 
@@ -330,15 +330,15 @@ footer p
     padding: 1%;
     color: whitesmoke;
     line-height: 1.35;
-    font-size: 1em;
+    font-size: 3vw;
 }
 
 /*the clear div*/
 .clear
 {
     clear: both;
-    padding-bottom: 2.5rem;
-    height: 2rem;
+    padding-top: 2vw;
+    height: 20vw;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:0) 
@@ -366,10 +366,6 @@ footer p
         padding-top: 0.2em;
     }
     
-    body
-    {
-      /* margin: 0 5em 0 5em;     */
-    }
 
     #logo-big-screen {
         margin-left: 5em;
@@ -472,6 +468,7 @@ footer p
     form
     {
        width: 70%;
+       margin-left: 0;
     }
     
     table {width: 80%;}
@@ -493,4 +490,9 @@ footer p
         width: auto;
     }
    
+    .clear
+    {
+        padding-top: 1rem;
+        height: 8rem;
+    }
 }
