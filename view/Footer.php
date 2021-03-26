@@ -32,11 +32,11 @@ class Footer
     <footer>
       <p>
         This site is not affiliated nor endorsed by 
-         <a href="http://www.fishermansfriend.com/en-gb/pages/contact-us/">
+         <a href="http://www.fishermansfriend.com/en-gb/pages/contact-us/" target="_blank">
          Lofthouse of Fleetwood Ltd</a>.
          Fisherman's Friend&#174; is a trademark of Lofthouse of Fleetwood Ltd.<br>
          Website created by <a href="https://github.com/fcole90" target="_blank">Fabio Colella</a>.
-         Released under <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">
+         Released under <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" target="_blank">
           GPL2</a>. 
           Code available on <a href="https://github.com/fcole90/fisherman-locator" target="_blank">GitHub</a>. Copyright &copy; 2015-2021 Fabio Colella.
       </p>
