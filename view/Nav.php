@@ -80,7 +80,7 @@ class Nav
         <li id="showlinks" class="$this->linkClass">
           <a href="javascript:showlinks()">
             <img id="links" src="assets/links.png" alt="other links"/>
-            <p>LINKS</p>
+            <p>MORE</p>
           </a>
         </li>
       </ul>

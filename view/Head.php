@@ -33,8 +33,13 @@ class Head
   <head>
     <!-- Visible data -->
     <title>$title</title>
+
+    <!-- Meta -->
     <meta name="description" content="Find your fresh lozeges around the world.">
+    <meta name="title" content="Fisherman's Friend Locator">
     <meta name="author" content="Fabio Colella">
+    <meta name="image" content="https://fisherman-locator.herokuapp.com/assets/logo-text-stretched.png">
+    <meta name="url" content="https://fisherman-locator.herokuapp.com/index.php">
 
     <!-- Metadata -->
     <meta charset="UTF-8">
