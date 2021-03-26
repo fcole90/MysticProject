@@ -296,13 +296,13 @@ HTML;
      * @param $selected (optional) a default option to set.
      * @return string the HTML code of the dropdown.
      */
-    public function generateYearsOptions($selected = "") 
+    public function generateYearsOptions() 
     {
         $currentYear = date("Y");
-        $options = "<select name='year' selected='$currentYear'>\n";
+        $options = "<select name='year' selected='selected'>\n";
         for($i = 1900; $i<=$currentYear; ++$i)
         {
-            $sel = ($i == $selected) ? "selected" : "";
+            $sel = ($i == $currentYear) ? "selected" : "";
             $options .= "<option $sel value='$i'>$i</option>\n";
         }
         $options .= "</select>\n";
