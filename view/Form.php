@@ -201,11 +201,11 @@ HTML;
     <p>Shop Name:</p>
     <input type="text" name="shop_name" value="$shop_name" required="true">
     <br>
-    <p>City:</p>
-    <input type="text" name="city" value="$city" required="true">
-    <br>
     <p>Address:</p>
     <input type="text" name="address" value="$address" required="true">
+    <br>
+    <p>City:</p>
+    <input type="text" name="city" value="$city" required="true">
     <br>
 
     <input type="submit" value="Add shop!">
@@ -298,8 +298,8 @@ HTML;
      */
     public function generateYearsOptions($selected = "") 
     {
-        $options = "<select name='year'>\n";
         $currentYear = date("Y");
+        $options = "<select name='year' selected='$currentYear'>\n";
         for($i = 1900; $i<=$currentYear; ++$i)
         {
             $sel = ($i == $selected) ? "selected" : "";
