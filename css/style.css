@@ -338,7 +338,7 @@ footer p
 {
     clear: both;
     padding-top: 2vw;
-    height: 20vw;
+    height: 23vw;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio:0) 
@@ -493,6 +493,6 @@ footer p
     .clear
     {
         padding-top: 1rem;
-        height: 8rem;
+        height: 8.5rem;
     }
 }

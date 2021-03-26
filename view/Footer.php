@@ -35,9 +35,10 @@ class Footer
          <a href="http://www.fishermansfriend.com/en-gb/pages/contact-us/">
          Lofthouse of Fleetwood Ltd</a>.
          Fisherman's Friend&#174; is a trademark of Lofthouse of Fleetwood Ltd.<br>
-         Website created by <em>Fabio Colella</em>. Released under 
-        <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">
-          GPL2</a>. Copyright 2015.
+         Website created by <a href="https://github.com/fcole90" target="_blank">Fabio Colella</a>.
+         Released under <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html">
+          GPL2</a>. 
+          Code available on <a href="https://github.com/fcole90/fisherman-locator" target="_blank">GitHub</a>. Copyright &copy; 2015-2021 Fabio Colella.
       </p>
     </footer>    
 HTML;
