@@ -4,6 +4,13 @@ Fisherman Locator
 
 This website helps you fo find the famous Fisherman's Friends (R) Lozenges.
 
+<a href="https://fisherman-locator.herokuapp.com/index.php" target="_blank">
+  <img 
+   src="https://user-images.githubusercontent.com/1292230/112669045-e6ce7d80-8e67-11eb-8c53-c0410e1be527.png"
+   alt="Screenshot of the website through an IPhone"
+   height="450" />
+</a>
+
 ### Aim of the project
 The final Aim of the project is to develop a website that allows its users to get informed about which shops sell the Fisherman's Friends (R) Lozenges,
 which are the best equipped and allow them to rate the shops and add new 
