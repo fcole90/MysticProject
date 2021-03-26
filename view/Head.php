@@ -27,19 +27,37 @@ class Head
 {
     public function __construct($title, $fields = "") 
     {
+        $meta_title = "Fisherman's Friend Locator";
+        $meta_author = "Fabio Colella";
+        $meta_description = "Find your fresh lozeges around the world.";
+        $meta_url = "https://fisherman-locator.herokuapp.com";
+        $meta_image = "$meta_url/assets/logo-text-stretched.png";
+        $meta_image_alt = "Fisherman Locator Logo";
+
+
         if (!isset($title))
             echo "Error, missing title.";
         echo <<<HTML
   <head>
     <!-- Visible data -->
     <title>$title</title>
+    <meta content=$meta_title>
 
     <!-- Meta -->
-    <meta name="description" content="Find your fresh lozeges around the world.">
-    <meta name="title" content="Fisherman's Friend Locator">
-    <meta name="author" content="Fabio Colella">
-    <meta name="image" content="https://fisherman-locator.herokuapp.com/assets/logo-text-stretched.png">
-    <meta name="url" content="https://fisherman-locator.herokuapp.com/index.php">
+    <meta property="og:title" content="$meta_title">
+    <meta property="og:description" content="$meta_description">
+    <meta property="og:image" content="$meta_image">
+    <meta property="og:url" content="$meta_url">
+    <meta property="og:site_name" content="$meta_title">
+    <meta name="twitter:card" content="$meta_image">
+    <meta name="twitter:image:alt" content="$meta_image_alt">
+    <meta name="twitter:site" content="@fcole90">
+
+    <meta name="description" content="$meta_description">
+    <meta name="title" content="$meta_title">
+    <meta name="author" content="$meta_author">
+    <meta name="image" content="$meta_image">
+    <meta name="url" content="$meta_url">
 
     <!-- Metadata -->
     <meta charset="UTF-8">
