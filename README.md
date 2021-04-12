@@ -2,7 +2,7 @@ Fisherman Locator
 =================
 *Find your lozenges around the globe.*
 
-This website helps you fo find the famous Fisherman's Friends (R) Lozenges.
+This website helps you finding where to buy the famous [Fisherman's Friends®](https://fishermansfriend.com/) Lozenges.
 
 <a href="https://fisherman-locator.herokuapp.com/index.php" target="_blank">
   <img 
